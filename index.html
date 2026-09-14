@@ -76,7 +76,12 @@
   .app { max-width: 540px; margin: 0 auto; min-height: 100dvh; padding-bottom: 88px; }
 
   /* Header */
-  .top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 18px 10px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+  .top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .theme { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 13px; font-weight: 600; }
+  .theme svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .theme .ic-sun { display: none; }
+  :root[data-theme="dark"] .theme .ic-moon { display: none; }
+  :root[data-theme="dark"] .theme .ic-sun { display: inline; }
   .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
   .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); display: inline-block; }
   .seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; }
@@ -227,6 +232,11 @@
 
 <div class="app" id="app">
   <header class="top">
+    <button class="theme" data-theme-toggle aria-label="Vaihda teema" title="Teema">
+      <svg viewBox="0 0 24 24" class="ic-moon"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg viewBox="0 0 24 24" class="ic-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <span class="lbl"></span>
+    </button>
     <div class="seg" role="group" aria-label="Kuka käyttää">
       <button data-profile="leo" aria-pressed="true">Leo</button>
       <button data-profile="aiti" aria-pressed="false">Kirsi</button>
@@ -277,6 +287,11 @@
   const loadSeed = () => { try { const v = localStorage.getItem(seedKey()); S.seed = v ? +v : daySeed(S.profile); } catch (e) { S.seed = daySeed(S.profile); } };
   try { S.profile = localStorage.getItem("creami.profile") || "leo"; } catch (e) {}
   loadSeed();
+  // Theme: "auto" follows the phone; "dark"/"light" lock it. Stored per device.
+  const THEMES = ["auto", "dark", "light"], THEME_LABEL = { auto: "Auto", dark: "Tumma", light: "Vaalea" };
+  let theme = "auto"; try { theme = localStorage.getItem("creami.theme") || "auto"; } catch (e) {}
+  const applyTheme = () => { if (theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = theme; const l = document.querySelector(".theme .lbl"); if (l) l.textContent = THEME_LABEL[theme]; };
+  applyTheme();
 
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -657,6 +672,8 @@
   document.addEventListener("click", (e) => {
     const tu = e.target.closest("[data-toast-undo]");
     if (tu) { const fn = toastUndo; toastUndo = null; $("#toast").classList.remove("show"); if (fn) fn(); return; }
+    const tt = e.target.closest("[data-theme-toggle]");
+    if (tt) { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; try { localStorage.setItem("creami.theme", theme); } catch (x) {} applyTheme(); return; }
     const t = e.target.closest("[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
     if (!t) return;
     const d = t.dataset;
