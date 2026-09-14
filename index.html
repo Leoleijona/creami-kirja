@@ -193,8 +193,11 @@
   .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 18px max(12px, env(safe-area-inset-bottom)); }
   .actionbar .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .actionbar .in.one { grid-template-columns: 1fr; }
-  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; }
-  .toast.show { opacity: 1; }
+  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; display: flex; gap: 14px; align-items: center; white-space: nowrap; max-width: calc(100vw - 32px); }
+  .toast.show { opacity: 1; pointer-events: auto; }
+  .toast button { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; padding: 4px 2px; }
+  .frz .row-actions { flex-wrap: nowrap; }
+  .btn.icon { min-width: 36px; padding: 8px 10px; }
 
   /* Review modal */
   .modal { position: fixed; inset: 0; z-index: 15; background: rgba(10,16,22,.55); display: grid; align-items: end; }
@@ -279,7 +282,13 @@
   const forMe = (r) => !Array.isArray(r.who) || r.who.length === 0 || r.who.includes(S.profile);
   const mine = () => { const m = visible().filter(forMe); return m.length ? m : visible(); };
   const proposals = () => S.recipes.filter((r) => isProposal(r) && !isHidden(r)).sort((a, b) => (forMe(b) - forMe(a)) || (b.added || 0) - (a.added || 0));
-  let toastT; const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800); };
+  // toast(message) or toast(message, undoFn) – the undo variant stays up longer and offers "Kumoa".
+  let toastT, toastUndo = null;
+  const toast = (m, undo) => {
+    const t = $("#toast"); toastUndo = undo || null;
+    t.innerHTML = `<span>${esc(m)}</span>${undo ? `<button type="button" data-toast-undo>Kumoa</button>` : ""}`;
+    t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), undo ? 6000 : 1800);
+  };
 
   // Stats per recipe for the current profile
   function stats(profile) {
@@ -356,7 +365,7 @@
       const ready = f.at + DAY, isReady = Date.now() >= ready;
       return `<div class="card frz">
         <div><div class="t">${esc(r.name)}</div><div class="sub">${NAMES[f.who] || ""} · laitettu ${fmtDay(f.at)} · ${isReady ? `<span class="pill ok">Valmis ajettavaksi</span>` : `valmis ${fmtWhen(ready)}`}</div></div>
-        <div class="row-actions"><button class="btn small primary" data-done="${esc(f.id)}">Tehty</button><button class="btn small ghost" data-open="${esc(r.id)}">Avaa</button></div>
+        <div class="row-actions"><button class="btn small primary" data-done="${esc(f.id)}">Tehty</button><button class="btn small ghost" data-open="${esc(r.id)}">Avaa</button><button class="btn small ghost icon" data-unfreeze="${esc(f.id)}" aria-label="Poista pakkaslistalta" title="Poista pakkaslistalta">✕</button></div>
       </div>`;
     }).join("") : `<div class="empty">Ei mitään pakkasessa. Avaa resepti ja paina <b>Laita pakkaseen</b>, niin näet täältä milloin se on valmis.</div>`;
     const sugg = suggestions();
@@ -390,7 +399,8 @@
   }
   function reviewRow(v) {
     const r = byId(v.recipeId);
-    return `<div class="review"><div class="h"><span class="who">${esc(NAMES[v.who] || v.who)}</span><span class="stars">${stars(v.stars)}</span>${r ? `<button class="link" data-open="${esc(r.id)}">${esc(r.name)}</button>` : ""}<span class="d">${fmtDay(v.at)}</span></div>
+    const canDelete = v.who === S.profile && Date.now() - v.at < 3600 * 1000;
+    return `<div class="review"><div class="h"><span class="who">${esc(NAMES[v.who] || v.who)}</span><span class="stars">${stars(v.stars)}</span>${r ? `<button class="link" data-open="${esc(r.id)}">${esc(r.name)}</button>` : ""}<span class="d">${fmtDay(v.at)}${canDelete ? ` · <button class="link" data-unreview="${esc(v.id)}">Poista</button>` : ""}</span></div>
       <div class="tags">${v.texture ? `<span class="pill">${esc(v.texture)}</span>` : ""}${v.sweetness ? `<span class="pill">${esc(v.sweetness)}</span>` : ""}</div>${v.comment ? `<div class="c">${esc(v.comment)}</div>` : ""}</div>`;
   }
 
@@ -557,14 +567,15 @@
     const r = byId(id); if (!r) return;
     const wasProposal = isProposal(r);
     if (S.open === id) { S.open = null; S.review = null; }
+    const before = { hidden: P().hidden, favorites: P().favorites };
     savePrefs({ hidden: [...without(P().hidden, id), id], favorites: without(P().favorites, id) });
-    toast(wasProposal ? "Ei lisätty kirjaan" : "Piilotettu – löydät sen Reseptit-välilehden lopusta");
+    toast(wasProposal ? "Ei lisätty kirjaan" : "Piilotettu – löydät sen Reseptit-välilehden lopusta", () => savePrefs(before));
   }
   function keepRecipe(id) {
     savePrefs({ kept: [...without(KEPT(), id), id] }, "shared");
     if (P().hidden.includes(id)) savePrefs({ hidden: without(P().hidden, id) });
     if (S.open === id) render();
-    toast("Lisätty kirjaan – näkyy nyt teille molemmille");
+    toast("Lisätty kirjaan – näkyy nyt teille molemmille", () => savePrefs({ kept: without(KEPT(), id) }, "shared"));
   }
   function toggleFav(id) {
     const on = P().favorites.includes(id);
@@ -575,7 +586,23 @@
     if (!S.db) return toast("Ei yhteyttä");
     const { error } = await S.db.from("freezer").insert({ recipe_id: r.id, who: S.profile, at: Date.now() });
     if (error) return toast("Tallennus epäonnistui");
-    await load("freezer"); S.open = null; S.tab = "today"; render(); toast(`Pakkasessa – valmis ${fmtWhen(Date.now() + DAY)}`);
+    await load("freezer"); S.open = null; S.tab = "today"; render();
+    const mine = S.freezer.filter((f) => f.recipeId === r.id && f.who === S.profile).sort((a, b) => b.at - a.at)[0];
+    toast(`Pakkasessa – valmis ${fmtWhen(Date.now() + DAY)}`, mine ? () => removeFreezer(mine.id, true) : null);
+  }
+  async function removeFreezer(id, silent) {
+    if (!S.db) return toast("Ei yhteyttä");
+    const { error } = await S.db.from("freezer").delete().eq("id", id);
+    if (error) return toast("Poisto epäonnistui");
+    await load("freezer"); if (!silent) toast("Poistettu pakkaslistalta");
+  }
+  async function removeReview(id) {
+    if (!S.db) return toast("Ei yhteyttä");
+    const { error } = await S.db.from("reviews").delete().eq("id", id);
+    if (error) return toast("Poisto epäonnistui");
+    await load("reviews");
+    if (S.reviews.some((v) => v.id === id)) return toast("Arviota ei voi enää poistaa (yli tunti vanha)");
+    toast("Arvio poistettu");
   }
   async function saveReview() {
     const v = S.review; if (!v || !v.stars || !S.db) return;
@@ -616,10 +643,14 @@
 
   // ---------- Events ----------
   document.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
+    const tu = e.target.closest("[data-toast-undo]");
+    if (tu) { const fn = toastUndo; toastUndo = null; $("#toast").classList.remove("show"); if (fn) fn(); return; }
+    const t = e.target.closest("[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
     if (!t) return;
     const d = t.dataset;
-    if (d.hide) { hideRecipe(d.hide); }
+    if (d.unfreeze) { removeFreezer(d.unfreeze); }
+    else if (d.unreview) { removeReview(d.unreview); }
+    else if (d.hide) { hideRecipe(d.hide); }
     else if (d.unhide) { savePrefs({ hidden: without(P().hidden, d.unhide) }); toast("Palautettu"); }
     else if (d.keep) { keepRecipe(d.keep); }
     else if (d.fav) { toggleFav(d.fav); }
@@ -639,7 +670,7 @@
     else if ("reviewCancel" in d) { S.review = null; render(); }
     else if ("reviewSave" in d) { saveReview(); }
     else if (d.remove) { e.preventDefault(); saveShopping(S.shopping.filter((i) => i.id !== d.remove)); }
-    else if ("clearDone" in d) { saveShopping(S.shopping.filter((i) => !i.done)); }
+    else if ("clearDone" in d) { const before = S.shopping; saveShopping(S.shopping.filter((i) => !i.done)); toast("Ruksitut poistettu", () => saveShopping(before)); }
   });
   document.addEventListener("change", (e) => {
     const c = e.target.closest("[data-check]");
