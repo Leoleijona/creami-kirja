@@ -115,7 +115,7 @@
   .btn.primary { background: var(--accent); color: var(--accent-ink); }
   .btn.ghost { background: transparent; color: var(--muted); }
   .btn.no { background: var(--no-soft); color: var(--no); border: 1.5px solid var(--no); }
-  .try .btn.no { background: transparent; color: var(--no); border-color: var(--no); opacity: 1; }
+  .try .btn.no { background: transparent; color: var(--no); border-color: var(--no); }
   .btn.small { padding: 8px 12px; font-size: 14px; min-height: 36px; border-radius: 10px; }
   .btn.block { width: 100%; }
 
@@ -160,12 +160,10 @@
   .sheet-top .heart { margin-left: auto; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; }
   .sheet-top .heart svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linejoin: round; }
   .sheet-top .heart[aria-pressed="true"] svg { fill: var(--accent); }
-  .try { background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: 16px; display: grid; gap: 10px; }
-  .try .eyebrow { color: var(--bg); opacity: .7; }
+  .try { background: var(--surface); color: var(--ink); border-radius: var(--radius); padding: 16px; display: grid; gap: 10px; box-shadow: var(--shadow); border-top: 3px solid var(--accent); }
+  .try .eyebrow { color: var(--accent); }
   .try h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
-  .try .meta { color: var(--bg); opacity: .8; }
-  .try .prog { background: rgba(255,255,255,.14); color: var(--bg); }
-  .try .btn { background: var(--surface); color: var(--ink); }
+  .try .btn { background: var(--surface-2); color: var(--ink); }
   .try .btn.primary { background: var(--accent); color: var(--accent-ink); }
   .hidden-list summary { cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 600; padding: 6px 0; list-style: none; }
   .hidden-list summary::-webkit-details-marker { display: none; }
