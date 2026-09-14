@@ -261,9 +261,14 @@
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
     prefs: { leo: { hidden: [], favorites: [], kept: [] }, aiti: { hidden: [], favorites: [], kept: [] }, shared: { hidden: [], favorites: [], kept: [] } },
-    db: null, dbState: "loading", open: null, review: null, seed: Math.random(),
+    db: null, dbState: "loading", open: null, review: null, seed: 0,
   };
+  // Suggestions are stable for a calendar day (per person); "Arvo uudet" re-rolls them for the rest of that day.
+  const daySeed = (who) => { const d = new Date(); let h = (d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()) + (who === "aiti" ? 7 : 3); h = Math.imul(h ^ (h >>> 15), 2246822519); h = Math.imul(h ^ (h >>> 13), 3266489917); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const seedKey = () => "creami.seed." + S.profile + "." + new Date().toDateString();
+  const loadSeed = () => { try { const v = localStorage.getItem(seedKey()); S.seed = v ? +v : daySeed(S.profile); } catch (e) { S.seed = daySeed(S.profile); } };
   try { S.profile = localStorage.getItem("creami.profile") || "leo"; } catch (e) {}
+  loadSeed();
 
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -653,11 +658,11 @@
     else if (d.unhide) { savePrefs({ hidden: without(P().hidden, d.unhide) }); toast("Palautettu"); }
     else if (d.keep) { keepRecipe(d.keep); }
     else if (d.fav) { toggleFav(d.fav); }
-    else if (d.profile) { S.profile = d.profile; try { localStorage.setItem("creami.profile", S.profile); } catch (x) {} render(); }
+    else if (d.profile) { S.profile = d.profile; try { localStorage.setItem("creami.profile", S.profile); } catch (x) {} loadSeed(); render(); }
     else if (d.tab) { S.tab = d.tab; render(); window.scrollTo(0, 0); }
     else if (d.open) { S.open = d.open; S.review = null; render(); const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = 0; }
     else if ("close" in d) { S.open = null; S.review = null; render(); }
-    else if ("reroll" in d) { S.seed = Math.random(); render(); }
+    else if ("reroll" in d) { S.seed = Math.random(); try { localStorage.setItem(seedKey(), String(S.seed)); } catch (x) {} render(); }
     else if (d.cat) { S.cat = d.cat; render(); }
     else if (d.freeze) { addFreezer(byId(d.freeze)); }
     else if (d.rate) { S.review = { recipeId: d.rate, stars: 0, texture: "", sweetness: "", comment: "" }; render(); }
