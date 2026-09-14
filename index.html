@@ -317,6 +317,7 @@
     const out = [], used = new Set();
     const take = (r, why) => { if (r && !used.has(r.id)) { used.add(r.id); out.push({ r, why }); } };
     const pool = mine();
+    take(tryThis(), "Uusin kirjassa");
     const rated = pool.filter((r) => st[r.id]);
     const fav = rated.filter((r) => st[r.id].avg >= 4 || isFav(r)).sort((a, b) => st[b.id].avg - st[a.id].avg || st[a.id].last - st[b.id].last)[0];
     take(fav, "Suosikkisi");
@@ -370,7 +371,7 @@
     }).join("") : `<div class="empty">Ei mitään pakkasessa. Avaa resepti ja paina <b>Laita pakkaseen</b>, niin näet täältä milloin se on valmis.</div>`;
     const sugg = suggestions();
     const recent = S.reviews.slice().sort((a, b) => b.at - a.at).slice(0, 3);
-    const props = proposals(), prop = props[0], tryR = !prop && tryThis();
+    const props = proposals(), prop = props[0];
     const tryCard = (r, eyebrow, title, primary) => `<div class="try">
         <span class="eyebrow">${eyebrow}</span>
         ${catChip(r)}
@@ -380,9 +381,7 @@
         <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button></div>
       </div>`;
     const topCard = prop ? `<section><div class="sec-head"><h2>Pidetäänkö resepti?</h2><span class="eyebrow">${props.length > 1 ? props.length + " uutta ehdotusta" : "uusi ehdotus"}</span></div>
-        ${tryCard(prop, "Uusi ehdotus kirjaan", "", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>`
-      : tryR ? `<section><div class="sec-head"><h2>Kokeile tätä!</h2><span class="eyebrow">uusin kirjassa</span></div>
-        ${tryCard(tryR, "Et ole vielä kokeillut", "", `<button class="btn primary" data-freeze="${esc(tryR.id)}">Laita pakkaseen</button>`)}</section>` : "";
+        ${tryCard(prop, "Uusi ehdotus kirjaan", "", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>` : "";
     return `
       <section class="greeting"><h1>${hello}, ${NAMES[S.profile]}.</h1><p>${S.profile === "aiti" ? "Smoothie bowleja, sorbetteja ja frappéa – ja arvioi lopuksi, niin kirja oppii mistä tykkäät." : "Proteiinijäätelöä, jolla on oikeasti rakenne. Arvioi jokainen kokeilu."}</p></section>
       ${note ? "" : topCard}
