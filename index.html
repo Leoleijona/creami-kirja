@@ -272,7 +272,10 @@
   const isProposal = (r) => r.status === "ehdotus" && !KEPT().includes(r.id);
   const isFav = (r) => P().favorites.includes(r.id);
   const visible = () => S.recipes.filter((r) => !isHidden(r) && !isProposal(r));
-  const proposals = () => S.recipes.filter((r) => isProposal(r) && !isHidden(r)).sort((a, b) => (b.added || 0) - (a.added || 0));
+  // Recipes meant for this person (who lists them, or who is missing); used for suggestions only – the book itself shows everything.
+  const forMe = (r) => !Array.isArray(r.who) || r.who.length === 0 || r.who.includes(S.profile);
+  const mine = () => { const m = visible().filter(forMe); return m.length ? m : visible(); };
+  const proposals = () => S.recipes.filter((r) => isProposal(r) && !isHidden(r)).sort((a, b) => (forMe(b) - forMe(a)) || (b.added || 0) - (a.added || 0));
   let toastT; const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800); };
 
   // Stats per recipe for the current profile
@@ -301,7 +304,7 @@
     const st = stats(S.profile), pref = PREF[S.profile];
     const out = [], used = new Set();
     const take = (r, why) => { if (r && !used.has(r.id)) { used.add(r.id); out.push({ r, why }); } };
-    const pool = visible();
+    const pool = mine();
     const rated = pool.filter((r) => st[r.id]);
     const fav = rated.filter((r) => st[r.id].avg >= 4 || isFav(r)).sort((a, b) => st[b.id].avg - st[a.id].avg || st[a.id].last - st[b.id].last)[0];
     take(fav, "Suosikkisi");
@@ -316,7 +319,7 @@
   // "Kokeile tätä!": the newest recipe this profile has kept but not yet rated
   function tryThis() {
     const st = stats(S.profile);
-    return visible().filter((r) => !st[r.id] && r.added).sort((a, b) => b.added - a.added)[0] || null;
+    return mine().filter((r) => !st[r.id] && r.added).sort((a, b) => b.added - a.added)[0] || null;
   }
 
   // ---------- Rendering ----------
@@ -326,10 +329,11 @@
     const st = stats(S.profile)[r.id], all = allStats()[r.id];
     const whoDone = st ? `<span class="stars" title="${st.avg.toFixed(1)}">${stars(st.avg)}</span>` : `<span class="pill new">Uusi sinulle</span>`;
     const other = !st && all ? `<span class="pill">${NAMES[S.profile === "leo" ? "aiti" : "leo"]}: ${stars(all.avg)}</span>` : "";
+    const theirs = !forMe(r) ? `<span class="pill">${S.profile === "leo" ? "Kirsin" : "Leon"}</span>` : "";
     return `<button class="card tap" data-open="${esc(r.id)}">
       <div class="card-top">${catChip(r)}<span>${why ? `<span class="why">${esc(why)}</span> ` : ""}${isFav(r) ? `<span class="why" aria-label="Suosikki">♥</span>` : ""}</span></div>
       <h3>${esc(r.name)}</h3>
-      <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}${whoDone}${other}</div>
+      <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}${whoDone}${other}${theirs}</div>
     </button>`;
   }
   function dbNote() {
