@@ -215,7 +215,7 @@
     <div class="brand"><span class="dot"></span>Creami-kirja</div>
     <div class="seg" role="group" aria-label="Kuka käyttää">
       <button data-profile="leo" aria-pressed="true">Leo</button>
-      <button data-profile="aiti" aria-pressed="false">Äiti</button>
+      <button data-profile="aiti" aria-pressed="false">Kirsi</button>
     </div>
   </header>
   <main id="main"></main>
@@ -245,7 +245,7 @@
 (() => {
   const CATS = { proteiini: "Proteiinijäätelö", bowl: "Smoothie bowl", sorbetti: "Sorbetti", froyo: "Frozen yoghurt", frappe: "Frappé", pirtelo: "Pirtelö", slushi: "Slushi" };
   const PREF = { leo: ["proteiini", "froyo", "pirtelo"], aiti: ["bowl", "sorbetti", "frappe", "froyo"] };
-  const NAMES = { leo: "Leo", aiti: "Äiti" };
+  const NAMES = { leo: "Leo", aiti: "Kirsi" };
   const TEXTURE = ["liian kova", "murumainen", "täydellinen", "liian löysä"];
   const SWEET = ["liian vähän makea", "sopiva", "liian makea"];
   const PANTRY = "Kotona aina: Puhdistamo vanilja- ja suklaaproteiini, alluloosi, ksantaani, vaniljauute, pähkinävoihiutaleet, suola. Näitä ei lisätä listalle.";
@@ -254,7 +254,7 @@
   const S = {
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
-    prefs: { leo: { hidden: [], favorites: [], kept: [] }, aiti: { hidden: [], favorites: [], kept: [] } },
+    prefs: { leo: { hidden: [], favorites: [], kept: [] }, aiti: { hidden: [], favorites: [], kept: [] }, shared: { hidden: [], favorites: [], kept: [] } },
     db: null, dbState: "loading", open: null, review: null, seed: Math.random(),
   };
   try { S.profile = localStorage.getItem("creami.profile") || "leo"; } catch (e) {}
@@ -268,10 +268,11 @@
   // Visibility per profile: proposals ("ehdotus") show only after "Pidetään"; hidden ones never.
   const P = () => S.prefs[S.profile] || { hidden: [], favorites: [], kept: [] };
   const isHidden = (r) => P().hidden.includes(r.id);
-  const isProposal = (r) => r.status === "ehdotus" && !P().kept.includes(r.id);
+  const KEPT = () => S.prefs.shared?.kept || [];
+  const isProposal = (r) => r.status === "ehdotus" && !KEPT().includes(r.id);
   const isFav = (r) => P().favorites.includes(r.id);
   const visible = () => S.recipes.filter((r) => !isHidden(r) && !isProposal(r));
-  const proposals = () => S.recipes.filter((r) => r.status === "ehdotus" && !P().kept.includes(r.id) && !isHidden(r)).sort((a, b) => (b.added || 0) - (a.added || 0));
+  const proposals = () => S.recipes.filter((r) => isProposal(r) && !isHidden(r)).sort((a, b) => (b.added || 0) - (a.added || 0));
   let toastT; const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800); };
 
   // Stats per recipe for the current profile
@@ -412,12 +413,15 @@
     const pool = visible();
     const hearts = pool.filter(isFav).sort((a, b) => (st[b.id]?.avg || 0) - (st[a.id]?.avg || 0));
     const top = pool.filter((r) => !isFav(r) && st[r.id] && st[r.id].avg >= 4).sort((a, b) => st[b.id].avg - st[a.id].avg);
+    const other = S.profile === "leo" ? "aiti" : "leo";
+    const otherFavs = pool.filter((r) => (S.prefs[other]?.favorites || []).includes(r.id) && !isFav(r));
     return `
       <section>
         <div class="sec-head"><h2>Suosikit</h2><span class="eyebrow">${NAMES[S.profile]}</span></div>
         ${note || (hearts.length ? `<div class="list">${hearts.map((r) => recipeCard(r)).join("")}</div>` : `<div class="empty">Ei vielä sydämiä. Avaa resepti ja napauta ♥ oikeasta yläkulmasta – tai arvioi 4–5 tähteä, niin se nousee tähän automaattisesti.</div>`)}
       </section>
-      ${top.length ? `<section><div class="sec-head"><h2>Arvioit 4–5 tähteä</h2></div><div class="list">${top.map((r) => recipeCard(r)).join("")}</div></section>` : ""}`;
+      ${top.length ? `<section><div class="sec-head"><h2>Arvioit 4–5 tähteä</h2></div><div class="list">${top.map((r) => recipeCard(r)).join("")}</div></section>` : ""}
+      ${otherFavs.length ? `<section><div class="sec-head"><h2>${other === "aiti" ? "Kirsin" : "Leon"} suosikit</h2></div><div class="list">${otherFavs.map((r) => recipeCard(r)).join("")}</div></section>` : ""}`;
   }
 
   function renderShop() {
@@ -525,12 +529,12 @@
     saveShopping(items);
     toast(added ? `${added} riviä lisätty ostoslistalle` : "Kaikki on jo listalla");
   }
-  async function savePrefs(patch) {
-    const cur = P();
+  async function savePrefs(patch, who = S.profile) {
+    const cur = S.prefs[who] || { hidden: [], favorites: [], kept: [] };
     const next = { hidden: cur.hidden, favorites: cur.favorites, kept: cur.kept, ...patch };
-    S.prefs[S.profile] = next; render();
+    S.prefs[who] = next; render();
     if (!S.db) return;
-    const { error } = await S.db.from("prefs").upsert({ who: S.profile, ...next });
+    const { error } = await S.db.from("prefs").upsert({ who, ...next });
     if (error) toast("Tallennus epäonnistui");
   }
   const without = (arr, id) => arr.filter((x) => x !== id);
@@ -542,9 +546,10 @@
     toast(wasProposal ? "Ei lisätty kirjaan" : "Piilotettu – löydät sen Reseptit-välilehden lopusta");
   }
   function keepRecipe(id) {
-    savePrefs({ kept: [...without(P().kept, id), id], hidden: without(P().hidden, id) });
+    savePrefs({ kept: [...without(KEPT(), id), id] }, "shared");
+    if (P().hidden.includes(id)) savePrefs({ hidden: without(P().hidden, id) });
     if (S.open === id) render();
-    toast("Lisätty kirjaan – Kokeile tätä!");
+    toast("Lisätty kirjaan – näkyy nyt teille molemmille");
   }
   function toggleFav(id) {
     const on = P().favorites.includes(id);
