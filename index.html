@@ -17,6 +17,8 @@
     --ok-soft: #E1F2E8;
     --warn: #B8790F;
     --warn-soft: #FBF0D6;
+    --no: #3E6FA8;
+    --no-soft: #E1EAF5;
     --cat-proteiini: #B5304F;
     --cat-bowl: #D97A2B;
     --cat-sorbetti: #C9457A;
@@ -35,7 +37,7 @@
     :root:not([data-theme="light"]) {
       --bg: #0F151B; --surface: #182129; --surface-2: #222D37; --ink: #EDF1F4; --muted: #9AA8B5; --line: #2C3946;
       --accent: #E45B7D; --accent-ink: #1A0A10; --accent-soft: #3A1F28;
-      --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12;
+      --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B;
       --cat-proteiini: #E45B7D; --cat-bowl: #F0964B; --cat-sorbetti: #E56C9C; --cat-froyo: #6FBF8E; --cat-frappe: #B88A6A; --cat-pirtelo: #6A9AD6; --cat-slushi: #56B3D6;
       --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
       color-scheme: dark;
@@ -44,7 +46,7 @@
   :root[data-theme="dark"] {
     --bg: #0F151B; --surface: #182129; --surface-2: #222D37; --ink: #EDF1F4; --muted: #9AA8B5; --line: #2C3946;
     --accent: #E45B7D; --accent-ink: #1A0A10; --accent-soft: #3A1F28;
-    --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12;
+    --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B;
     --cat-proteiini: #E45B7D; --cat-bowl: #F0964B; --cat-sorbetti: #E56C9C; --cat-froyo: #6FBF8E; --cat-frappe: #B88A6A; --cat-pirtelo: #6A9AD6; --cat-slushi: #56B3D6;
     --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
     color-scheme: dark;
@@ -101,6 +103,8 @@
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 15px; background: var(--surface-2); color: var(--ink); min-height: 44px; }
   .btn.primary { background: var(--accent); color: var(--accent-ink); }
   .btn.ghost { background: transparent; color: var(--muted); }
+  .btn.no { background: var(--no-soft); color: var(--no); border: 1.5px solid var(--no); }
+  .try .btn.no { background: transparent; color: var(--no); border-color: var(--no); opacity: 1; }
   .btn.small { padding: 8px 12px; font-size: 14px; min-height: 36px; border-radius: 10px; }
   .btn.block { width: 100%; }
 
@@ -152,7 +156,6 @@
   .try .prog { background: rgba(255,255,255,.14); color: var(--bg); }
   .try .btn { background: var(--surface); color: var(--ink); }
   .try .btn.primary { background: var(--accent); color: var(--accent-ink); }
-  .try .btn.ghost { background: transparent; color: var(--bg); opacity: .75; }
   .hidden-list summary { cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 600; padding: 6px 0; list-style: none; }
   .hidden-list summary::-webkit-details-marker { display: none; }
   .hidden-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
@@ -365,7 +368,7 @@
         <h3>${esc(r.name)}</h3>
         <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}<span>${esc(r.time || "")}</span></div>
         ${r.tips ? `<p style="opacity:.85;font-size:14px">${esc(r.tips)}</p>` : ""}
-        <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn ghost" data-hide="${esc(r.id)}">Ei kiinnosta</button></div>
+        <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button></div>
       </div>`;
     const topCard = prop ? `<section><div class="sec-head"><h2>Pidetäänkö resepti?</h2><span class="eyebrow">${props.length > 1 ? props.length + " uutta ehdotusta" : "uusi ehdotus"}</span></div>
         ${tryCard(prop, "Uusi ehdotus kirjaan", "", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>`
@@ -497,10 +500,10 @@
         <div class="sec-head"><h2>Arviot</h2><span class="eyebrow">${revs.length ? revs.length + " kpl" : "ei vielä"}</span></div>
         ${revs.length ? `<div class="card">${revs.map(reviewRow).join("")}</div>` : `<div class="empty">Kukaan ei ole vielä arvioinut tätä. Kun teet sen, paina <b>Tehty – arvioi</b>.</div>`}
       </section>
-      ${isProposal(r) ? "" : `<section style="margin-top:22px"><button class="btn ghost block" data-hide="${esc(r.id)}">Ei kiinnosta – piilota tämä resepti</button></section>`}
+      ${isProposal(r) ? "" : `<section style="margin-top:22px"><button class="btn no block" data-hide="${esc(r.id)}">✕ Ei kiinnosta – piilota tämä resepti</button></section>`}
     </div>
     <div class="actionbar"><div class="in ${isProposal(r) || r.freeze === false ? "one" : ""}">
-      ${isProposal(r) ? `<div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button class="btn" data-hide="${esc(r.id)}">Ei kiinnosta</button><button class="btn primary" data-keep="${esc(r.id)}">Pidetään – lisää kirjaan</button></div>` : `
+      ${isProposal(r) ? `<div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button><button class="btn primary" data-keep="${esc(r.id)}">Pidetään – lisää kirjaan</button></div>` : `
       ${r.freeze === false ? "" : `<button class="btn" data-freeze="${esc(r.id)}">Laita pakkaseen</button>`}
       <button class="btn primary" data-rate="${esc(r.id)}">Tehty – arvioi</button>
       ${shopCount ? `<button class="btn block" style="grid-column:1/-1" data-shop="${esc(r.id)}">Lisää ostoslistalle (${shopCount})</button>` : ""}`}
