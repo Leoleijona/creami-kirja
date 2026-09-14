@@ -1,4 +1,15 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Creami-kirja</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icons/logo.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<meta name="theme-color" content="#B5304F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Creami">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js"></script>
@@ -67,7 +78,7 @@
   /* Header */
   .top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
-  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .brand .logo { width: 28px; height: 28px; border-radius: 8px; box-shadow: var(--shadow); flex: none; }
   .seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; }
   .seg button { padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--muted); }
   .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
@@ -218,7 +229,7 @@
 
 <div class="app" id="app">
   <header class="top">
-    <div class="brand"><span class="dot"></span>Creami-kirja</div>
+    <div class="brand"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C93A5C"/><stop offset="1" stop-color="#9E2645"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#lg)"/><path d="M31 60 L69 60 L65.5 84 Q65 88 61 88 L39 88 Q35 88 34.5 84 Z" fill="#F3D3DC"/><rect x="28" y="56" width="44" height="8" rx="4" fill="#FBEBF0"/><ellipse cx="50" cy="55" rx="23" ry="9" fill="#FAF0F3"/><ellipse cx="50" cy="45.5" rx="18.5" ry="8.5" fill="#FCF4F6"/><ellipse cx="50" cy="36.5" rx="13.5" ry="7.5" fill="#FFFFFF"/><path d="M43 32 Q45 20 52 15 Q57 18 55 27 Q59 24 59 32 Z" fill="#FFFFFF"/><circle cx="60" cy="24" r="4.2" fill="#5E1730"/></svg>Creami-kirja</div>
     <div class="seg" role="group" aria-label="Kuka käyttää">
       <button data-profile="leo" aria-pressed="true">Leo</button>
       <button data-profile="aiti" aria-pressed="false">Kirsi</button>
