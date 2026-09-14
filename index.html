@@ -320,7 +320,8 @@
   }
 
   // ---------- Rendering ----------
-  function catChip(r) { return `<span class="cat" style="--cat-color: var(--cat-${esc(r.cat)})">${esc(CATS[r.cat] || r.cat)}</span>`; }
+  const catKey = (r) => (r.cat in CATS ? r.cat : "proteiini");
+  function catChip(r) { return `<span class="cat" style="--cat-color: var(--cat-${catKey(r)})">${esc(CATS[r.cat] || r.cat)}</span>`; }
   function recipeCard(r, why) {
     const st = stats(S.profile)[r.id], all = allStats()[r.id];
     const whoDone = st ? `<span class="stars" title="${st.avg.toFixed(1)}">${stars(st.avg)}</span>` : `<span class="pill new">Uusi sinulle</span>`;
@@ -441,12 +442,19 @@
   }
 
   function render() {
+    // Live updates re-render everything; keep the reader's place and any half-typed text.
+    const y = window.scrollY, sheetY = $("#overlay .sheet")?.scrollTop || 0;
+    const ae = document.activeElement, focusSel = ae && ae.matches?.("[data-search],[data-comment],[data-addtext]") ? (ae.hasAttribute("data-search") ? "[data-search]" : ae.hasAttribute("data-comment") ? "[data-comment]" : "[data-addtext]") : null;
+    const caret = focusSel ? ae.selectionStart : 0, draft = focusSel === "[data-addtext]" ? ae.value : null;
     $("#main").innerHTML = S.tab === "today" ? renderToday() : S.tab === "recipes" ? renderRecipes() : S.tab === "favs" ? renderFavs() : renderShop();
     document.querySelectorAll("[data-profile]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.profile === S.profile)));
     document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tab === S.tab)));
     const n = S.shopping.filter((i) => !i.done).length;
     let badge = $("#shopTab .badge"); if (n) { if (!badge) { badge = document.createElement("span"); badge.className = "badge"; $("#shopTab").prepend(badge); } badge.textContent = n; } else if (badge) badge.remove();
     renderOverlay();
+    window.scrollTo(0, y);
+    const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = sheetY;
+    if (focusSel) { const el = $(focusSel); if (el) { if (draft !== null) el.value = draft; el.focus(); try { el.setSelectionRange(caret, caret); } catch (e) {} } }
   }
 
   function renderOverlay() {
@@ -577,7 +585,7 @@
   async function load(table) {
     const { data, error } = await S.db.from(table).select("*");
     if (error) { console.warn(table, error); return false; }
-    if (table === "recipes") S.recipes = data.map((r) => r.data).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+    if (table === "recipes") S.recipes = data.filter((r) => r.data && typeof r.data === "object").map((r) => ({ ...r.data, id: r.id })).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
     if (table === "reviews") S.reviews = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
     if (table === "freezer") S.freezer = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
     if (table === "shopping") S.shopping = data.find((r) => r.id === "main")?.items || [];
@@ -610,7 +618,7 @@
     else if (d.fav) { toggleFav(d.fav); }
     else if (d.profile) { S.profile = d.profile; try { localStorage.setItem("creami.profile", S.profile); } catch (x) {} render(); }
     else if (d.tab) { S.tab = d.tab; render(); window.scrollTo(0, 0); }
-    else if (d.open) { S.open = d.open; S.review = null; render(); $("#overlay .sheet")?.scrollTo(0, 0); }
+    else if (d.open) { S.open = d.open; S.review = null; render(); const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = 0; }
     else if ("close" in d) { S.open = null; S.review = null; render(); }
     else if ("reroll" in d) { S.seed = Math.random(); render(); }
     else if (d.cat) { S.cat = d.cat; render(); }
@@ -631,7 +639,7 @@
     if (c) saveShopping(S.shopping.map((i) => i.id === c.dataset.check ? { ...i, done: c.checked } : i));
   });
   document.addEventListener("input", (e) => {
-    if (e.target.matches("[data-search]")) { S.q = e.target.value; const pos = e.target.selectionStart; render(); const el = $("[data-search]"); el.focus(); el.setSelectionRange(pos, pos); }
+    if (e.target.matches("[data-search]")) { S.q = e.target.value; render(); }
     if (e.target.matches("[data-comment]") && S.review) S.review.comment = e.target.value;
   });
   document.addEventListener("submit", (e) => {
