@@ -76,14 +76,15 @@
   .app { max-width: 540px; margin: 0 auto; min-height: 100dvh; padding-bottom: 88px; }
 
   /* Header */
-  .top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
-  .brand .logo { width: 28px; height: 28px; border-radius: 8px; box-shadow: var(--shadow); flex: none; }
-  .seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; }
-  .seg button { padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--muted); }
-  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+  /* Banner: always berry, regardless of theme */
+  .top { position: sticky; top: 0; z-index: 5; background: linear-gradient(135deg, #C93A5C, #9E2645); color: #FFFFFF; padding: calc(12px + env(safe-area-inset-top)) 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 2px 12px rgba(120, 20, 45, .25); }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; color: #FFFFFF; }
+  .brand .logo { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+  .seg { display: inline-flex; background: rgba(255,255,255,.18); border-radius: 999px; padding: 3px; }
+  .seg button { padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: rgba(255,255,255,.85); }
+  .seg button[aria-pressed="true"] { background: #FFFFFF; color: #9E2645; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
 
-  main { padding: 6px 18px 0; display: grid; gap: 22px; }
+  main { padding: 18px 18px 0; display: grid; gap: 22px; }
   section { display: grid; gap: 10px; }
   .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
   .sec-head h2 { font-size: 20px; font-weight: 700; }
@@ -229,7 +230,7 @@
 
 <div class="app" id="app">
   <header class="top">
-    <div class="brand"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C93A5C"/><stop offset="1" stop-color="#9E2645"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#lg)"/><path d="M31 60 L69 60 L65.5 84 Q65 88 61 88 L39 88 Q35 88 34.5 84 Z" fill="#F3D3DC"/><rect x="28" y="56" width="44" height="8" rx="4" fill="#FBEBF0"/><ellipse cx="50" cy="55" rx="23" ry="9" fill="#FAF0F3"/><ellipse cx="50" cy="45.5" rx="18.5" ry="8.5" fill="#FCF4F6"/><ellipse cx="50" cy="36.5" rx="13.5" ry="7.5" fill="#FFFFFF"/><path d="M43 32 Q45 20 52 15 Q57 18 55 27 Q59 24 59 32 Z" fill="#FFFFFF"/><circle cx="60" cy="24" r="4.2" fill="#5E1730"/></svg>Creami-kirja</div>
+    <div class="brand"><svg class="logo" viewBox="14 10 72 82" aria-hidden="true"><path d="M31 60 L69 60 L65.5 84 Q65 88 61 88 L39 88 Q35 88 34.5 84 Z" fill="#F3D3DC"/><rect x="28" y="56" width="44" height="8" rx="4" fill="#FBEBF0"/><ellipse cx="50" cy="55" rx="23" ry="9" fill="#FAF0F3"/><ellipse cx="50" cy="45.5" rx="18.5" ry="8.5" fill="#FCF4F6"/><ellipse cx="50" cy="36.5" rx="13.5" ry="7.5" fill="#FFFFFF"/><path d="M43 32 Q45 20 52 15 Q57 18 55 27 Q59 24 59 32 Z" fill="#FFFFFF"/><path d="M30 55 Q50 62 70 55" fill="none" stroke="#E7BCC8" stroke-width="1.6" stroke-linecap="round"/><path d="M34 46 Q50 52 66 46" fill="none" stroke="#E7BCC8" stroke-width="1.6" stroke-linecap="round"/><path d="M39 37 Q50 42 61 37" fill="none" stroke="#E7BCC8" stroke-width="1.6" stroke-linecap="round"/><circle cx="60" cy="24" r="4.2" fill="#5E1730"/><circle cx="58.6" cy="22.8" r="1.2" fill="#B24868"/></svg>Creami-kirja</div>
     <div class="seg" role="group" aria-label="Kuka käyttää">
       <button data-profile="leo" aria-pressed="true">Leo</button>
       <button data-profile="aiti" aria-pressed="false">Kirsi</button>
