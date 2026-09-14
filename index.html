@@ -152,6 +152,7 @@
   .try .prog { background: rgba(255,255,255,.14); color: var(--bg); }
   .try .btn { background: var(--surface); color: var(--ink); }
   .try .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .try .btn.ghost { background: transparent; color: var(--bg); opacity: .75; }
   .hidden-list summary { cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 600; padding: 6px 0; list-style: none; }
   .hidden-list summary::-webkit-details-marker { display: none; }
   .hidden-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
@@ -358,7 +359,7 @@
         <h3>${esc(r.name)}</h3>
         <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}<span>${esc(r.time || "")}</span></div>
         ${r.tips ? `<p style="opacity:.85;font-size:14px">${esc(r.tips)}</p>` : ""}
-        <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn ghost" style="color:var(--bg);opacity:.75" data-hide="${esc(r.id)}">Ei kiinnosta</button></div>
+        <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn ghost" data-hide="${esc(r.id)}">Ei kiinnosta</button></div>
       </div>`;
     const topCard = prop ? `<section><div class="sec-head"><h2>Pidetäänkö resepti?</h2><span class="eyebrow">${props.length > 1 ? props.length + " uutta ehdotusta" : "uusi ehdotus"}</span></div>
         ${tryCard(prop, "Uusi ehdotus kirjaan", "", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>`
