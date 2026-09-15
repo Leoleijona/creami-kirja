@@ -171,7 +171,7 @@
 
   /* Detail sheet */
   .sheet { position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto; }
-  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 84px; }
+  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 64px; }
   .sheet-top { position: sticky; top: 0; background: var(--bg); padding: 12px 0; display: flex; align-items: center; gap: 8px; z-index: 2; }
   .sheet-top .back { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--accent); padding: 8px 10px 8px 0; min-height: 44px; }
   .sheet-top .round { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; }
@@ -221,7 +221,8 @@
   .review .d { color: var(--muted); font-size: 12px; margin-left: auto; }
   .review .tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .review .c { font-size: 15px; }
-  .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 8px 18px max(8px, env(safe-area-inset-bottom)); }
+  .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 5px 14px max(5px, env(safe-area-inset-bottom)); }
+  .actionbar .btn { min-height: 38px; padding: 8px 12px; font-size: 14px; border-radius: 10px; }
   .actionbar .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .actionbar .in.one { grid-template-columns: 1fr; }
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 18px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; display: flex; gap: 14px; align-items: center; width: max-content; max-width: calc(100vw - 32px); }
