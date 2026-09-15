@@ -171,7 +171,7 @@
 
   /* Detail sheet */
   .sheet { position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto; }
-  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 130px; }
+  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 84px; }
   .sheet-top { position: sticky; top: 0; background: var(--bg); padding: 12px 0; display: flex; align-items: center; gap: 8px; z-index: 2; }
   .sheet-top .back { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--accent); padding: 8px 10px 8px 0; min-height: 44px; }
   .sheet-top .round { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; }
@@ -221,7 +221,7 @@
   .review .d { color: var(--muted); font-size: 12px; margin-left: auto; }
   .review .tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .review .c { font-size: 15px; }
-  .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 18px max(12px, env(safe-area-inset-bottom)); }
+  .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 8px 18px max(8px, env(safe-area-inset-bottom)); }
   .actionbar .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .actionbar .in.one { grid-template-columns: 1fr; }
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 18px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; display: flex; gap: 14px; align-items: center; width: max-content; max-width: calc(100vw - 32px); }
@@ -304,13 +304,13 @@
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
     prefs: { leo: EMPTY_PREFS(), aiti: EMPTY_PREFS(), shared: EMPTY_PREFS() },
-    db: null, dbState: "loading", open: null, review: null, seed: 0, busy: false, firstRun: false, stepsDone: new Set(),
+    db: null, dbState: "loading", open: null, review: null, seed: 0, rerolled: false, busy: false, firstRun: false, stepsDone: new Set(),
   };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
   // Suggestions are stable for a calendar day (per person); "Arvo uudet" re-rolls them for the rest of that day.
   const daySeed = (who) => { const d = new Date(); let h = (d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()) + (who === "aiti" ? 7 : 3); h = Math.imul(h ^ (h >>> 15), 2246822519); h = Math.imul(h ^ (h >>> 13), 3266489917); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
   const seedKey = () => "creami.seed." + S.profile + "." + new Date().toDateString();
-  const loadSeed = () => { const v = store.get(seedKey()); S.seed = v && Number.isFinite(+v) ? +v : daySeed(S.profile); };
+  const loadSeed = () => { const v = store.get(seedKey()); S.rerolled = !!(v && Number.isFinite(+v)); S.seed = S.rerolled ? +v : daySeed(S.profile); };
   const savedProfile = store.get("creami.profile");
   if (PROFILES.includes(savedProfile)) S.profile = savedProfile; else S.firstRun = true;
   loadSeed();
@@ -421,12 +421,15 @@
     const out = [], used = new Set();
     const take = (r, why) => { if (r && !used.has(r.id)) { used.add(r.id); out.push({ r, why }); } };
     const pool = mine();
-    take(tryThis(), "Uusin kirjassa");
+    const pick = (arr, salt) => arr.length ? seededShuffle(arr.slice(0, 3), seed + salt)[0] : null;   // one of the top three, so the list rotates
+    // The newest unrated recipe leads only while it is actually new (a week) and until "Arvo uudet" is pressed.
+    const newest = tryThis();
+    if (newest && !S.rerolled && Date.now() - newest.added < 7 * DAY) take(newest, "Uusin kirjassa");
     const rated = pool.filter((r) => st[r.id]);
-    const fav = rated.filter((r) => st[r.id].avg >= 4 || isFav(r)).sort((a, b) => st[b.id].avg - st[a.id].avg || st[a.id].last - st[b.id].last)[0];
+    const fav = pick(rated.filter((r) => st[r.id].avg >= 4 || isFav(r)).sort((a, b) => st[b.id].avg - st[a.id].avg || st[a.id].last - st[b.id].last), 0.11);
     take(fav, "Suosikkisi");
-    const old = rated.filter((r) => !used.has(r.id)).sort((a, b) => st[a.id].last - st[b.id].last)[0];
-    if (old && Date.now() - st[old.id].last > 5 * DAY) take(old, "Pitkästä aikaa");
+    const old = pick(rated.filter((r) => !used.has(r.id) && Date.now() - st[r.id].last > 5 * DAY).sort((a, b) => st[a.id].last - st[b.id].last), 0.23);
+    take(old, "Pitkästä aikaa");
     const fresh = seededShuffle(pool.filter((r) => !st[r.id]), seed)
       .sort((a, b) => (pref.indexOf(a.cat) === -1) - (pref.indexOf(b.cat) === -1));
     for (const r of fresh) { if (out.length >= 3) break; take(r, "Uusi kokeilu"); }
@@ -436,6 +439,7 @@
   // "Arvo uudet": pick a seed that actually changes the list (if the book is big enough for that)
   function reroll() {
     const cur = suggestions().map((s) => s.r.id).join();
+    S.rerolled = true;
     let seed = Math.random();
     for (let i = 0; i < 12; i++) { seed = Math.random(); if (suggestions(seed).map((s) => s.r.id).join() !== cur) break; }
     S.seed = seed; store.set(seedKey(), String(seed)); render();
@@ -642,7 +646,7 @@
         <div class="fact"><span class="l">Energia</span><span class="v">${kcal ?? "–"} <small>kcal</small></span></div>
       </div>
       <section style="margin-top:22px">
-        <div class="sec-head"><h2>Ainekset</h2><span class="eyebrow">${shopCount ? shopCount + " kaupasta" : "kaikki kotona"}</span></div>
+        <div class="sec-head"><h2>Ainekset</h2>${shopCount ? `<button class="btn small" data-shop="${esc(r.id)}">+ Ostoslistalle (${shopCount})</button>` : `<span class="eyebrow">kaikki kotona</span>`}</div>
         <div class="card">${r.ing.map((i) => `<div class="ing ${i.p ? "home" : ""}"><span class="n">${esc(i.n)}</span><span class="a">${esc(i.a)}</span>${i.p ? `<span class="s"></span>` : (i.s && i.s !== i.n ? `<span class="s">${esc(i.s)}</span>` : "")}</div>`).join("")}</div>
       </section>
       <section style="margin-top:22px">
@@ -659,8 +663,7 @@
     <div class="actionbar"><div class="in ${isProposal(r) || r.freeze === false ? "one" : ""}">
       ${isProposal(r) ? `<div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button><button class="btn primary" data-keep="${esc(r.id)}">Pidetään – lisää kirjaan</button></div>` : `
       ${r.freeze === false ? "" : `<button class="btn" data-freeze="${esc(r.id)}" ${busy ? "disabled" : ""}>${busy ? "Hetki…" : "Laita pakkaseen"}</button>`}
-      <button class="btn primary" data-rate="${esc(r.id)}">Tehty – arvioi</button>
-      ${shopCount ? `<button class="btn block" style="grid-column:1/-1" data-shop="${esc(r.id)}">Lisää ostoslistalle (${shopCount})</button>` : ""}`}
+      <button class="btn primary" data-rate="${esc(r.id)}">Tehty – arvioi</button>`}
     </div></div>
     </div>
     ${S.review ? renderReviewModal(r) : ""}`;
