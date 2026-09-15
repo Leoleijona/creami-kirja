@@ -1,18 +1,24 @@
+<!doctype html>
+<html lang="fi">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://nkhfqgyxronrfsdbeddn.supabase.co wss://nkhfqgyxronrfsdbeddn.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Creami-kirja</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icons/logo.svg">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-<meta name="theme-color" content="#B5304F">
+<meta name="theme-color" content="#F1F4F6" id="themeColor">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Creami">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js" integrity="sha384-2zrRDgDHSYB/GN3nFW3fsZXoxEhKIr3N2h63Tc6DEOB9JJdFIu8xMJT2Cph/gBil" crossorigin="anonymous"></script>
 <style>
   :root {
     --bg: #F1F4F6;
@@ -24,12 +30,13 @@
     --accent: #B5304F;
     --accent-ink: #FFFFFF;
     --accent-soft: #F7E4E9;
-    --ok: #2E8B57;
+    --ok: #1F7A47;
     --ok-soft: #E1F2E8;
-    --warn: #B8790F;
+    --warn: #9A6206;
     --warn-soft: #FBF0D6;
-    --no: #3E6FA8;
+    --no: #2F5F96;
     --no-soft: #E1EAF5;
+    --toast-link: #FF9DB3;
     --cat-proteiini: #B5304F;
     --cat-bowl: #D97A2B;
     --cat-sorbetti: #C9457A;
@@ -48,7 +55,7 @@
     :root:not([data-theme="light"]) {
       --bg: #0F151B; --surface: #182129; --surface-2: #222D37; --ink: #EDF1F4; --muted: #9AA8B5; --line: #2C3946;
       --accent: #E45B7D; --accent-ink: #1A0A10; --accent-soft: #3A1F28;
-      --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B;
+      --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B; --toast-link: #B5304F;
       --cat-proteiini: #E45B7D; --cat-bowl: #F0964B; --cat-sorbetti: #E56C9C; --cat-froyo: #6FBF8E; --cat-frappe: #B88A6A; --cat-pirtelo: #6A9AD6; --cat-slushi: #56B3D6;
       --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
       color-scheme: dark;
@@ -57,16 +64,16 @@
   :root[data-theme="dark"] {
     --bg: #0F151B; --surface: #182129; --surface-2: #222D37; --ink: #EDF1F4; --muted: #9AA8B5; --line: #2C3946;
     --accent: #E45B7D; --accent-ink: #1A0A10; --accent-soft: #3A1F28;
-    --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B;
+    --ok: #5CBF87; --ok-soft: #1B3326; --warn: #E0A93A; --warn-soft: #3A2E12; --no: #7FAEE6; --no-soft: #1C2A3B; --toast-link: #B5304F;
     --cat-proteiini: #E45B7D; --cat-bowl: #F0964B; --cat-sorbetti: #E56C9C; --cat-froyo: #6FBF8E; --cat-frappe: #B88A6A; --cat-pirtelo: #6A9AD6; --cat-slushi: #56B3D6;
     --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
     color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body { font-family: var(--body); font-size: 16px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
-  button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); margin: 0; }
+  body { font-family: var(--body); font-size: 16px; line-height: 1.45; -webkit-font-smoothing: antialiased; overscroll-behavior-y: none; }
+  button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; touch-action: manipulation; }
   button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   input, textarea { font: inherit; color: inherit; }
   h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; line-height: 1.15; }
@@ -77,15 +84,13 @@
 
   /* Header */
   .top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .theme { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 13px; font-weight: 600; }
+  .theme { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 13px; font-weight: 600; min-height: 36px; }
   .theme svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .theme .ic-sun { display: none; }
   :root[data-theme="dark"] .theme .ic-moon { display: none; }
   :root[data-theme="dark"] .theme .ic-sun { display: inline; }
-  .brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
-  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); display: inline-block; }
   .seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: 3px; }
-  .seg button { padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--muted); }
+  .seg button { padding: 7px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--muted); min-height: 36px; }
   .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
 
   main { padding: 6px 18px 0; display: grid; gap: 22px; }
@@ -93,10 +98,12 @@
   .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
   .sec-head h2 { font-size: 20px; font-weight: 700; }
   .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
-  .link { color: var(--accent); font-weight: 600; font-size: 14px; }
+  .link { color: var(--accent); font-weight: 600; font-size: 14px; min-height: 32px; }
 
   .greeting h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
   .greeting p { color: var(--muted); margin-top: 4px; }
+  .banner { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 12px; background: var(--warn-soft); color: var(--ink); font-size: 14px; }
+  .banner b { color: var(--warn); }
 
   /* Cards */
   .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; display: grid; gap: 8px; text-align: left; width: 100%; }
@@ -123,21 +130,26 @@
   .try .btn.no { background: transparent; color: var(--no); border-color: var(--no); }
   .btn.small { padding: 8px 12px; font-size: 14px; min-height: 36px; border-radius: 10px; }
   .btn.block { width: 100%; }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: default; }
 
   .empty { color: var(--muted); font-size: 15px; padding: 14px 16px; background: var(--surface); border-radius: var(--radius); border: 1px dashed var(--line); }
 
   /* Chips */
   .chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
-  .chip { flex: 0 0 auto; padding: 8px 14px; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow); font-size: 14px; font-weight: 600; color: var(--muted); }
+  .chip { flex: 0 0 auto; padding: 8px 14px; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow); font-size: 14px; font-weight: 600; color: var(--muted); min-height: 36px; }
   .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .search { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  .search { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); min-height: 44px; }
   .list { display: grid; gap: 10px; }
 
   /* Freezer */
-  .frz { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
-  .frz .t { font-weight: 600; }
+  .frz { gap: 10px; }
+  .frz .t { font-weight: 600; font-size: 17px; }
   .frz .sub { font-size: 13px; color: var(--muted); }
+  .frz .row-actions { flex-wrap: nowrap; }
+  .frz .row-actions .btn { flex: 1 1 auto; }
+  .frz .row-actions .btn.icon { flex: 0 0 auto; }
+  .btn.icon { min-width: 40px; padding: 8px 12px; }
 
   /* Shopping */
   .shop-item { display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
@@ -152,19 +164,21 @@
   /* Bottom nav */
   nav.tabs { position: fixed; bottom: 0; left: 0; right: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 6px 0 max(8px, env(safe-area-inset-bottom)); }
   nav.tabs .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
-  nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+  nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 12px; font-weight: 600; color: var(--muted); position: relative; }
   nav.tabs button svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-pressed="true"] { color: var(--accent); }
-  nav.tabs .badge { position: absolute; margin-left: 26px; margin-top: -2px; background: var(--accent); color: var(--accent-ink); font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; padding: 0 4px; }
+  nav.tabs .badge { position: absolute; left: calc(50% + 8px); top: 4px; background: var(--accent); color: var(--accent-ink); font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; padding: 0 4px; }
 
   /* Detail sheet */
   .sheet { position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto; }
-  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 120px; }
+  .sheet .in { max-width: 540px; margin: 0 auto; padding: 0 18px 130px; }
   .sheet-top { position: sticky; top: 0; background: var(--bg); padding: 12px 0; display: flex; align-items: center; gap: 8px; z-index: 2; }
-  .sheet-top .back { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--accent); padding: 8px 6px 8px 0; }
-  .sheet-top .heart { margin-left: auto; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; }
-  .sheet-top .heart svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linejoin: round; }
+  .sheet-top .back { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--accent); padding: 8px 10px 8px 0; min-height: 44px; }
+  .sheet-top .round { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); display: grid; place-items: center; }
+  .sheet-top .round svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .sheet-top .heart { margin-left: auto; }
   .sheet-top .heart[aria-pressed="true"] svg { fill: var(--accent); }
+  .sheet-top .share svg { stroke: var(--muted); }
   .try { background: var(--surface); color: var(--ink); border-radius: var(--radius); padding: 16px; display: grid; gap: 10px; box-shadow: var(--shadow); border-top: 3px solid var(--accent); }
   .try .eyebrow { color: var(--accent); }
   .try h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
@@ -184,22 +198,25 @@
   .fact .l { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
   .fact .v { font-family: var(--display); font-weight: 700; font-size: 20px; font-variant-numeric: tabular-nums; }
   .fact .v small { font-size: 12px; font-weight: 500; color: var(--muted); }
-  .ing { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .ing { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
   .ing:last-child { border-bottom: 0; }
   .ing .n { font-weight: 500; }
-  .ing .a { font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+  .ing .a { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; white-space: nowrap; }
   .ing .s { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }
   .ing .s::before { content: "Kaupasta: "; font-weight: 600; }
   .ing.home .s::before { content: "Kotona aina"; font-weight: 600; }
   .steps { display: grid; gap: 12px; counter-reset: s; }
-  .steps li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; }
+  .steps li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; cursor: pointer; }
   .steps li::before { counter-increment: s; content: counter(s); width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 14px; }
+  .steps li.done { color: var(--muted); }
+  .steps li.done::before { content: "✓"; background: var(--ok-soft); color: var(--ok); }
   .steps li strong { font-family: var(--mono); font-weight: 500; font-size: 14px; background: var(--surface-2); padding: 1px 6px; border-radius: 5px; }
+  .steps-hint { font-size: 12px; color: var(--muted); }
   .tip { background: var(--accent-soft); color: var(--ink); padding: 12px 14px; border-radius: 12px; font-size: 15px; }
   .tip b { color: var(--accent); }
   .review { display: grid; gap: 4px; padding: 10px 0; border-bottom: 1px solid var(--line); }
   .review:last-child { border-bottom: 0; }
-  .review .h { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+  .review .h { display: flex; gap: 8px; align-items: center; font-size: 14px; flex-wrap: wrap; }
   .review .who { font-weight: 700; }
   .review .d { color: var(--muted); font-size: 12px; margin-left: auto; }
   .review .tags { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -207,15 +224,15 @@
   .actionbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 11; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 18px max(12px, env(safe-area-inset-bottom)); }
   .actionbar .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .actionbar .in.one { grid-template-columns: 1fr; }
-  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; display: flex; gap: 14px; align-items: center; white-space: nowrap; max-width: calc(100vw - 32px); }
+  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 18px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow); opacity: 0; transition: opacity .2s; pointer-events: none; display: flex; gap: 14px; align-items: center; width: max-content; max-width: calc(100vw - 32px); }
   .toast.show { opacity: 1; pointer-events: auto; }
-  .toast button { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; padding: 4px 2px; }
-  .frz .row-actions { flex-wrap: nowrap; }
-  .btn.icon { min-width: 36px; padding: 8px 10px; }
+  .toast button { color: var(--toast-link); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; padding: 6px 2px; flex: 0 0 auto; }
 
-  /* Review modal */
+  /* Review modal + first-run chooser */
   .modal { position: fixed; inset: 0; z-index: 15; background: rgba(10,16,22,.55); display: grid; align-items: end; }
+  .modal.center { align-items: center; padding: 18px; }
   .modal .box { background: var(--surface); border-radius: 20px 20px 0 0; padding: 18px 18px max(18px, env(safe-area-inset-bottom)); max-width: 540px; width: 100%; margin: 0 auto; display: grid; gap: 16px; max-height: 92dvh; overflow-y: auto; }
+  .modal.center .box { border-radius: 20px; }
   .modal h2 { font-size: 22px; }
   .q { display: grid; gap: 8px; }
   .q .l { font-weight: 600; font-size: 14px; }
@@ -223,18 +240,22 @@
   .starpick button { font-size: 34px; line-height: 1; color: var(--line); width: 48px; height: 48px; }
   .starpick button.on { color: var(--warn); }
   .opts { display: flex; gap: 8px; flex-wrap: wrap; }
-  .opts button { padding: 9px 14px; border-radius: 999px; background: var(--surface-2); font-weight: 600; font-size: 14px; color: var(--muted); }
+  .opts button { padding: 9px 14px; border-radius: 999px; background: var(--surface-2); font-weight: 600; font-size: 14px; color: var(--muted); min-height: 40px; }
   .opts button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   textarea.note { width: 100%; min-height: 70px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); resize: vertical; }
+  .who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .who-pick .btn { min-height: 64px; font-size: 20px; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
+</head>
+<body>
 
 <div class="app" id="app">
   <header class="top">
     <button class="theme" data-theme-toggle aria-label="Vaihda teema" title="Teema">
-      <svg viewBox="0 0 24 24" class="ic-moon"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-      <svg viewBox="0 0 24 24" class="ic-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg viewBox="0 0 24 24" class="ic-moon" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg viewBox="0 0 24 24" class="ic-sun" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
       <span class="lbl"></span>
     </button>
     <div class="seg" role="group" aria-label="Kuka käyttää">
@@ -247,66 +268,83 @@
 
 <nav class="tabs" aria-label="Näkymät">
   <div class="in">
-    <button data-tab="today" aria-pressed="true">
-      <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/></svg>Tänään
+    <button data-tab="today" aria-pressed="true" id="todayTab">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/></svg>Tänään
     </button>
     <button data-tab="recipes" aria-pressed="false">
-      <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5M8 7h8M8 11h6"/></svg>Reseptit
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5M8 7h8M8 11h6"/></svg>Reseptit
     </button>
     <button data-tab="favs" aria-pressed="false">
-      <svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg>Suosikit
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg>Suosikit
     </button>
     <button data-tab="shop" aria-pressed="false" id="shopTab">
-      <svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>Ostoslista
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>Ostoslista
     </button>
   </div>
 </nav>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
+<div id="who"></div>
 
 <script>
 (() => {
   const CATS = { proteiini: "Proteiinijäätelö", bowl: "Smoothie bowl", sorbetti: "Sorbetti", froyo: "Frozen yoghurt", frappe: "Frappé", pirtelo: "Pirtelö", slushi: "Slushi" };
   const PREF = { leo: ["proteiini", "froyo", "pirtelo"], aiti: ["bowl", "sorbetti", "frappe", "froyo"] };
   const NAMES = { leo: "Leo", aiti: "Kirsi" };
+  const OTHER = { leo: "aiti", aiti: "leo" };
+  const PROFILES = ["leo", "aiti"];
   const TEXTURE = ["liian kova", "murumainen", "täydellinen", "liian löysä"];
   const SWEET = ["liian vähän makea", "sopiva", "liian makea"];
-  const PANTRY = "Kotona aina: Puhdistamo vanilja- ja suklaaproteiini, alluloosi, ksantaani, vaniljauute, pähkinävoihiutaleet, suola. Näitä ei lisätä listalle.";
+  const PANTRY = "Kotona aina: Puhdistamo vanilja- ja suklaaproteiini, alluloosi, ksantaani, vaniljauute, maapähkinäjauhe, suola. Näitä ei lisätä listalle.";
   const DAY = 24 * 3600 * 1000;
+  const EMPTY_PREFS = () => ({ hidden: [], favorites: [], kept: [], deleted: [] });
 
   const S = {
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
-    prefs: { leo: { hidden: [], favorites: [], kept: [], deleted: [] }, aiti: { hidden: [], favorites: [], kept: [], deleted: [] }, shared: { hidden: [], favorites: [], kept: [], deleted: [] } },
-    db: null, dbState: "loading", open: null, review: null, seed: 0,
+    prefs: { leo: EMPTY_PREFS(), aiti: EMPTY_PREFS(), shared: EMPTY_PREFS() },
+    db: null, dbState: "loading", open: null, review: null, seed: 0, busy: false, firstRun: false, stepsDone: new Set(),
   };
+  const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
   // Suggestions are stable for a calendar day (per person); "Arvo uudet" re-rolls them for the rest of that day.
   const daySeed = (who) => { const d = new Date(); let h = (d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()) + (who === "aiti" ? 7 : 3); h = Math.imul(h ^ (h >>> 15), 2246822519); h = Math.imul(h ^ (h >>> 13), 3266489917); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
   const seedKey = () => "creami.seed." + S.profile + "." + new Date().toDateString();
-  const loadSeed = () => { try { const v = localStorage.getItem(seedKey()); S.seed = v ? +v : daySeed(S.profile); } catch (e) { S.seed = daySeed(S.profile); } };
-  try { S.profile = localStorage.getItem("creami.profile") || "leo"; } catch (e) {}
+  const loadSeed = () => { const v = store.get(seedKey()); S.seed = v && Number.isFinite(+v) ? +v : daySeed(S.profile); };
+  const savedProfile = store.get("creami.profile");
+  if (PROFILES.includes(savedProfile)) S.profile = savedProfile; else S.firstRun = true;
   loadSeed();
+
   // Theme: "auto" follows the phone; "dark"/"light" lock it. Stored per device.
   const THEMES = ["auto", "dark", "light"], THEME_LABEL = { auto: "Auto", dark: "Tumma", light: "Vaalea" };
-  let theme = "auto"; try { theme = localStorage.getItem("creami.theme") || "auto"; } catch (e) {}
-  const applyTheme = () => { if (theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = theme; const l = document.querySelector(".theme .lbl"); if (l) l.textContent = THEME_LABEL[theme]; };
+  let theme = store.get("creami.theme"); if (!THEMES.includes(theme)) theme = "auto";
+  const darkMedia = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  const applyTheme = () => {
+    if (theme === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = theme;
+    const l = document.querySelector(".theme .lbl"); if (l) l.textContent = THEME_LABEL[theme];
+    const dark = theme === "dark" || (theme === "auto" && darkMedia && darkMedia.matches);
+    const m = document.getElementById("themeColor"); if (m) m.content = dark ? "#0F151B" : "#F1F4F6";
+  };
   applyTheme();
+  if (darkMedia && darkMedia.addEventListener) darkMedia.addEventListener("change", applyTheme);
 
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const num = (v) => { const n = typeof v === "string" ? parseFloat(v.replace(",", ".")) : Number(v); return Number.isFinite(n) ? n : null; };
   const fmtDay = (ts) => new Date(ts).toLocaleDateString("fi-FI", { weekday: "short", day: "numeric", month: "numeric" });
   const fmtWhen = (ts) => { const d = new Date(ts); return d.toLocaleDateString("fi-FI", { weekday: "short" }) + " klo " + d.toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" }); };
-  const stars = (n) => "★".repeat(Math.round(n)) + "☆".repeat(5 - Math.round(n));
+  const stars = (n) => { const k = Math.min(5, Math.max(0, Math.round(num(n) ?? 0))); return "★".repeat(k) + "☆".repeat(5 - k); };
   const byId = (id) => S.recipes.find((r) => r.id === id);
+  const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3);
   // Visibility per profile: proposals ("ehdotus") show only after "Pidetään"; hidden ones never.
-  const P = () => S.prefs[S.profile] || { hidden: [], favorites: [], kept: [] };
-  const DELETED = () => S.prefs.shared?.deleted || [];   // removed from the book for both
+  const prefsOf = (who) => S.prefs[who] || (S.prefs[who] = EMPTY_PREFS());
+  const P = () => prefsOf(S.profile);
+  const DELETED = () => prefsOf("shared").deleted;   // removed from the book for both
   const isDeleted = (r) => DELETED().includes(r.id);
   const isHidden = (r) => P().hidden.includes(r.id) || isDeleted(r);
-  const KEPT = () => S.prefs.shared?.kept || [];
+  const KEPT = () => prefsOf("shared").kept;
   const isProposal = (r) => r.status === "ehdotus" && !KEPT().includes(r.id);
-  const FAVS = () => S.prefs.shared?.favorites || [];   // favourites are shared by the family
+  const FAVS = () => prefsOf("shared").favorites;   // favourites are shared by the family
   const isFav = (r) => FAVS().includes(r.id);
   const visible = () => S.recipes.filter((r) => !isHidden(r) && !isProposal(r));
   // Recipes meant for this person (who lists them, or who is missing); used for suggestions only – the book itself shows everything.
@@ -318,12 +356,47 @@
   const toast = (m, undo) => {
     const t = $("#toast"); toastUndo = undo || null;
     t.innerHTML = `<span>${esc(m)}</span>${undo ? `<button type="button" data-toast-undo>Kumoa</button>` : ""}`;
-    t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), undo ? 6000 : 1800);
+    t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), undo ? 7000 : 2000);
   };
 
-  // Stats per recipe for the current profile
+  // ---------- Layers (recipe sheet, review modal) tied to browser history so the phone's back button closes them ----------
+  const layers = [];
+  const applyPop = (name) => { if (name === "review") S.review = null; else if (name === "sheet") { S.open = null; S.review = null; S.stepsDone = new Set(); } };
+  const pushLayer = (name) => { layers.push(name); try { history.pushState({ creami: layers.length }, ""); } catch (e) {} };
+  window.addEventListener("popstate", (e) => { const depth = (e.state && Number(e.state.creami)) || 0; while (layers.length > depth) applyPop(layers.pop()); render(); });
+  try { if (history.state && history.state.creami) history.replaceState(null, ""); } catch (e) {}
+  function closeTop() { const n = layers.pop(); if (n) { applyPop(n); try { history.back(); } catch (e) {} } else { S.review = null; S.open = null; } render(); }
+  function closeAll() { const n = layers.length; while (layers.length) applyPop(layers.pop()); S.open = null; S.review = null; S.stepsDone = new Set(); if (n) { try { history.go(-n); } catch (e) {} } render(); }
+  function openRecipe(id, review) {
+    if (!byId(id)) return;
+    if (!S.open) pushLayer("sheet");
+    else if (S.review && layers[layers.length - 1] === "review") { layers.pop(); try { history.back(); } catch (e) {} }
+    S.open = id; S.review = null; S.stepsDone = new Set();
+    if (review) { S.review = review; pushLayer("review"); }
+    render();
+    const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = 0;
+    const b = $("#overlay .back"); if (b && !review) b.focus({ preventScroll: true });
+  }
+  function openReview(review) { if (S.review) return; S.review = review; pushLayer("review"); render(); }
+  function closeReview() { if (layers[layers.length - 1] === "review") closeTop(); else { S.review = null; render(); } }
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && (S.review || S.open)) closeTop(); });
+
+  // Keep the screen on while a recipe is open (hands are busy in the kitchen).
+  let wake = null, wakeBusy = false;
+  async function wakeSync() {
+    if (wakeBusy || !navigator.wakeLock) return;
+    const want = !!S.open && !document.hidden;
+    wakeBusy = true;
+    try {
+      if (want && !wake) { wake = await navigator.wakeLock.request("screen"); wake.addEventListener("release", () => { wake = null; }); }
+      else if (!want && wake) { const w = wake; wake = null; await w.release(); }
+    } catch (e) { wake = null; }
+    wakeBusy = false;
+  }
+
+  // Stats per recipe for one profile (plain maps so odd recipe ids can't touch Object.prototype)
   function stats(profile) {
-    const m = {};
+    const m = Object.create(null);
     for (const r of S.reviews) {
       if (r.who !== profile) continue;
       const s = (m[r.recipeId] ||= { n: 0, sum: 0, last: 0 });
@@ -333,18 +406,18 @@
     return m;
   }
   function allStats() {
-    const m = {};
+    const m = Object.create(null);
     for (const r of S.reviews) { const s = (m[r.recipeId] ||= { n: 0, sum: 0 }); s.n++; s.sum += r.stars; }
     for (const k in m) m[k].avg = m[k].sum / m[k].n;
     return m;
   }
   function seededShuffle(arr, seed) {
-    const a = arr.slice(); let x = Math.floor(seed * 2 ** 31) || 1;
+    const a = arr.slice(); let x = Math.floor((seed % 1) * 2 ** 31) || 1;
     for (let i = a.length - 1; i > 0; i--) { x = (x * 48271) % 2147483647; const j = x % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
     return a;
   }
-  function suggestions() {
-    const st = stats(S.profile), pref = PREF[S.profile];
+  function suggestions(seed = S.seed) {
+    const st = stats(S.profile), pref = PREF[S.profile] || [];
     const out = [], used = new Set();
     const take = (r, why) => { if (r && !used.has(r.id)) { used.add(r.id); out.push({ r, why }); } };
     const pool = mine();
@@ -354,13 +427,20 @@
     take(fav, "Suosikkisi");
     const old = rated.filter((r) => !used.has(r.id)).sort((a, b) => st[a.id].last - st[b.id].last)[0];
     if (old && Date.now() - st[old.id].last > 5 * DAY) take(old, "Pitkästä aikaa");
-    const fresh = seededShuffle(pool.filter((r) => !st[r.id]), S.seed)
+    const fresh = seededShuffle(pool.filter((r) => !st[r.id]), seed)
       .sort((a, b) => (pref.indexOf(a.cat) === -1) - (pref.indexOf(b.cat) === -1));
     for (const r of fresh) { if (out.length >= 3) break; take(r, "Uusi kokeilu"); }
-    for (const r of seededShuffle(pool, S.seed + 0.37)) { if (out.length >= 3) break; take(r, "Kokeile taas"); }
+    for (const r of seededShuffle(pool, seed + 0.37)) { if (out.length >= 3) break; take(r, "Kokeile taas"); }
     return out;
   }
-  // "Kokeile tätä!": the newest recipe this profile has kept but not yet rated
+  // "Arvo uudet": pick a seed that actually changes the list (if the book is big enough for that)
+  function reroll() {
+    const cur = suggestions().map((s) => s.r.id).join();
+    let seed = Math.random();
+    for (let i = 0; i < 12; i++) { seed = Math.random(); if (suggestions(seed).map((s) => s.r.id).join() !== cur) break; }
+    S.seed = seed; store.set(seedKey(), String(seed)); render();
+  }
+  // "Uusin kirjassa": the newest recipe this profile has kept but not yet rated
   function tryThis() {
     const st = stats(S.profile);
     return mine().filter((r) => !st[r.id] && r.added).sort((a, b) => b.added - a.added)[0] || null;
@@ -369,15 +449,16 @@
   // ---------- Rendering ----------
   const catKey = (r) => (r.cat in CATS ? r.cat : "proteiini");
   function catChip(r) { return `<span class="cat" style="--cat-color: var(--cat-${catKey(r)})">${esc(CATS[r.cat] || r.cat)}</span>`; }
+  const protein = (r) => (r.macros && r.macros.protein != null) ? `<span>${r.macros.protein} g prot.</span>` : "";
   function recipeCard(r, why) {
     const st = stats(S.profile)[r.id], all = allStats()[r.id];
     const whoDone = st ? `<span class="stars" title="${st.avg.toFixed(1)}">${stars(st.avg)}</span>` : `<span class="pill new">Uusi sinulle</span>`;
-    const other = !st && all ? `<span class="pill">${NAMES[S.profile === "leo" ? "aiti" : "leo"]}: ${stars(all.avg)}</span>` : "";
+    const other = !st && all ? `<span class="pill">${NAMES[OTHER[S.profile]]}: ${stars(all.avg)}</span>` : "";
     const theirs = !forMe(r) ? `<span class="pill">${S.profile === "leo" ? "Kirsin" : "Leon"}</span>` : "";
     return `<button class="card tap" data-open="${esc(r.id)}">
       <div class="card-top">${catChip(r)}<span>${why ? `<span class="why">${esc(why)}</span> ` : ""}${isFav(r) ? `<span class="why" aria-label="Suosikki">♥</span>` : ""}</span></div>
       <h3>${esc(r.name)}</h3>
-      <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}${whoDone}${other}${theirs}</div>
+      <div class="meta"><span class="prog">${esc(r.program)}</span>${protein(r)}${whoDone}${other}${theirs}</div>
     </button>`;
   }
   function dbNote() {
@@ -386,6 +467,7 @@
     if (!S.recipes.length) return `<div class="empty">Kirjassa ei ole vielä reseptejä.</div>`;
     return "";
   }
+  const offlineBanner = () => S.dbState === "offline" ? `<div class="banner"><b>Ei yhteyttä.</b> Näytetään viimeksi haettu kirja – muutokset eivät tallennu ennen kuin netti palaa.</div>` : "";
 
   function renderToday() {
     const hour = new Date().getHours();
@@ -396,25 +478,26 @@
       const r = byId(f.recipeId); if (!r) return "";
       const ready = f.at + DAY, isReady = Date.now() >= ready;
       return `<div class="card frz">
-        <div><div class="t">${esc(r.name)}</div><div class="sub">${NAMES[f.who] || ""} · laitettu ${fmtDay(f.at)} · ${isReady ? `<span class="pill ok">Valmis ajettavaksi</span>` : `valmis ${fmtWhen(ready)}`}</div></div>
-        <div class="row-actions"><button class="btn small primary" data-done="${esc(f.id)}">Tehty</button><button class="btn small ghost" data-open="${esc(r.id)}">Avaa</button><button class="btn small ghost icon" data-unfreeze="${esc(f.id)}" aria-label="Poista pakkaslistalta" title="Poista pakkaslistalta">✕</button></div>
+        <div><div class="t">${esc(r.name)}</div><div class="sub">${esc(NAMES[f.who] || "")} · laitettu ${fmtDay(f.at)} · ${isReady ? `<span class="pill ok">Valmis ajettavaksi</span>` : `valmis ${fmtWhen(ready)}`}</div></div>
+        <div class="row-actions"><button class="btn small primary" data-done="${esc(f.id)}">Tehty – arvioi</button><button class="btn small" data-open="${esc(r.id)}">Avaa</button><button class="btn small ghost icon" data-unfreeze="${esc(f.id)}" aria-label="Poista pakkaslistalta" title="Poista pakkaslistalta">✕</button></div>
       </div>`;
     }).join("") : `<div class="empty">Ei mitään pakkasessa. Avaa resepti ja paina <b>Laita pakkaseen</b>, niin näet täältä milloin se on valmis.</div>`;
     const sugg = suggestions();
     const recent = S.reviews.slice().sort((a, b) => b.at - a.at).slice(0, 3);
     const props = proposals(), prop = props[0];
-    const tryCard = (r, eyebrow, title, primary) => `<div class="try">
+    const tryCard = (r, eyebrow, primary) => `<div class="try">
         <span class="eyebrow">${eyebrow}</span>
         ${catChip(r)}
         <h3>${esc(r.name)}</h3>
-        <div class="meta"><span class="prog">${esc(r.program)}</span>${r.macros?.protein ? `<span>${r.macros.protein} g prot.</span>` : ""}<span>${esc(r.time || "")}</span></div>
+        <div class="meta"><span class="prog">${esc(r.program)}</span>${protein(r)}<span>${esc(r.time || "")}</span></div>
         ${r.tips ? `<p style="opacity:.85;font-size:14px">${esc(r.tips)}</p>` : ""}
         <div class="row-actions">${primary}<button class="btn" data-open="${esc(r.id)}">Avaa resepti</button><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button></div>
       </div>`;
     const topCard = prop ? `<section><div class="sec-head"><h2>Pidetäänkö resepti?</h2><span class="eyebrow">${props.length > 1 ? props.length + " uutta ehdotusta" : "uusi ehdotus"}</span></div>
-        ${tryCard(prop, "Uusi ehdotus kirjaan", "", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>` : "";
+        ${tryCard(prop, "Uusi ehdotus kirjaan", `<button class="btn primary" data-keep="${esc(prop.id)}">Pidetään</button>`)}</section>` : "";
     return `
       <section class="greeting"><h1>${hello}, ${NAMES[S.profile]}.</h1><p>${S.profile === "aiti" ? "Smoothie bowleja, sorbetteja ja frappéa – ja arvioi lopuksi, niin kirja oppii mistä tykkäät." : "Proteiinijäätelöä, jolla on oikeasti rakenne. Arvioi jokainen kokeilu."}</p></section>
+      ${offlineBanner()}
       ${note ? "" : topCard}
       <section>
         <div class="sec-head"><h2>Pakkasessa nyt</h2></div>
@@ -436,12 +519,12 @@
 
   function renderRecipes() {
     const note = dbNote();
-    const pref = PREF[S.profile];
+    const pref = PREF[S.profile] || [];
     const q = S.q.trim().toLowerCase();
     const pool = visible();
     let list = pool.filter((r) => S.cat === "all" || r.cat === S.cat);
-    if (q) list = list.filter((r) => (r.name + " " + (r.ing || []).map((i) => i.n).join(" ")).toLowerCase().includes(q));
-    list.sort((a, b) => (pref.indexOf(a.cat) === -1) - (pref.indexOf(b.cat) === -1) || (a.order ?? 0) - (b.order ?? 0));
+    if (q) list = list.filter((r) => (r.name + " " + (CATS[r.cat] || "") + " " + r.program + " " + r.ing.map((i) => i.n + " " + i.s).join(" ")).toLowerCase().includes(q));
+    list.sort((a, b) => (pref.indexOf(a.cat) === -1) - (pref.indexOf(b.cat) === -1) || a.order - b.order);
     const chips = [["all", "Kaikki"], ...Object.entries(CATS)].map(([k, v]) => `<button class="chip" data-cat="${k}" aria-pressed="${S.cat === k}">${v}</button>`).join("");
     const hidden = S.recipes.filter((r) => P().hidden.includes(r.id) && !isDeleted(r));
     const deleted = S.recipes.filter(isDeleted);
@@ -450,7 +533,8 @@
     return `
       <section>
         <div class="sec-head"><h2>Reseptit</h2><span class="eyebrow">${pool.length} kpl · 709 ml astia</span></div>
-        <input class="search" type="search" placeholder="Hae nimellä tai aineksella…" value="${esc(S.q)}" data-search>
+        ${offlineBanner()}
+        <input class="search" type="search" placeholder="Hae nimellä tai aineksella…" value="${esc(S.q)}" data-search aria-label="Hae reseptejä">
         <div class="chips">${chips}</div>
         ${note || (list.length ? `<div class="list">${list.map((r) => recipeCard(r)).join("")}</div>` : `<div class="empty">Ei osumia.</div>`)}
         ${hiddenHtml}
@@ -466,6 +550,7 @@
     return `
       <section>
         <div class="sec-head"><h2>Suosikit</h2><span class="eyebrow">yhteiset</span></div>
+        ${offlineBanner()}
         ${note || (hearts.length ? `<div class="list">${hearts.map((r) => recipeCard(r)).join("")}</div>` : `<div class="empty">Ei vielä sydämiä. Avaa resepti ja napauta ♥ oikeasta yläkulmasta – suosikit ovat teidän yhteisiä.</div>`)}
       </section>
       ${top.length ? `<section><div class="sec-head"><h2>Arvioit 4–5 tähteä</h2><span class="eyebrow">${NAMES[S.profile]}</span></div><div class="list">${top.map((r) => recipeCard(r)).join("")}</div></section>` : ""}`;
@@ -474,65 +559,95 @@
   function renderShop() {
     const items = S.shopping;
     const open = items.filter((i) => !i.done), done = items.filter((i) => i.done);
-    const row = (i) => `<label class="shop-item ${i.done ? "done" : ""}"><input type="checkbox" data-check="${esc(i.id)}" ${i.done ? "checked" : ""}><div><div class="t">${esc(i.text)}</div>${i.sub ? `<div class="sub">${esc(i.sub)}</div>` : ""}</div><button class="btn small ghost" data-remove="${esc(i.id)}" aria-label="Poista">✕</button></label>`;
+    const row = (i) => `<label class="shop-item ${i.done ? "done" : ""}"><input type="checkbox" data-check="${esc(i.id)}" ${i.done ? "checked" : ""}><div><div class="t">${esc(i.text)}</div>${i.sub ? `<div class="sub">${esc(i.sub)}</div>` : ""}</div><button class="btn small ghost" data-remove="${esc(i.id)}" aria-label="Poista rivi">✕</button></label>`;
     return `
       <section>
-        <div class="sec-head"><h2>Ostoslista</h2>${done.length ? `<button class="link" data-clear-done>Poista ruksitut</button>` : ""}</div>
-        ${S.dbState === "none" ? dbNote() : ""}
+        <div class="sec-head"><h2>Ostoslista</h2><div class="row-actions">${open.length ? `<button class="link" data-share-shop>Jaa</button>` : ""}${done.length ? `<button class="link" data-clear-done>Poista ruksitut</button>` : ""}</div></div>
+        ${S.dbState === "none" ? dbNote() : offlineBanner()}
         <div class="card">
           ${items.length ? open.map(row).join("") + done.map(row).join("") : `<div class="pantry">Lista on tyhjä. Avaa resepti ja paina <b>Lisää ostoslistalle</b> – listalle tulee vain se, mitä ei ole kotona.</div>`}
         </div>
-        <form class="addrow" data-addform><input class="search" type="text" placeholder="Lisää oma rivi, esim. banaanit" data-addtext><button class="btn primary" type="submit">Lisää</button></form>
+        <form class="addrow" data-addform><input class="search" type="text" placeholder="Lisää oma rivi, esim. banaanit" data-addtext aria-label="Uusi rivi" autocomplete="off" enterkeyhint="done" maxlength="120"><button class="btn primary" type="submit">Lisää</button></form>
         <p class="pantry">${PANTRY}</p>
       </section>`;
   }
 
+  function setBadge(tabId, n) {
+    const tab = document.getElementById(tabId); if (!tab) return;
+    let badge = $(".badge", tab);
+    if (n) { if (!badge) { badge = document.createElement("span"); badge.className = "badge"; tab.prepend(badge); } badge.textContent = n; }
+    else if (badge) badge.remove();
+  }
   function render() {
     // Live updates re-render everything; keep the reader's place and any half-typed text.
     const y = window.scrollY, sheetY = $("#overlay .sheet")?.scrollTop || 0;
     const ae = document.activeElement, focusSel = ae && ae.matches?.("[data-search],[data-comment],[data-addtext]") ? (ae.hasAttribute("data-search") ? "[data-search]" : ae.hasAttribute("data-comment") ? "[data-comment]" : "[data-addtext]") : null;
     const caret = focusSel ? ae.selectionStart : 0, draft = focusSel === "[data-addtext]" ? ae.value : null;
-    $("#main").innerHTML = S.tab === "today" ? renderToday() : S.tab === "recipes" ? renderRecipes() : S.tab === "favs" ? renderFavs() : renderShop();
+    try {
+      $("#main").innerHTML = S.tab === "today" ? renderToday() : S.tab === "recipes" ? renderRecipes() : S.tab === "favs" ? renderFavs() : renderShop();
+    } catch (e) { console.error(e); $("#main").innerHTML = `<div class="empty">Näkymää ei voitu piirtää. Avaa sivu uudelleen.</div>`; }
     document.querySelectorAll("[data-profile]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.profile === S.profile)));
     document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tab === S.tab)));
-    const n = S.shopping.filter((i) => !i.done).length;
-    let badge = $("#shopTab .badge"); if (n) { if (!badge) { badge = document.createElement("span"); badge.className = "badge"; $("#shopTab").prepend(badge); } badge.textContent = n; } else if (badge) badge.remove();
-    renderOverlay();
+    setBadge("shopTab", S.shopping.filter((i) => !i.done).length);
+    setBadge("todayTab", S.dbState === "loading" ? 0 : proposals().length);
+    try { renderOverlay(); } catch (e) { console.error(e); S.open = null; S.review = null; $("#overlay").innerHTML = ""; document.body.style.overflow = ""; }
+    renderWho();
+    wakeSync();
     window.scrollTo(0, y);
     const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = sheetY;
-    if (focusSel) { const el = $(focusSel); if (el) { if (draft !== null) el.value = draft; el.focus(); try { el.setSelectionRange(caret, caret); } catch (e) {} } }
+    if (focusSel) { const el = $(focusSel); if (el) { if (draft !== null) el.value = draft; el.focus({ preventScroll: true }); try { el.setSelectionRange(caret, caret); } catch (e) {} } }
   }
+
+  function renderWho() {
+    const w = $("#who");
+    if (!S.firstRun) { if (w.innerHTML) w.innerHTML = ""; return; }
+    if (w.innerHTML) return;
+    w.innerHTML = `<div class="modal center" role="dialog" aria-modal="true" aria-labelledby="whoTitle"><div class="box">
+      <div><span class="eyebrow">Tervetuloa</span><h2 id="whoTitle">Kuka käyttää tätä puhelinta?</h2><p style="color:var(--muted);margin-top:6px">Valinta muistetaan. Voit vaihtaa milloin vain yläpalkista.</p></div>
+      <div class="who-pick"><button class="btn primary" data-pick-who="leo">Leo</button><button class="btn primary" data-pick-who="aiti">Kirsi</button></div>
+    </div></div>`;
+  }
+
+  // Bold the Creami program names inside step text. (No \b or lookbehind: \b fails next to É/Ä/Ö and lookbehind is missing on older iPhones.)
+  const PROG_RE = /(^|[^A-ZÄÖÅÉ])(LITE ICE CREAM|ICE CREAM|SORBET|FROZEN YOGHURT|FRAPPÉ|MILKSHAKE|SLUSHI|RE-SPIN|MIX-IN|GELATO|FROZEN DRINK|MAX|DRINKABLE)(?![A-ZÄÖÅÉ])/g;
+  const stepHtml = (s) => esc(s).replace(PROG_RE, "$1<strong>$2</strong>");
+  const RESPIN = { usein: "usein", joskus: "joskus", harvoin: "harvoin", aina: "aina" };
 
   function renderOverlay() {
     const o = $("#overlay");
     if (!S.open) { o.innerHTML = ""; document.body.style.overflow = ""; return; }
-    const r = byId(S.open); if (!r) { S.open = null; o.innerHTML = ""; return; }
+    const r = byId(S.open); if (!r) { S.open = null; S.review = null; o.innerHTML = ""; document.body.style.overflow = ""; return; }
     document.body.style.overflow = "hidden";
     const revs = S.reviews.filter((v) => v.recipeId === r.id).sort((a, b) => b.at - a.at);
-    const shopCount = (r.ing || []).filter((i) => !i.p).length;
-    const perHalf = r.macros ? `${Math.round(r.macros.protein / 2)} g` : "–";
-    const stepHtml = (s) => esc(s).replace(/\b(LITE ICE CREAM|ICE CREAM|SORBET|FROZEN YOGHURT|FRAPPÉ|MILKSHAKE|SLUSHI|RE-SPIN|MIX-IN|GELATO|FROZEN DRINK|MAX)\b/g, "<strong>$1</strong>");
-    o.innerHTML = `<div class="sheet" role="dialog" aria-label="${esc(r.name)}"><div class="in">
-      <div class="sheet-top"><button class="back" data-close>‹ Takaisin</button><button class="heart" data-fav="${esc(r.id)}" aria-pressed="${isFav(r)}" aria-label="Suosikki"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg></button></div>
+    const shopCount = r.ing.filter((i) => !i.p).length;
+    const prot = r.macros ? r.macros.protein : null, kcal = r.macros ? r.macros.kcal : null;
+    const perHalf = prot != null ? `${Math.round(prot / 2)} g` : "–";
+    const respin = r.respin && r.respin !== "ei" ? `<span title="Toinen ajo RE-SPIN-ohjelmalla, jos tulos on murumainen">Toinen ajo (RE-SPIN): ${esc(RESPIN[r.respin] || r.respin)}</span>` : "";
+    const busy = S.busy;
+    o.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(r.name)}"><div class="in">
+      <div class="sheet-top"><button class="back" data-close>‹ Takaisin</button>
+        <button class="round heart" data-fav="${esc(r.id)}" aria-pressed="${isFav(r)}" aria-label="Suosikki"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.5c0 5.4-7.5 10-7.5 10z"/></svg></button>
+        <button class="round share" data-share="${esc(r.id)}" aria-label="Jaa resepti" title="Jaa resepti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg></button>
+      </div>
       <div class="hero">
         ${isProposal(r) ? `<span class="pill new">Uusi ehdotus – ei vielä kirjassa</span>` : ""}
         ${catChip(r)}
         <h1>${esc(r.name)}</h1>
-        <div class="prog-big"><span class="l">Ohjelma</span><span class="v">${esc(r.program)}</span></div>
-        <div class="meta"><span>${esc(r.time)}</span>${r.respin && r.respin !== "ei" ? `<span>Re-spin: ${esc(r.respin)}</span>` : ""}</div>
+        <div class="prog-big"><span class="l">Ohjelma Creamin näytöltä</span><span class="v">${esc(r.program)}</span></div>
+        <div class="meta"><span>${esc(r.time)}</span>${respin}</div>
       </div>
       <div class="facts">
-        <div class="fact"><span class="l">Proteiini</span><span class="v">${r.macros?.protein ?? "–"} g <small>/ astia</small></span></div>
+        <div class="fact"><span class="l">Proteiini</span><span class="v">${prot ?? "–"} g <small>/ astia</small></span></div>
         <div class="fact"><span class="l">Per ½ astiaa</span><span class="v">${perHalf}</span></div>
-        <div class="fact"><span class="l">Energia</span><span class="v">${r.macros?.kcal ?? "–"} <small>kcal</small></span></div>
+        <div class="fact"><span class="l">Energia</span><span class="v">${kcal ?? "–"} <small>kcal</small></span></div>
       </div>
       <section style="margin-top:22px">
         <div class="sec-head"><h2>Ainekset</h2><span class="eyebrow">${shopCount ? shopCount + " kaupasta" : "kaikki kotona"}</span></div>
-        <div class="card">${(r.ing || []).map((i) => `<div class="ing ${i.p ? "home" : ""}"><span class="n">${esc(i.n)}</span><span class="a">${esc(i.a)}</span><span class="s">${i.p ? "" : esc(i.s || i.n)}</span></div>`).join("")}</div>
+        <div class="card">${r.ing.map((i) => `<div class="ing ${i.p ? "home" : ""}"><span class="n">${esc(i.n)}</span><span class="a">${esc(i.a)}</span>${i.p ? `<span class="s"></span>` : (i.s && i.s !== i.n ? `<span class="s">${esc(i.s)}</span>` : "")}</div>`).join("")}</div>
       </section>
       <section style="margin-top:22px">
-        <div class="sec-head"><h2>Näin teet</h2></div>
-        <div class="card"><ol class="steps">${(r.steps || []).map((s) => `<li><span>${stepHtml(s)}</span></li>`).join("")}</ol></div>
+        <div class="sec-head"><h2>Näin teet</h2><span class="steps-hint">napauta vaihetta, kun se on tehty</span></div>
+        <div class="card"><ol class="steps">${r.steps.map((s, i) => `<li class="${S.stepsDone.has(i) ? "done" : ""}" data-step="${i}"><span>${stepHtml(s)}</span></li>`).join("")}</ol></div>
       </section>
       ${r.tips ? `<section style="margin-top:22px"><div class="tip"><b>Vinkki.</b> ${esc(r.tips)}</div></section>` : ""}
       <section style="margin-top:22px">
@@ -543,7 +658,7 @@
     </div>
     <div class="actionbar"><div class="in ${isProposal(r) || r.freeze === false ? "one" : ""}">
       ${isProposal(r) ? `<div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button><button class="btn primary" data-keep="${esc(r.id)}">Pidetään – lisää kirjaan</button></div>` : `
-      ${r.freeze === false ? "" : `<button class="btn" data-freeze="${esc(r.id)}">Laita pakkaseen</button>`}
+      ${r.freeze === false ? "" : `<button class="btn" data-freeze="${esc(r.id)}" ${busy ? "disabled" : ""}>${busy ? "Hetki…" : "Laita pakkaseen"}</button>`}
       <button class="btn primary" data-rate="${esc(r.id)}">Tehty – arvioi</button>
       ${shopCount ? `<button class="btn block" style="grid-column:1/-1" data-shop="${esc(r.id)}">Lisää ostoslistalle (${shopCount})</button>` : ""}`}
     </div></div>
@@ -553,79 +668,125 @@
 
   function renderReviewModal(r) {
     const v = S.review;
-    return `<div class="modal" data-modal><div class="box">
-      <div><span class="eyebrow">${esc(NAMES[S.profile])} arvioi</span><h2>${esc(r.name)}</h2></div>
-      <div class="q"><span class="l">Kuinka hyvää?</span><div class="starpick">${[1, 2, 3, 4, 5].map((n) => `<button class="${v.stars >= n ? "on" : ""}" data-star="${n}" aria-label="${n} tähteä">★</button>`).join("")}</div></div>
+    return `<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="reviewTitle"><div class="box">
+      <div><span class="eyebrow">${esc(NAMES[S.profile])} arvioi</span><h2 id="reviewTitle">${esc(r.name)}</h2></div>
+      <div class="q"><span class="l">Kuinka hyvää?</span><div class="starpick" role="radiogroup" aria-label="Tähdet">${[1, 2, 3, 4, 5].map((n) => `<button class="${v.stars >= n ? "on" : ""}" data-star="${n}" role="radio" aria-checked="${v.stars === n}" aria-label="${n} tähteä">★</button>`).join("")}</div></div>
       <div class="q"><span class="l">Rakenne</span><div class="opts">${TEXTURE.map((t) => `<button data-texture="${esc(t)}" aria-pressed="${v.texture === t}">${esc(t)}</button>`).join("")}</div></div>
       <div class="q"><span class="l">Makeus</span><div class="opts">${SWEET.map((t) => `<button data-sweet="${esc(t)}" aria-pressed="${v.sweetness === t}">${esc(t)}</button>`).join("")}</div></div>
-      <div class="q"><span class="l">Muistiinpano seuraavaa kertaa varten</span><textarea class="note" data-comment placeholder="esim. vähemmän alluloosia, lisää kaakaota">${esc(v.comment)}</textarea></div>
-      <div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr"><button class="btn" data-review-cancel>Peruuta</button><button class="btn primary" data-review-save ${v.stars ? "" : "disabled"}>Tallenna arvio</button></div>
+      <div class="q"><span class="l">Muistiinpano seuraavaa kertaa varten</span><textarea class="note" data-comment maxlength="500" placeholder="esim. vähemmän alluloosia, lisää kaakaota">${esc(v.comment)}</textarea></div>
+      <div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr"><button class="btn" data-review-cancel>Peruuta</button><button class="btn primary" data-review-save ${v.stars && !S.busy ? "" : "disabled"}>${S.busy ? "Tallennetaan…" : v.stars ? "Tallenna arvio" : "Valitse tähdet"}</button></div>
     </div></div>`;
   }
 
   // ---------- Data ----------
+  const CACHE_KEY = "creami.cache.v1";
+  function saveCache() { store.set(CACHE_KEY, JSON.stringify({ recipes: S.recipes, reviews: S.reviews, freezer: S.freezer, shopping: S.shopping, prefs: S.prefs, at: Date.now() })); }
+  function loadCache() {
+    try {
+      const c = JSON.parse(store.get(CACHE_KEY) || "null");
+      if (!c || !Array.isArray(c.recipes) || !c.recipes.length) return;
+      S.recipes = c.recipes.map(normRecipe).filter(Boolean); S.reviews = (c.reviews || []).map(normReview).filter(Boolean);
+      S.freezer = (c.freezer || []).map(normFreezer).filter(Boolean); S.shopping = normShopping(c.shopping);
+      for (const who of ["leo", "aiti", "shared"]) S.prefs[who] = normPrefs(c.prefs && c.prefs[who]);
+      S.dbState = "cached";   // shown right away; replaced by live data as soon as it arrives
+    } catch (e) {}
+  }
+  // Rows come from a shared database: shape them defensively so one odd row can't break the whole app.
+  const strList = (v) => Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
+  function normRecipe(row) {
+    const d = row && typeof row.data === "object" && row.data ? row.data : row;
+    if (!d || typeof d !== "object") return null;
+    const id = String(row.id ?? d.id ?? ""); if (!id) return null;
+    const macros = d.macros && typeof d.macros === "object" ? { protein: num(d.macros.protein), kcal: num(d.macros.kcal) } : null;
+    return {
+      id, name: String(d.name || id), cat: typeof d.cat === "string" ? d.cat : "proteiini", program: String(d.program || ""),
+      who: Array.isArray(d.who) ? d.who.map(String) : null, freeze: d.freeze !== false, respin: d.respin ? String(d.respin) : "",
+      time: d.time ? String(d.time) : "", tips: d.tips ? String(d.tips) : "", status: d.status ? String(d.status) : "",
+      order: num(d.order) ?? 0, added: num(d.added) ?? 0, macros: macros && (macros.protein != null || macros.kcal != null) ? macros : null,
+      ing: Array.isArray(d.ing) ? d.ing.filter((i) => i && typeof i === "object").map((i) => ({ n: String(i.n ?? ""), a: String(i.a ?? ""), s: i.s ? String(i.s) : "", p: !!i.p })) : [],
+      steps: Array.isArray(d.steps) ? d.steps.map((s) => String(s ?? "")) : [],
+    };
+  }
+  function normReview(r) {
+    if (!r || typeof r !== "object" || !r.id) return null;
+    const st = num(r.stars); if (st == null) return null;
+    return { id: String(r.id), recipeId: String(r.recipe_id ?? r.recipeId ?? ""), who: String(r.who ?? ""), stars: Math.min(5, Math.max(1, st)), texture: String(r.texture ?? ""), sweetness: String(r.sweetness ?? ""), comment: String(r.comment ?? ""), at: num(r.at) ?? 0 };
+  }
+  function normFreezer(r) {
+    if (!r || typeof r !== "object" || !r.id) return null;
+    return { id: String(r.id), recipeId: String(r.recipe_id ?? r.recipeId ?? ""), who: String(r.who ?? ""), at: num(r.at) ?? 0 };
+  }
+  const normShopping = (items) => Array.isArray(items) ? items.filter((i) => i && typeof i === "object" && i.text).map((i) => ({ id: String(i.id || uid()), text: String(i.text).slice(0, 120), sub: String(i.sub ?? "").slice(0, 300), done: !!i.done })) : [];
+  const normPrefs = (row) => ({ hidden: strList(row?.hidden), favorites: strList(row?.favorites), kept: strList(row?.kept), deleted: strList(row?.deleted) });
+
   async function saveShopping(items) {
-    S.shopping = items; render();
-    if (!S.db) return;
-    const { error } = await S.db.from("shopping").upsert({ id: "main", items });
+    S.shopping = normShopping(items); render(); saveCache();
+    if (!S.db) return toast("Ei yhteyttä – ei tallennettu");
+    const { error } = await S.db.from("shopping").upsert({ id: "main", items: S.shopping });
     if (error) toast("Tallennus epäonnistui");
   }
   function addToShopping(r) {
-    const items = S.shopping.slice();
-    let added = 0;
-    for (const i of r.ing || []) {
+    const items = S.shopping.map((x) => ({ ...x }));
+    let added = 0, merged = 0;
+    for (const i of r.ing) {
       if (i.p) continue;
-      const text = i.s || i.n;
-      if (items.some((x) => x.text === text && !x.done)) continue;
-      items.push({ id: Math.random().toString(36).slice(2, 9), text, sub: `${r.name}${i.a ? " · " + i.a : ""}`, done: false });
+      const text = i.s || i.n, sub = `${r.name}${i.a ? " · " + i.a : ""}`;
+      const dup = items.find((x) => x.text === text && !x.done);
+      if (dup) { if (!dup.sub.includes(r.name)) { dup.sub = dup.sub ? dup.sub + " + " + sub : sub; merged++; } continue; }
+      items.push({ id: uid(), text, sub, done: false });
       added++;
     }
     saveShopping(items);
-    toast(added ? `${added} riviä lisätty ostoslistalle` : "Kaikki on jo listalla");
+    toast(added ? `${added} riviä lisätty ostoslistalle${merged ? `, ${merged} yhdistetty` : ""}` : merged ? "Määrät lisätty listalla oleviin riveihin" : "Kaikki on jo listalla");
   }
-  async function savePrefs(patch, who = S.profile) {
-    const cur = S.prefs[who] || { hidden: [], favorites: [], kept: [], deleted: [] };
-    const next = { hidden: cur.hidden, favorites: cur.favorites, kept: cur.kept, deleted: cur.deleted || [], ...patch };
-    S.prefs[who] = next; render();
-    if (!S.db) return;
-    const { error } = await S.db.from("prefs").upsert({ who, ...next });
+  // savePrefs(who, fn): fn gets the latest prefs and returns the patch, so quick taps and undos never overwrite each other with stale copies.
+  async function savePrefs(who, fn) {
+    const next = { ...prefsOf(who), ...fn(prefsOf(who)) };
+    S.prefs[who] = normPrefs(next); render(); saveCache();
+    if (!S.db) return toast("Ei yhteyttä – ei tallennettu");
+    const { error } = await S.db.from("prefs").upsert({ who, ...S.prefs[who] });
     if (error) toast("Tallennus epäonnistui");
   }
   const without = (arr, id) => arr.filter((x) => x !== id);
+  const withId = (arr, id) => [...without(arr, id), id];
   function hideRecipe(id) {
     const r = byId(id); if (!r) return;
-    const wasProposal = isProposal(r);
-    if (S.open === id) { S.open = null; S.review = null; }
-    const before = { hidden: P().hidden };
-    savePrefs({ hidden: [...without(P().hidden, id), id] });
-    toast(wasProposal ? "Ei lisätty kirjaan" : "Piilotettu – löydät sen Reseptit-välilehden lopusta", () => savePrefs(before));
+    const who = S.profile, wasProposal = isProposal(r);
+    if (S.open === id) closeAll();
+    savePrefs(who, (p) => ({ hidden: withId(p.hidden, id) }));
+    toast(wasProposal ? "Ei lisätty kirjaan" : "Piilotettu – löydät sen Reseptit-välilehden lopusta", () => savePrefs(who, (p) => ({ hidden: without(p.hidden, id) })));
   }
   function keepRecipe(id) {
-    savePrefs({ kept: [...without(KEPT(), id), id] }, "shared");
-    if (P().hidden.includes(id)) savePrefs({ hidden: without(P().hidden, id) });
-    if (S.open === id) render();
-    toast("Lisätty kirjaan – näkyy nyt teille molemmille", () => savePrefs({ kept: without(KEPT(), id) }, "shared"));
+    const who = S.profile;
+    savePrefs("shared", (p) => ({ kept: withId(p.kept, id) }));
+    if (P().hidden.includes(id)) savePrefs(who, (p) => ({ hidden: without(p.hidden, id) }));
+    toast("Lisätty kirjaan – näkyy nyt teille molemmille", () => savePrefs("shared", (p) => ({ kept: without(p.kept, id) })));
   }
   function deleteRecipe(id) {
     const r = byId(id); if (!r) return;
     if (!confirm(`Poistetaanko "${r.name}" kirjasta? Se katoaa sekä sinulta että ${S.profile === "leo" ? "Kirsiltä" : "Leolta"}. Voit palauttaa sen Reseptit-välilehden lopusta.`)) return;
-    if (S.open === id) { S.open = null; S.review = null; }
-    savePrefs({ deleted: [...without(DELETED(), id), id], favorites: without(FAVS(), id) }, "shared");
-    toast("Resepti poistettu kirjasta", () => savePrefs({ deleted: without(DELETED(), id) }, "shared"));
+    const wasFav = isFav(r);
+    if (S.open === id) closeAll();
+    savePrefs("shared", (p) => ({ deleted: withId(p.deleted, id), favorites: without(p.favorites, id) }));
+    toast("Resepti poistettu kirjasta", () => savePrefs("shared", (p) => ({ deleted: without(p.deleted, id), favorites: wasFav ? withId(p.favorites, id) : p.favorites })));
   }
-  function restoreRecipe(id) { savePrefs({ deleted: without(DELETED(), id) }, "shared"); toast("Palautettu kirjaan"); }
+  function restoreRecipe(id) { savePrefs("shared", (p) => ({ deleted: without(p.deleted, id) })); toast("Palautettu kirjaan"); }
   function toggleFav(id) {
     const on = FAVS().includes(id);
-    savePrefs({ favorites: on ? without(FAVS(), id) : [...FAVS(), id] }, "shared");
+    savePrefs("shared", (p) => ({ favorites: on ? without(p.favorites, id) : withId(p.favorites, id) }));
     toast(on ? "Poistettu suosikeista" : "Lisätty yhteisiin suosikkeihin ♥");
   }
   async function addFreezer(r) {
+    if (!r || S.busy) return;
     if (!S.db) return toast("Ei yhteyttä");
-    const { error } = await S.db.from("freezer").insert({ recipe_id: r.id, who: S.profile, at: Date.now() });
-    if (error) return toast("Tallennus epäonnistui");
-    await load("freezer"); S.open = null; S.tab = "today"; render();
-    const mine = S.freezer.filter((f) => f.recipeId === r.id && f.who === S.profile).sort((a, b) => b.at - a.at)[0];
-    toast(`Pakkasessa – valmis ${fmtWhen(Date.now() + DAY)}`, mine ? () => removeFreezer(mine.id, true) : null);
+    S.busy = true; render();
+    const who = S.profile, at = Date.now();
+    const { data, error } = await S.db.from("freezer").insert({ recipe_id: r.id, who, at }).select("id").single();
+    S.busy = false;
+    if (error) { render(); return toast("Tallennus epäonnistui"); }
+    await load("freezer"); closeAll();
+    const id = data && data.id;
+    toast(`Pakkasessa – valmis ${fmtWhen(at + DAY)}`, id ? () => removeFreezer(id, true) : null);
   }
   async function removeFreezer(id, silent) {
     if (!S.db) return toast("Ei yhteyttä");
@@ -642,40 +803,69 @@
     toast("Arvio poistettu");
   }
   async function saveReview() {
-    const v = S.review; if (!v || !v.stars || !S.db) return;
-    const { error } = await S.db.from("reviews").insert({ recipe_id: v.recipeId, who: S.profile, stars: v.stars, texture: v.texture || "", sweetness: v.sweetness || "", comment: v.comment.trim(), at: Date.now() });
-    if (error) return toast("Tallennus epäonnistui");
+    const v = S.review; if (!v || !v.stars || S.busy) return;
+    if (!S.db) return toast("Ei yhteyttä");
+    S.busy = true; render();
+    const { error } = await S.db.from("reviews").insert({ recipe_id: v.recipeId, who: S.profile, stars: v.stars, texture: v.texture || "", sweetness: v.sweetness || "", comment: v.comment.trim().slice(0, 500), at: Date.now() });
+    S.busy = false;
+    if (error) { render(); return toast("Tallennus epäonnistui"); }
     if (v.freezerId) await S.db.from("freezer").delete().eq("id", v.freezerId);
     await Promise.all([load("reviews"), load("freezer")]);
-    S.review = null; render(); toast("Kiitos! Arvio tallennettu.");
+    closeReview(); toast("Kiitos! Arvio tallennettu.");
+  }
+  async function shareRecipe(r) {
+    const lines = [r.name, `Ohjelma: ${r.program}`, r.time, "", "Ainekset:", ...r.ing.map((i) => `• ${i.n}${i.a ? " – " + i.a : ""}`), "", "Näin teet:", ...r.steps.map((s, i) => `${i + 1}. ${s}`)];
+    if (r.tips) lines.push("", "Vinkki: " + r.tips);
+    lines.push("", "Creami-kirja · " + location.href.split("#")[0]);
+    await shareText(r.name, lines.join("\n"));
+  }
+  async function shareText(title, text) {
+    try { if (navigator.share) { await navigator.share({ title, text }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
+    try { await navigator.clipboard.writeText(text); toast("Kopioitu leikepöydälle"); } catch (e) { toast("Jakaminen ei onnistunut"); }
   }
 
   const SUPABASE_URL = "https://nkhfqgyxronrfsdbeddn.supabase.co";
   const SUPABASE_KEY = "sb_publishable_YgV-RORNesAaMS--00Gz6Q_HB_3C7kk";
   const TABLES = ["recipes", "reviews", "freezer", "shopping", "prefs"];
+  const seq = {};   // per-table request counter: a slow, older response never overwrites a newer one
   async function load(table) {
-    const { data, error } = await S.db.from(table).select("*");
-    if (error) { console.warn(table, error); return false; }
-    if (table === "recipes") S.recipes = data.filter((r) => r.data && typeof r.data === "object").map((r) => ({ ...r.data, id: r.id })).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-    if (table === "reviews") S.reviews = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
-    if (table === "freezer") S.freezer = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
-    if (table === "shopping") S.shopping = data.find((r) => r.id === "main")?.items || [];
-    if (table === "prefs") for (const row of data) S.prefs[row.who] = { hidden: row.hidden || [], favorites: row.favorites || [], kept: row.kept || [], deleted: row.deleted || [] };
-    render();
+    if (!S.db) return false;
+    const my = (seq[table] = (seq[table] || 0) + 1);
+    let res; try { res = await S.db.from(table).select("*"); } catch (e) { res = { error: e }; }
+    if (my !== seq[table]) return null;   // superseded by a newer request
+    if (res.error || !Array.isArray(res.data)) { console.warn(table, res.error); return false; }
+    const data = res.data;
+    try {
+      if (table === "recipes") S.recipes = data.map(normRecipe).filter(Boolean).sort((a, b) => a.order - b.order);
+      if (table === "reviews") S.reviews = data.map(normReview).filter(Boolean);
+      if (table === "freezer") S.freezer = data.map(normFreezer).filter(Boolean);
+      if (table === "shopping") S.shopping = normShopping(data.find((r) => r && r.id === "main")?.items);
+      if (table === "prefs") for (const row of data) if (row && ["leo", "aiti", "shared"].includes(row.who)) S.prefs[row.who] = normPrefs(row);
+    } catch (e) { console.warn(table, e); return false; }
+    if (S.dbState === "offline" || S.dbState === "cached") S.dbState = "ok";
+    render(); saveCache();
     return true;
   }
-  async function loadAll() {
-    const ok = await Promise.all(TABLES.map(load));
-    S.dbState = ok.every(Boolean) ? "ok" : (S.recipes.length ? "ok" : "none");
-    render();
+  let loading = null;
+  function loadAll() {
+    if (loading) return loading;
+    loading = (async () => {
+      const ok = await Promise.all(TABLES.map(load));
+      const failed = ok.some((x) => x === false);
+      S.dbState = !failed ? "ok" : (S.recipes.length ? "offline" : "none");
+      render(); if (S.dbState === "ok") saveCache();
+    })().finally(() => { loading = null; });
+    return loading;
   }
   async function connect() {
-    if (!window.supabase) { S.dbState = "none"; render(); return; }
+    if (!window.supabase) { S.dbState = S.recipes.length ? "offline" : "none"; render(); return; }
     S.db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    await loadAll();
-    // Live updates: any change on any table reloads that table, so both phones stay in sync.
+    // Live updates: any change on any table reloads that table, so both phones stay in sync. Subscribed first so nothing is missed while loading.
     S.db.channel("creami").on("postgres_changes", { event: "*", schema: "public" }, (p) => { if (TABLES.includes(p.table)) load(p.table); }).subscribe();
-    document.addEventListener("visibilitychange", () => { if (!document.hidden) loadAll(); });
+    await loadAll();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) { loadAll(); wakeSync(); } });
+    window.addEventListener("online", () => loadAll());
+    window.addEventListener("offline", () => { if (S.dbState === "ok") { S.dbState = "offline"; render(); } });
   }
 
   // ---------- Events ----------
@@ -683,35 +873,39 @@
     const tu = e.target.closest("[data-toast-undo]");
     if (tu) { const fn = toastUndo; toastUndo = null; $("#toast").classList.remove("show"); if (fn) fn(); return; }
     const tt = e.target.closest("[data-theme-toggle]");
-    if (tt) { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; try { localStorage.setItem("creami.theme", theme); } catch (x) {} applyTheme(); return; }
-    const t = e.target.closest("[data-delete],[data-undelete],[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
+    if (tt) { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; store.set("creami.theme", theme); applyTheme(); return; }
+    const t = e.target.closest("[data-pick-who],[data-step],[data-share],[data-share-shop],[data-delete],[data-undelete],[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
     if (!t) return;
     const d = t.dataset;
-    if (d.delete) { deleteRecipe(d.delete); }
+    if (d.pickWho) { if (!PROFILES.includes(d.pickWho)) return; S.profile = d.pickWho; store.set("creami.profile", S.profile); S.firstRun = false; loadSeed(); render(); }
+    else if (d.step != null) { const i = +d.step; if (S.stepsDone.has(i)) S.stepsDone.delete(i); else S.stepsDone.add(i); t.classList.toggle("done", S.stepsDone.has(i)); }
+    else if (d.share) { const r = byId(d.share); if (r) shareRecipe(r); }
+    else if ("shareShop" in d) { const open = S.shopping.filter((i) => !i.done); shareText("Ostoslista", ["Ostoslista (Creami):", ...open.map((i) => `☐ ${i.text}${i.sub ? " (" + i.sub + ")" : ""}`)].join("\n")); }
+    else if (d.delete) { deleteRecipe(d.delete); }
     else if (d.undelete) { restoreRecipe(d.undelete); }
     else if (d.unfreeze) { removeFreezer(d.unfreeze); }
     else if (d.unreview) { removeReview(d.unreview); }
     else if (d.hide) { hideRecipe(d.hide); }
-    else if (d.unhide) { savePrefs({ hidden: without(P().hidden, d.unhide) }); toast("Palautettu"); }
+    else if (d.unhide) { savePrefs(S.profile, (p) => ({ hidden: without(p.hidden, d.unhide) })); toast("Palautettu"); }
     else if (d.keep) { keepRecipe(d.keep); }
     else if (d.fav) { toggleFav(d.fav); }
-    else if (d.profile) { S.profile = d.profile; try { localStorage.setItem("creami.profile", S.profile); } catch (x) {} loadSeed(); render(); }
+    else if (d.profile) { if (!PROFILES.includes(d.profile)) return; S.profile = d.profile; store.set("creami.profile", S.profile); loadSeed(); render(); }
     else if (d.tab) { S.tab = d.tab; render(); window.scrollTo(0, 0); }
-    else if (d.open) { S.open = d.open; S.review = null; render(); const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = 0; }
-    else if ("close" in d) { S.open = null; S.review = null; render(); }
-    else if ("reroll" in d) { S.seed = Math.random(); try { localStorage.setItem(seedKey(), String(S.seed)); } catch (x) {} render(); }
+    else if (d.open) { openRecipe(d.open); }
+    else if ("close" in d) { closeTop(); }
+    else if ("reroll" in d) { reroll(); }
     else if (d.cat) { S.cat = d.cat; render(); }
     else if (d.freeze) { addFreezer(byId(d.freeze)); }
-    else if (d.rate) { S.review = { recipeId: d.rate, stars: 0, texture: "", sweetness: "", comment: "" }; render(); }
-    else if (d.shop) { addToShopping(byId(d.shop)); }
-    else if (d.done) { const f = S.freezer.find((x) => x.id === d.done); if (f) { S.open = f.recipeId; S.review = { recipeId: f.recipeId, stars: 0, texture: "", sweetness: "", comment: "", freezerId: f.id }; render(); } }
-    else if (d.star) { S.review.stars = +d.star; render(); }
-    else if (d.texture) { S.review.texture = S.review.texture === d.texture ? "" : d.texture; render(); }
-    else if (d.sweet) { S.review.sweetness = S.review.sweetness === d.sweet ? "" : d.sweet; render(); }
-    else if ("reviewCancel" in d) { S.review = null; render(); }
+    else if (d.rate) { openReview({ recipeId: d.rate, stars: 0, texture: "", sweetness: "", comment: "" }); }
+    else if (d.shop) { const r = byId(d.shop); if (r) addToShopping(r); }
+    else if (d.done) { const f = S.freezer.find((x) => x.id === d.done); if (f && byId(f.recipeId)) openRecipe(f.recipeId, { recipeId: f.recipeId, stars: 0, texture: "", sweetness: "", comment: "", freezerId: f.id }); }
+    else if (d.star) { if (S.review) { S.review.stars = +d.star; render(); } }
+    else if (d.texture) { if (S.review) { S.review.texture = S.review.texture === d.texture ? "" : d.texture; render(); } }
+    else if (d.sweet) { if (S.review) { S.review.sweetness = S.review.sweetness === d.sweet ? "" : d.sweet; render(); } }
+    else if ("reviewCancel" in d) { closeReview(); }
     else if ("reviewSave" in d) { saveReview(); }
-    else if (d.remove) { e.preventDefault(); saveShopping(S.shopping.filter((i) => i.id !== d.remove)); }
-    else if ("clearDone" in d) { const before = S.shopping; saveShopping(S.shopping.filter((i) => !i.done)); toast("Ruksitut poistettu", () => saveShopping(before)); }
+    else if (d.remove) { e.preventDefault(); const gone = S.shopping.find((i) => i.id === d.remove); saveShopping(S.shopping.filter((i) => i.id !== d.remove)); if (gone) toast("Rivi poistettu", () => saveShopping([...S.shopping, gone])); }
+    else if ("clearDone" in d) { const gone = S.shopping.filter((i) => i.done); saveShopping(S.shopping.filter((i) => !i.done)); toast("Ruksitut poistettu", () => saveShopping([...S.shopping, ...gone.filter((g) => !S.shopping.some((i) => i.id === g.id))])); }
   });
   document.addEventListener("change", (e) => {
     const c = e.target.closest("[data-check]");
@@ -724,12 +918,16 @@
   document.addEventListener("submit", (e) => {
     const f = e.target.closest("[data-addform]"); if (!f) return;
     e.preventDefault();
-    const inp = $("[data-addtext]", f), text = inp.value.trim(); if (!text) return;
-    saveShopping([...S.shopping, { id: Math.random().toString(36).slice(2, 9), text, sub: "", done: false }]);
+    const inp = $("[data-addtext]", f), text = inp.value.trim().slice(0, 120); if (!text) return;
     inp.value = "";
+    saveShopping([...S.shopping, { id: uid(), text, sub: "", done: false }]);
   });
 
+  loadCache();
   render();
-  connect();
+  connect().catch((e) => { console.error(e); S.dbState = S.recipes.length ? "offline" : "none"; render(); });
+  if ("serviceWorker" in navigator) window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
 })();
 </script>
+</body>
+</html>
