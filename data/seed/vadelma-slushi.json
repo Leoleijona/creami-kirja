@@ -1,0 +1,54 @@
+{
+ "id": "vadelma-slushi",
+ "cat": "slushi",
+ "ing": [
+  {
+   "a": "300 g",
+   "n": "Pakastevadelma",
+   "s": "Pirkka pakastevadelma 250 g (2 pussia)"
+  },
+  {
+   "a": "200 ml",
+   "n": "Omenatäysmehu",
+   "s": "Pirkka omenatäysmehu 1 l"
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "50 ml (ajettaessa)",
+   "n": "Omenatäysmehua lisäksi",
+   "s": "Pirkka omenatäysmehu 1 l"
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Vadelmaslushi",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Omenamehun sokeri pitää slushin pehmeänä – pelkällä vedellä ja alluloosilla tulee jääpala. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+ "added": 1789445520979,
+ "order": 46,
+ "steps": [
+  "Soseuta pakastevadelmat, omenamehu (200 ml), alluloosi ja sitruunamehu sauvasekoittimella tasaiseksi.",
+  "Siivilöi seos halutessasi siemenien poistamiseksi.",
+  "Kaada astiaan DRINKABLE-viivaan asti ja pakasta 24 h pystyasennossa tasaisella alustalla.",
+  "Ennen ajoa: kaada 50 ml omenamehua jäätyneen pohjan päälle MAX-viivaan asti.",
+  "Aja SLUSHI. Jos haluat juotavamman rakenteen, aja SLUSHI uudelleen."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 180,
+  "protein": 3
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "SLUSHI"
+}

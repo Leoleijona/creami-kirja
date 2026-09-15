@@ -1,1 +1,36 @@
-{"id": "persikka-sorbetti", "name": "Persikkasorbetti säilykkeestä", "cat": "sorbetti", "program": "SORBET", "who": ["aiti"], "freeze": true, "respin": "harvoin", "time": "24 h pakkasessa · 1 min valmistelu", "macros": {"protein": 3, "kcal": 330}, "ing": [{"n": "Persikanpuolikkaat mehussa", "a": "1 iso tölkki (n. 820 g)", "s": "Pirkka persikanpuolikkaat 820 g (tai 2 × 410 g)"}], "steps": ["Kaada tölkin koko sisältö mehuineen astiaan (korkeintaan MAX-viivaan).", "Kansi, pakkaseen 24 h.", "Aja SORBET."], "tips": "Klassinen Creami-resepti: ei sekoitusta, ei mitään. Toimii myös ananas- tai hedelmäcocktail-säilykkeellä.", "order": 14}
+{
+ "id": "persikka-sorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "2 × 410 g tölkkiä",
+   "n": "Persikanpuolikkaat mehussa",
+   "s": "Pirkka persikanpuolikkaat mehussa 410 g × 2"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Alluloosi",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Persikkasorbetti säilykkeestä",
+ "time": "24 h pakkasessa · 1 min valmistelu",
+ "tips": "Klassinen Creami-resepti. Mehussa säilötty on vähäsokerisempi kuin sokeriliemessä, siksi lusikallinen alluloosia. Toimii myös ananas- tai hedelmäcocktail-säilykkeellä.",
+ "order": 14,
+ "steps": [
+  "Kaada persikat ja mehu astiaan vain MAX-viivaan asti – loput mehusta jää yli (juo se).",
+  "Sekoita alluloosi joukkoon.",
+  "Kansi, pakkaseen 24 h.",
+  "Aja SORBET."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 330,
+  "protein": 3
+ },
+ "respin": "harvoin",
+ "program": "SORBET"
+}

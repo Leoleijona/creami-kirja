@@ -1,0 +1,57 @@
+{
+ "id": "karpalo-appelsiini-sorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "250 g",
+   "n": "Pakastekarpalo",
+   "s": "Pirkka pakastekarpalo 250 g"
+  },
+  {
+   "a": "300 ml",
+   "n": "Appelsiinitäysmehu",
+   "s": "Pirkka appelsiinitäysmehu 1 l"
+  },
+  {
+   "a": "½ kpl",
+   "n": "Banaani",
+   "s": "Banaani"
+  },
+  {
+   "a": "4 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 tl",
+   "n": "Appelsiinin kuoriraaste",
+   "s": "Tuore appelsiini"
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Karpalo-appelsiinisorbetti",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Karpalo on hyvin kirpeä – banaani ja appelsiinimehu pyöristävät sen. Maista makeus ennen pakastusta.",
+ "added": 1789400813618,
+ "order": 38,
+ "steps": [
+  "Soseuta karpalot, mehu, banaani, alluloosi, kuoriraaste ja suola sauvasekoittimella tasaiseksi.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja SORBET, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 290,
+  "protein": 3
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "SORBET"
+}

@@ -1,1 +1,57 @@
-{"id": "kolmen-marjan-sorbetti", "name": "Kolmen marjan sorbetti", "cat": "sorbetti", "program": "SORBET", "who": ["aiti", "leo"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 4, "kcal": 240}, "ing": [{"n": "Pakastemustikka", "a": "150 g", "s": "Pirkka pakastemustikka 400 g"}, {"n": "Pakastevadelma", "a": "150 g", "s": "Pirkka pakastevadelma 250 g"}, {"n": "Pakastemansikka", "a": "150 g", "s": "Pirkka pakastemansikka 400 g"}, {"n": "Vesi", "a": "150 ml", "p": true}, {"n": "Alluloosi", "a": "3 rkl", "p": true}, {"n": "Sitruunamehu", "a": "1 tl", "s": "Pirkka sitruunamehu"}], "steps": ["Soseuta kaikki sauvasekoittimella.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja SORBET. Murumainen → 1 rkl vettä ja RE-SPIN."], "tips": "Puhdasta marjaa – ei maitotuotteita. Kermaisempi versio: vaihda vesi kreikkalaiseen jogurttiin.", "order": 26, "added": 1789399230082}
+{
+ "id": "kolmen-marjan-sorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "150 g",
+   "n": "Pakastemustikka",
+   "s": "Pirkka pakastemustikka 400 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakastevadelma",
+   "s": "Pirkka pakastevadelma 250 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakastemansikka",
+   "s": "Pirkka pakastemansikka 400 g"
+  },
+  {
+   "a": "150 ml",
+   "n": "Omenatäysmehu",
+   "s": "Pirkka omenatäysmehu 1 l"
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 tl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Kolmen marjan sorbetti",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Puhdasta marjaa – ei maitotuotteita. Omenamehu tuo sokerin, joka pitää sorbetin pehmeänä. Kermaisempi versio: vaihda mehu kreikkalaiseen jogurttiin.",
+ "added": 1789399230082,
+ "order": 26,
+ "steps": [
+  "Soseuta kaikki sauvasekoittimella.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja SORBET. Murumainen → 1 rkl vettä ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 240,
+  "protein": 4
+ },
+ "respin": "usein",
+ "program": "SORBET"
+}

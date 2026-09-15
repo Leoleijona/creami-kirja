@@ -1,1 +1,68 @@
-{"id": "mustikka-juustokakku-proteiini", "name": "Mustikka-juustokakkuproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 66, "kcal": 430}, "ing": [{"n": "Maitorahka", "a": "200 g", "s": "Valio maitorahka 250 g"}, {"n": "Rasvaton maito", "a": "350 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Puhdistamo vaniljaproteiini", "a": "40 g", "p": true}, {"n": "Alluloosi", "a": "3 rkl", "p": true}, {"n": "Sitruunamehu", "a": "1 rkl", "s": "Pirkka sitruunamehu"}, {"n": "Pakastemustikka", "a": "100 g", "s": "Pirkka pakastemustikka 400 g"}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Vaniljauute", "a": "½ tl", "p": true}], "steps": ["Sekoita rahka, maito, jauhe, alluloosi, sitruuna ja vanilja tasaiseksi. Ripottele ksantaani sekoittaen.", "Kaada astiaan. Lusikoi mustikat pinnalle ja paina kevyesti sisään – ei sekoiteta.", "Kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."], "tips": "Sitruuna + rahka = juustokakun maku. Mustikat jäävät raidoiksi kun niitä ei soseuteta.", "order": 29, "added": 1789399233082}
+{
+ "id": "mustikka-juustokakku-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "200 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "300 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "40 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "100 g (sulatettuna, mix-in)",
+   "n": "Pakastemustikka",
+   "s": "Pirkka pakastemustikka 400 g"
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Mustikka-juustokakkuproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Sitruuna + rahka = juustokakun maku. Sulatetut mustikat MIX-IN-vaiheessa antavat raidat ilman kovia marjapaloja.",
+ "added": 1789399233082,
+ "order": 29,
+ "steps": [
+  "Sekoita rahka, maito, jauhe, alluloosi, sitruuna ja vanilja tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN.",
+  "Tee lusikalla reikä pohjaan asti, laita sulatetut mustikat reikään ja aja MIX-IN – näin saat raidat ilman kovia marjapaloja."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 430,
+  "protein": 66
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

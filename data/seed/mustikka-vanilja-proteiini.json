@@ -1,1 +1,63 @@
-{"id": "mustikka-vanilja-proteiini", "name": "Mustikka-vaniljaproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 60, "kcal": 420}, "ing": [{"n": "Rasvaton maito", "a": "350 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Pakastemustikka", "a": "150 g", "s": "Pirkka pakastemustikka 400 g"}, {"n": "Puhdistamo vaniljaproteiini", "a": "45 g", "p": true}, {"n": "Alluloosi", "a": "2½ rkl", "p": true}, {"n": "Sitruunamehu", "a": "1 tl", "s": "Pirkka sitruunamehu"}, {"n": "Ksantaani", "a": "¼ tl", "p": true}], "steps": ["Soseuta mustikat, maito ja rahka sauvasekoittimella.", "Lisää jauhe, alluloosi ja sitruunamehu. Sekoita.", "Ripottele ksantaani sekoittaen, aja 30 s.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."], "tips": "Sitruuna kirkastaa mustikan maun. Toimii myös pakastemansikalla tai -vadelmalla.", "order": 3}
+{
+ "id": "mustikka-vanilja-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "350 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakastemustikka",
+   "s": "Pirkka pakastemustikka 400 g"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "2½ rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 tl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Mustikka-vaniljaproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Sitruuna kirkastaa mustikan maun. Toimii myös pakastemansikalla tai -vadelmalla.",
+ "order": 3,
+ "steps": [
+  "Soseuta mustikat, maito ja rahka sauvasekoittimella.",
+  "Lisää jauhe, alluloosi ja sitruunamehu. Sekoita.",
+  "Ripottele ksantaani sekoittaen, aja 30 s.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 420,
+  "protein": 60
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

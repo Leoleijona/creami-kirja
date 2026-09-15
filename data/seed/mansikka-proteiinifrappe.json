@@ -1,19 +1,19 @@
 {
- "id": "vanilja-kahvi-frappe",
+ "id": "mansikka-proteiinifrappe",
  "cat": "frappe",
  "ing": [
   {
    "a": "350 ml",
-   "n": "Kylmä kahvi",
-   "s": "Oma keitetty kahvi, jäähdytettynä"
-  },
-  {
-   "a": "200 ml",
    "n": "Rasvaton maito",
    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
   },
   {
-   "a": "30 g",
+   "a": "150 g",
+   "n": "Pakastemansikka",
+   "s": "Pirkka pakastemansikka 400 g"
+  },
+  {
+   "a": "35 g",
    "n": "Puhdistamo vaniljaproteiini",
    "p": true
   },
@@ -23,30 +23,37 @@
    "p": true
   },
   {
+   "a": "1 tl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
    "a": "60 ml (ajettaessa)",
    "n": "Rasvaton maito lisäksi",
    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
   }
  ],
  "who": [
+  "leo",
   "aiti"
  ],
- "name": "Vanilja-kahvifrappé",
+ "name": "Mansikka-proteiinifrappé",
  "time": "24 h pakkasessa · 3 min valmistelu",
- "tips": "Kirsin toivoma Frappé-kokeilu. Juotavat pakastetaan alempaan DRINKABLE-viivaan ja neste lisätään ajettaessa. Ilman proteiinijauhetta toimii myös – silloin 1 rkl lisää alluloosia.",
- "order": 15,
+ "tips": "Kahviton frappé, joka käy Leollekin: mansikkainen proteiinijuoma treenin jälkeen. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+ "added": 1789467346952,
+ "order": 53,
  "steps": [
-  "Sekoita kahvi, maito (200 ml), proteiini ja alluloosi tasaiseksi (jauhe sekoittuu kylmään huonosti – käytä sauvasekoitinta).",
+  "Soseuta maito (350 ml), mansikat, proteiinijauhe, alluloosi ja sitruunamehu sauvasekoittimella tasaiseksi.",
   "Kaada astiaan DRINKABLE-viivaan asti. Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
   "Ennen ajoa: lisää 60 ml maitoa jäätyneen pohjan päälle MAX-viivaan asti.",
-  "Aja FRAPPÉ. Tulos on juotava, kuten kahvilan frappé.",
-  "Jos liian paksua, lisää 50 ml maitoa ja aja FRAPPÉ uudelleen."
+  "Aja FRAPPÉ. Liian paksu → 50 ml maitoa lisää ja aja FRAPPÉ uudelleen."
  ],
  "freeze": true,
  "macros": {
-  "kcal": 210,
-  "protein": 30
+  "kcal": 320,
+  "protein": 45
  },
  "respin": "harvoin",
+ "status": "ehdotus",
  "program": "FRAPPÉ"
 }

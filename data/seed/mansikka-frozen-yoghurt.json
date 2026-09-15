@@ -1,5 +1,5 @@
 {
- "id": "mustikka-frozen-yoghurt",
+ "id": "mansikka-frozen-yoghurt",
  "cat": "froyo",
  "ing": [
   {
@@ -9,8 +9,8 @@
   },
   {
    "a": "200 g",
-   "n": "Pakastemustikka",
-   "s": "Pirkka pakastemustikka 400 g"
+   "n": "Pakastemansikka",
+   "s": "Pirkka pakastemansikka 400 g"
   },
   {
    "a": "2½ rkl",
@@ -34,24 +34,24 @@
   }
  ],
  "who": [
-  "aiti",
-  "leo"
+  "aiti"
  ],
- "name": "Mustikka frozen yoghurt",
+ "name": "Mansikka frozen yoghurt",
  "time": "24 h pakkasessa · 5 min valmistelu",
- "tips": "Jos haluat mustikkaraitoja: soseuta vain puolet mustikoista ja sekoita loput kokonaisina joukkoon.",
- "added": 1789399229082,
- "order": 25,
+ "tips": "Klassikko: mansikka ja jogurtti. Jätä osa mansikoista paloiksi, niin saat marjapaloja jäätelöön.",
+ "added": 1789403000001,
+ "order": 40,
  "steps": [
   "Sekoita kaikki sauvasekoittimella tasaiseksi.",
   "Astiaan, tasoita, kansi, pakkaseen 24 h.",
-  "Aja FROZEN YOGHURT, tarvittaessa RE-SPIN."
+  "Aja FROZEN YOGHURT. Jos murumaista, 1 rkl maitoa ja RE-SPIN."
  ],
  "freeze": true,
  "macros": {
-  "kcal": 410,
-  "protein": 34
+  "kcal": 390,
+  "protein": 33
  },
  "respin": "joskus",
+ "status": "ehdotus",
  "program": "FROZEN YOGHURT"
 }

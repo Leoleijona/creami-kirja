@@ -1,57 +1,52 @@
 [
  {
   "id": "vanilja-proteiini",
-  "name": "Vaniljaproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "450 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g (1½ mittaa)",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Vaniljaproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 62,
-   "kcal": 390
-  },
-  "ing": [
-   {
-    "n": "Rasvaton maito",
-    "a": "450 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "45 g (1½ mittaa)",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "3 rkl",
-    "p": true
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   },
-   {
-    "n": "Vaniljauute",
-    "a": "½ tl",
-    "p": true
-   },
-   {
-    "n": "Suola",
-    "a": "ripaus",
-    "p": true
-   }
-  ],
+  "tips": "Tämä on pohja, josta kaikki muut proteiinijäätelöt lähtevät. Kun tämä toimii, muut toimivat.",
+  "order": 0,
   "steps": [
    "Sekoita rahka ja maito sauvasekoittimella tasaiseksi.",
    "Lisää proteiinijauhe, alluloosi, vaniljauute ja suola. Sekoita.",
@@ -59,62 +54,62 @@
    "Kaada Deluxe-astiaan (korkeintaan MAX-viivaan), tasoita pinta, kansi päälle. Pakkaseen 24 h tasaiselle alustalle.",
    "Aja LITE ICE CREAM. Jos murumaista, lisää 1 rkl maitoa ja aja RE-SPIN."
   ],
-  "tips": "Tämä on pohja, josta kaikki muut proteiinijäätelöt lähtevät. Kun tämä toimii, muut toimivat.",
-  "order": 0
+  "freeze": true,
+  "macros": {
+   "kcal": 390,
+   "protein": 62
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "suklaa-proteiini",
-  "name": "Suklaaproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "450 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g (1½ mittaa)",
+    "n": "Puhdistamo suklaaproteiini",
+    "p": true
+   },
+   {
+    "a": "1½ rkl",
+    "n": "Tumma kaakaojauhe",
+    "s": "Pirkka tumma kaakaojauhe"
+   },
+   {
+    "a": "3½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Suklaaproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 63,
-   "kcal": 410
-  },
-  "ing": [
-   {
-    "n": "Rasvaton maito",
-    "a": "450 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo suklaaproteiini",
-    "a": "45 g (1½ mittaa)",
-    "p": true
-   },
-   {
-    "n": "Tumma kaakaojauhe",
-    "a": "1½ rkl",
-    "s": "Pirkka tumma kaakaojauhe"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "3½ rkl",
-    "p": true
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   },
-   {
-    "n": "Suola",
-    "a": "ripaus",
-    "p": true
-   }
-  ],
+  "tips": "Mix-in: 1 rkl hienonnettua tummaa suklaata tai 2 rkl hienonnettuja maapähkinöitä reikään keskelle ja MIX-IN.",
+  "order": 1,
   "steps": [
    "Sekoita rahka ja maito sauvasekoittimella.",
    "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi – kaakao paakkuuntuu helposti.",
@@ -122,123 +117,123 @@
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Mix-in: 1 rkl hienonnettua tummaa suklaata tai 2 rkl pähkinävoihiutaleita reikään keskelle ja MIX-IN.",
-  "order": 1
+  "freeze": true,
+  "macros": {
+   "kcal": 410,
+   "protein": 63
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "pahkinavoi-proteiini",
-  "name": "Pähkinävoi-proteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
-  "who": [
-   "leo"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 64,
-   "kcal": 440
-  },
   "ing": [
    {
-    "n": "Rasvaton maito",
     "a": "450 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Maitorahka",
     "a": "100 g",
+    "n": "Maitorahka",
     "s": "Valio maitorahka 250 g"
    },
    {
-    "n": "Puhdistamo vaniljaproteiini",
     "a": "40 g",
+    "n": "Puhdistamo vaniljaproteiini",
     "p": true
    },
    {
-    "n": "Pähkinävoihiutaleet",
     "a": "4 rkl",
+    "n": "Maapähkinäjauhe (pähkinävoijauhe)",
     "p": true
    },
    {
-    "n": "Alluloosi",
     "a": "3 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
+    "a": "¼ tl",
     "n": "Ksantaani",
-    "a": "¼ tl",
     "p": true
    },
    {
-    "n": "Suola",
     "a": "¼ tl",
+    "n": "Suola",
     "p": true
    }
   ],
+  "who": [
+   "leo"
+  ],
+  "name": "Pähkinävoi-proteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Suola on tässä tärkeä, se tuo pähkinän maun esiin. Mix-in: hienonnettua tummaa suklaata.",
+  "order": 2,
   "steps": [
    "Sekoita kaikki paitsi ksantaani sauvasekoittimella tasaiseksi.",
    "Ripottele ksantaani sekoittaen, aja 30 s.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM. Pähkinävoi tekee tästä pehmeän – Re-spiniä tarvitaan harvoin."
   ],
-  "tips": "Suola on tässä tärkeä, se tuo pähkinän maun esiin. Mix-in: hienonnettua tummaa suklaata.",
-  "order": 2
+  "freeze": true,
+  "macros": {
+   "kcal": 450,
+   "protein": 68
+  },
+  "respin": "joskus",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "mustikka-vanilja-proteiini",
-  "name": "Mustikka-vaniljaproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "350 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastemustikka",
+    "s": "Pirkka pakastemustikka 400 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "2½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Mustikka-vaniljaproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 60,
-   "kcal": 420
-  },
-  "ing": [
-   {
-    "n": "Rasvaton maito",
-    "a": "350 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Pakastemustikka",
-    "a": "150 g",
-    "s": "Pirkka pakastemustikka 400 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "45 g",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2½ rkl",
-    "p": true
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 tl",
-    "s": "Pirkka sitruunamehu"
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   }
-  ],
+  "tips": "Sitruuna kirkastaa mustikan maun. Toimii myös pakastemansikalla tai -vadelmalla.",
+  "order": 3,
   "steps": [
    "Soseuta mustikat, maito ja rahka sauvasekoittimella.",
    "Lisää jauhe, alluloosi ja sitruunamehu. Sekoita.",
@@ -246,193 +241,193 @@
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Sitruuna kirkastaa mustikan maun. Toimii myös pakastemansikalla tai -vadelmalla.",
-  "order": 3
+  "freeze": true,
+  "macros": {
+   "kcal": 420,
+   "protein": 60
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "banaani-pahkinavoi",
-  "name": "Banaani-pähkinävoijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "1 kpl",
+    "n": "Kypsä banaani",
+    "s": "Banaani (mieluiten pilkullinen)"
+   },
+   {
+    "a": "375 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "40 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Maapähkinäjauhe (pähkinävoijauhe)",
+    "p": true
+   },
+   {
+    "a": "1½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Kaneli",
+    "s": "Santa Maria kaneli"
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "harvoin",
+  "name": "Banaani-pähkinävoijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 58,
-   "kcal": 470
-  },
-  "ing": [
-   {
-    "n": "Kypsä banaani",
-    "a": "1 kpl",
-    "s": "Banaani (mieluiten pilkullinen)"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "400 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "40 g",
-    "p": true
-   },
-   {
-    "n": "Pähkinävoihiutaleet",
-    "a": "3 rkl",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "1½ rkl",
-    "p": true
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   },
-   {
-    "n": "Kaneli",
-    "a": "ripaus",
-    "s": "Santa Maria kaneli"
-   }
-  ],
+  "tips": "Banaani makeuttaa ja pehmentää luonnostaan, siksi alluloosia on vähemmän. Mitä kypsempi banaani, sitä parempi.",
+  "order": 4,
   "steps": [
    "Soseuta banaani, maito ja rahka.",
-   "Lisää jauhe, hiutaleet, alluloosi ja kaneli. Sekoita.",
+   "Lisää jauhe, maapähkinäjauhe, alluloosi ja kaneli. Sekoita.",
    "Ripottele ksantaani sekoittaen, aja 30 s.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM."
   ],
-  "tips": "Banaani makeuttaa ja pehmentää luonnostaan, siksi alluloosia on vähemmän. Mitä kypsempi banaani, sitä parempi.",
-  "order": 4
+  "freeze": true,
+  "macros": {
+   "kcal": 510,
+   "protein": 65
+  },
+  "respin": "harvoin",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "kahvi-proteiini",
-  "name": "Kahviproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "usein",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 62,
-   "kcal": 395
-  },
   "ing": [
    {
-    "n": "Rasvaton maito",
     "a": "450 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Maitorahka",
     "a": "100 g",
+    "n": "Maitorahka",
     "s": "Valio maitorahka 250 g"
    },
    {
-    "n": "Pikakahvi",
     "a": "2 tl",
+    "n": "Pikakahvi",
     "s": "Nescafé Gold pikakahvi"
    },
    {
-    "n": "Puhdistamo vaniljaproteiini",
     "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
     "p": true
    },
    {
-    "n": "Alluloosi",
     "a": "3 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Ksantaani",
     "a": "¼ tl",
+    "n": "Ksantaani",
     "p": true
    },
    {
-    "n": "Suola",
     "a": "ripaus",
+    "n": "Suola",
     "p": true
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Kahviproteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Kirsin resepti – Leo ei ole kahvi-ihminen. Mix-in: murskattua tummaa suklaata.",
+  "order": 5,
   "steps": [
-   "Liuota pikakahvi 2 rkl:aan kuumaa vettä.",
+   "Liuota pikakahvi 2 rkl:aan kuumaa vettä ja anna jäähtyä.",
    "Sekoita rahka, maito ja kahvi sauvasekoittimella.",
    "Lisää jauhe, alluloosi ja suola. Sekoita.",
    "Ripottele ksantaani sekoittaen, aja 30 s.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Kirsin resepti – Leo ei ole kahvi-ihminen. Mix-in: murskattua tummaa suklaata.",
-  "order": 5
+  "freeze": true,
+  "macros": {
+   "kcal": 395,
+   "protein": 62
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "mansikka-rahka-proteiini",
-  "name": "Mansikka-rahkaproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "200 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "250 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "150 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "2½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Mansikka-rahkaproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 63,
-   "kcal": 420
-  },
-  "ing": [
-   {
-    "n": "Pakastemansikka",
-    "a": "200 g",
-    "s": "Pirkka pakastemansikka 400 g"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "300 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "150 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "45 g",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2½ rkl",
-    "p": true
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 tl",
-    "s": "Pirkka sitruunamehu"
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   }
-  ],
+  "tips": "Rahkaa on tässä enemmän, joten maku on kuin mansikkarahkassa. Kirsille sopiva myös.",
+  "order": 6,
   "steps": [
    "Soseuta mansikat, maito ja rahka sauvasekoittimella.",
    "Lisää jauhe, alluloosi ja sitruunamehu. Sekoita.",
@@ -440,866 +435,911 @@
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Rahkaa on tässä enemmän, joten maku on kuin mansikkarahkassa. Kirsille sopiva myös.",
-  "order": 6
+  "freeze": true,
+  "macros": {
+   "kcal": 420,
+   "protein": 63
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "marja-frozen-yoghurt",
-  "name": "Marjainen frozen yoghurt",
   "cat": "froyo",
-  "program": "FROZEN YOGHURT",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastevadelma",
+    "s": "Pirkka pakastevadelma 250 g"
+   },
+   {
+    "a": "100 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Hunaja tai alluloosi",
+    "s": "Pirkka juokseva hunaja (tai alluloosi kotoa)"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "joskus",
+  "name": "Marjainen frozen yoghurt",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 34,
-   "kcal": 400
-  },
-  "ing": [
-   {
-    "n": "Kreikkalainen jogurtti 2 %",
-    "a": "400 g",
-    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
-   },
-   {
-    "n": "Pakastevadelma",
-    "a": "150 g",
-    "s": "Pirkka pakastevadelma 250 g"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "100 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Hunaja tai alluloosi",
-    "a": "2 rkl",
-    "s": "Pirkka juokseva hunaja (tai alluloosi kotoa)"
-   },
-   {
-    "n": "Vaniljauute",
-    "a": "½ tl",
-    "p": true
-   }
-  ],
+  "tips": "Oikea jogurtti (ei rasvaton) antaa kermaisen tuloksen. Vaihda vadelma mustikkaan tai mansikkaan.",
+  "order": 7,
   "steps": [
-   "Sekoita kaikki sauvasekoittimella tasaiseksi.",
+   "Sekoita kaikki sauvasekoittimella tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja FROZEN YOGHURT. Jos murumaista, 1 rkl maitoa ja RE-SPIN."
   ],
-  "tips": "Oikea jogurtti (ei rasvaton) antaa kermaisen tuloksen. Vaihda vadelma mustikkaan tai mansikkaan.",
-  "order": 7
+  "freeze": true,
+  "macros": {
+   "kcal": 400,
+   "protein": 34
+  },
+  "respin": "joskus",
+  "program": "FROZEN YOGHURT"
  },
  {
   "id": "mansikka-smoothie-bowl",
-  "name": "Mansikka-smoothie bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 16,
-   "kcal": 380
-  },
   "ing": [
    {
+    "a": "300 g",
     "n": "Pakastemansikka",
-    "a": "350 g",
     "s": "Pirkka pakastemansikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "150 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Maito tai appelsiinimehu",
-    "a": "100 ml",
     "s": "Pirkka appelsiinitäysmehu 1 l"
    },
    {
-    "n": "Alluloosi (valinnainen)",
     "a": "1 rkl",
+    "n": "Alluloosi (valinnainen)",
     "p": true
    },
    {
-    "n": "Päälle: granola, tuoreet marjat, chia",
     "a": "",
+    "n": "Päälle: granola, tuoreet marjat, chia",
     "s": "Pirkka granola, tuoreita marjoja"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mansikka-smoothie bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Puolikas annos: täytä astia vain ½-viivaan ja paina koneesta ½-painiketta. Tai aja koko astia, syö puolet, tasoita pinta ja pakasta loput uudelleen.",
+  "order": 8,
   "steps": [
    "Soseuta mansikat, banaani, jogurtti ja neste sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET. Jos murumaista, aja RE-SPIN.",
    "Kulhoon, päälle granolaa, marjoja ja chiaa."
   ],
-  "tips": "Voit ajaa vain astian yläpuoliskon (Deluxen puolikas-toiminto) → yksi annos nyt, toinen huomenna.",
-  "order": 8
+  "freeze": true,
+  "macros": {
+   "kcal": 380,
+   "protein": 16
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "mustikka-banaani-bowl",
-  "name": "Mustikka-banaani smoothie bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 15,
-   "kcal": 390
-  },
   "ing": [
    {
+    "a": "300 g",
     "n": "Pakastemustikka",
-    "a": "350 g",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "150 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Rasvaton maito",
-    "a": "100 ml",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Vaniljauute",
-    "a": "½ tl",
+    "a": "1 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Päälle: kookoshiutaleet, kaurahiutaleet, banaaniviipaleet",
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
     "a": "",
+    "n": "Päälle: kookoshiutaleet, kaurahiutaleet, banaaniviipaleet",
     "s": "Pirkka kookoshiutaleet"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mustikka-banaani smoothie bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Lisäproteiinia: 20 g vaniljaproteiinia mukaan – ei muuta makua.",
+  "order": 9,
   "steps": [
    "Soseuta kaikki sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon ja päälle toppingit."
   ],
-  "tips": "Lisäproteiinia: 20 g vaniljaproteiinia mukaan – ei muuta makua.",
-  "order": 9
+  "freeze": true,
+  "macros": {
+   "kcal": 390,
+   "protein": 20
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "tropiikki-bowl",
-  "name": "Tropiikki-bowl (mango–ananas)",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 6,
-   "kcal": 420
-  },
   "ing": [
    {
-    "n": "Pakastemango",
     "a": "250 g",
+    "n": "Pakastemango",
     "s": "Pirkka pakastemango 400 g"
    },
    {
-    "n": "Pakasteananas",
     "a": "150 g",
+    "n": "Pakasteananas",
     "s": "Pirkka pakasteananas 400 g"
    },
    {
-    "n": "Banaani",
     "a": "½ kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kookosmaito kevyt",
     "a": "150 ml",
+    "n": "Kookosmaito kevyt",
     "s": "Pirkka kookosmaito light 400 ml"
    },
    {
-    "n": "Limemehu",
     "a": "1 rkl",
+    "n": "Limemehu",
     "s": "Lime (tuore)"
    },
    {
-    "n": "Päälle: kookoshiutaleet, granola",
     "a": "",
+    "n": "Päälle: kookoshiutaleet, granola",
     "s": "Pirkka kookoshiutaleet"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Tropiikki-bowl (mango–ananas)",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Lime on pakollinen – ilman sitä maku on latteampi.",
+  "order": 10,
   "steps": [
    "Soseuta kaikki sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle kookosta ja granolaa."
   ],
-  "tips": "Lime on pakollinen – ilman sitä maku on latteampi.",
-  "order": 10
+  "freeze": true,
+  "macros": {
+   "kcal": 420,
+   "protein": 6
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "mango-sorbetti",
-  "name": "Mangosorbetti",
   "cat": "sorbetti",
-  "program": "SORBET",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Pakastemango",
+    "s": "Pirkka pakastemango 400 g"
+   },
+   {
+    "a": "150 ml",
+    "n": "Appelsiinitäysmehu",
+    "s": "Pirkka appelsiinitäysmehu 1 l"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Limemehu",
+    "s": "Lime (tuore)"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "joskus",
+  "name": "Mangosorbetti",
   "time": "24 h pakkasessa · 3 min valmistelu",
-  "macros": {
-   "protein": 3,
-   "kcal": 280
-  },
-  "ing": [
-   {
-    "n": "Pakastemango",
-    "a": "450 g",
-    "s": "Pirkka pakastemango 400 g × 2"
-   },
-   {
-    "n": "Vesi",
-    "a": "150 ml",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2 rkl",
-    "p": true
-   },
-   {
-    "n": "Limemehu",
-    "a": "1 rkl",
-    "s": "Lime (tuore)"
-   }
-  ],
+  "tips": "Yksinkertaisin resepti koko kirjassa. Appelsiinimehun sokeri pitää sorbetin pehmeänä – pelkällä vedellä tulee jäisempi.",
+  "order": 11,
   "steps": [
    "Soseuta kaikki sauvasekoittimella tasaiseksi.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET. Jos murumaista, 1 rkl vettä ja RE-SPIN."
   ],
-  "tips": "Yksinkertaisin resepti koko kirjassa ja yksi parhaista.",
-  "order": 11
+  "freeze": true,
+  "macros": {
+   "kcal": 280,
+   "protein": 3
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "vadelma-sorbetti",
-  "name": "Vadelmasorbetti",
   "cat": "sorbetti",
-  "program": "SORBET",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Pakastevadelma",
+    "s": "Pirkka pakastevadelma 250 g × 2"
+   },
+   {
+    "a": "150 ml",
+    "n": "Omenatäysmehu",
+    "s": "Pirkka omenatäysmehu 1 l"
+   },
+   {
+    "a": "50 ml",
+    "n": "Vesi",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Vadelmasorbetti",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 4,
-   "kcal": 220
-  },
-  "ing": [
-   {
-    "n": "Pakastevadelma",
-    "a": "400 g",
-    "s": "Pirkka pakastevadelma 250 g × 2"
-   },
-   {
-    "n": "Vesi",
-    "a": "200 ml",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "3 rkl",
-    "p": true
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 tl",
-    "s": "Pirkka sitruunamehu"
-   }
-  ],
+  "tips": "Vadelma on hapan ja vähäsokerinen, siksi mehua ja 3 rkl alluloosia – muuten sorbetti jäätyy jäiseksi. Jos siivilöit siemenet, tilavuus laskee n. 50 ml.",
+  "order": 12,
   "steps": [
    "Soseuta kaikki sauvasekoittimella. Halutessasi siivilöi siemenet pois.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN."
   ],
-  "tips": "Vadelma on hapan, joten alluloosia on enemmän. Jos haluat kermaisemman: vaihda 100 ml vettä kreikkalaiseen jogurttiin.",
-  "order": 12
+  "freeze": true,
+  "macros": {
+   "kcal": 220,
+   "protein": 4
+  },
+  "respin": "usein",
+  "program": "SORBET"
  },
  {
   "id": "mustaherukka-bowl",
-  "name": "Mustaherukka-mustikka bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "usein",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 10,
-   "kcal": 360
-  },
   "ing": [
    {
-    "n": "Pakastemustaherukka",
     "a": "150 g",
+    "n": "Pakastemustaherukka",
     "s": "Pirkka pakastemustaherukka 250 g"
    },
    {
+    "a": "200 g",
     "n": "Pakastemustikka",
-    "a": "250 g",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "100 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Omena- tai appelsiinimehu",
-    "a": "100 ml",
     "s": "Pirkka omenatäysmehu 1 l"
    },
    {
+    "a": "3 rkl",
     "n": "Alluloosi",
-    "a": "1–2 rkl",
     "p": true
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mustaherukka-mustikka bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Suomalainen versio açaí-bowlista: mustaherukka tuo saman syvän värin ja kirpeyden.",
+  "order": 13,
   "steps": [
    "Soseuta kaikki sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle granolaa ja marjoja."
   ],
-  "tips": "Suomalainen versio açaí-bowlista: mustaherukka tuo saman syvän värin ja kirpeyden.",
-  "order": 13
+  "freeze": true,
+  "macros": {
+   "kcal": 360,
+   "protein": 14
+  },
+  "respin": "usein",
+  "program": "SORBET"
  },
  {
   "id": "persikka-sorbetti",
-  "name": "Persikkasorbetti säilykkeestä",
   "cat": "sorbetti",
-  "program": "SORBET",
+  "ing": [
+   {
+    "a": "2 × 410 g tölkkiä",
+    "n": "Persikanpuolikkaat mehussa",
+    "s": "Pirkka persikanpuolikkaat mehussa 410 g × 2"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Alluloosi",
+    "p": true
+   }
+  ],
   "who": [
    "aiti"
   ],
-  "freeze": true,
-  "respin": "harvoin",
+  "name": "Persikkasorbetti säilykkeestä",
   "time": "24 h pakkasessa · 1 min valmistelu",
-  "macros": {
-   "protein": 3,
-   "kcal": 330
-  },
-  "ing": [
-   {
-    "n": "Persikanpuolikkaat mehussa",
-    "a": "1 iso tölkki (n. 820 g)",
-    "s": "Pirkka persikanpuolikkaat 820 g (tai 2 × 410 g)"
-   }
-  ],
+  "tips": "Klassinen Creami-resepti. Mehussa säilötty on vähäsokerisempi kuin sokeriliemessä, siksi lusikallinen alluloosia. Toimii myös ananas- tai hedelmäcocktail-säilykkeellä.",
+  "order": 14,
   "steps": [
-   "Kaada tölkin koko sisältö mehuineen astiaan (korkeintaan MAX-viivaan).",
+   "Kaada persikat ja mehu astiaan vain MAX-viivaan asti – loput mehusta jää yli (juo se).",
+   "Sekoita alluloosi joukkoon.",
    "Kansi, pakkaseen 24 h.",
    "Aja SORBET."
   ],
-  "tips": "Klassinen Creami-resepti: ei sekoitusta, ei mitään. Toimii myös ananas- tai hedelmäcocktail-säilykkeellä.",
-  "order": 14
+  "freeze": true,
+  "macros": {
+   "kcal": 330,
+   "protein": 3
+  },
+  "respin": "harvoin",
+  "program": "SORBET"
  },
  {
   "id": "vanilja-kahvi-frappe",
-  "name": "Vanilja-kahvifrappé",
   "cat": "frappe",
-  "program": "FRAPPÉ",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "harvoin",
-  "time": "24 h pakkasessa · 3 min valmistelu",
-  "macros": {
-   "protein": 30,
-   "kcal": 210
-  },
   "ing": [
    {
+    "a": "350 ml",
     "n": "Kylmä kahvi",
-    "a": "400 ml",
     "s": "Oma keitetty kahvi, jäähdytettynä"
    },
    {
-    "n": "Rasvaton maito",
     "a": "200 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Puhdistamo vaniljaproteiini",
     "a": "30 g",
+    "n": "Puhdistamo vaniljaproteiini",
     "p": true
    },
    {
-    "n": "Alluloosi",
     "a": "2 rkl",
+    "n": "Alluloosi",
     "p": true
+   },
+   {
+    "a": "60 ml (ajettaessa)",
+    "n": "Rasvaton maito lisäksi",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Vanilja-kahvifrappé",
+  "time": "24 h pakkasessa · 3 min valmistelu",
+  "tips": "Kirsin toivoma Frappé-kokeilu. Juotavat pakastetaan alempaan DRINKABLE-viivaan ja neste lisätään ajettaessa. Ilman proteiinijauhetta toimii myös – silloin 1 rkl lisää alluloosia.",
+  "order": 15,
   "steps": [
-   "Sekoita kaikki tasaiseksi (jauhe sekoittuu kylmään huonosti – sauvasekoitin).",
-   "Astiaan, kansi, pakkaseen 24 h.",
+   "Sekoita kahvi, maito (200 ml), proteiini ja alluloosi tasaiseksi (jauhe sekoittuu kylmään huonosti – käytä sauvasekoitinta).",
+   "Kaada astiaan DRINKABLE-viivaan asti. Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: lisää 60 ml maitoa jäätyneen pohjan päälle MAX-viivaan asti.",
    "Aja FRAPPÉ. Tulos on juotava, kuten kahvilan frappé.",
    "Jos liian paksua, lisää 50 ml maitoa ja aja FRAPPÉ uudelleen."
   ],
-  "tips": "Kirsin toivoma Frappé-kokeilu. Ilman proteiinijauhetta toimii myös – silloin 1 rkl lisää alluloosia.",
-  "order": 15
+  "freeze": true,
+  "macros": {
+   "kcal": 210,
+   "protein": 30
+  },
+  "respin": "harvoin",
+  "program": "FRAPPÉ"
  },
  {
   "id": "suklaa-frappe",
-  "name": "Suklaafrappé",
   "cat": "frappe",
-  "program": "FRAPPÉ",
+  "ing": [
+   {
+    "a": "440 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "35 g",
+    "n": "Puhdistamo suklaaproteiini",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Tumma kaakaojauhe",
+    "s": "Pirkka tumma kaakaojauhe"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   },
+   {
+    "a": "60 ml (ajettaessa)",
+    "n": "Rasvaton maito lisäksi",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "harvoin",
+  "name": "Suklaafrappé",
   "time": "24 h pakkasessa · 3 min valmistelu",
-  "macros": {
-   "protein": 45,
-   "kcal": 300
-  },
-  "ing": [
-   {
-    "n": "Rasvaton maito",
-    "a": "500 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Puhdistamo suklaaproteiini",
-    "a": "35 g",
-    "p": true
-   },
-   {
-    "n": "Tumma kaakaojauhe",
-    "a": "1 rkl",
-    "s": "Pirkka tumma kaakaojauhe"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2 rkl",
-    "p": true
-   },
-   {
-    "n": "Suola",
-    "a": "ripaus",
-    "p": true
-   }
-  ],
+  "tips": "Kuin kylmä kaakao, mutta proteiinilla. Juotavat pakastetaan alempaan DRINKABLE-viivaan ja neste lisätään vasta ajettaessa – muuten frappé jää liian paksuksi. Mokka: lisää 1 tl pikakahvia.",
+  "order": 16,
   "steps": [
-   "Sekoita kaikki sauvasekoittimella tasaiseksi.",
-   "Astiaan, kansi, pakkaseen 24 h.",
-   "Aja FRAPPÉ. Liian paksu → 50 ml maitoa ja uudelleen."
+   "Sekoita maito (440 ml), proteiini, kaakao, alluloosi ja suola sauvasekoittimella tasaiseksi.",
+   "Kaada astiaan DRINKABLE-viivaan asti (ei MAX-viivaan – juotaviin jää tilaa nesteelle). Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: lisää 60 ml maitoa jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja FRAPPÉ. Liian paksu → 50 ml maitoa lisää ja aja FRAPPÉ uudelleen."
   ],
-  "tips": "Kuin kylmä kaakao, mutta proteiinilla. Mokka: lisää 1 tl pikakahvia.",
-  "order": 16
+  "freeze": true,
+  "macros": {
+   "kcal": 300,
+   "protein": 45
+  },
+  "respin": "harvoin",
+  "program": "FRAPPÉ"
  },
  {
   "id": "proteiinipirtelo",
-  "name": "Proteiinipirtelö valmiista jäätelöstä",
   "cat": "pirtelo",
-  "program": "MILKSHAKE",
+  "ing": [
+   {
+    "a": "n. 300 g (3 isoa palloa)",
+    "n": "Valmista proteiinijäätelöä (mikä tahansa tästä kirjasta)",
+    "p": true
+   },
+   {
+    "a": "150 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "kourallinen",
+    "n": "Pakastemarjoja (valinnainen)",
+    "s": "Pirkka pakastemansikka 400 g"
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": false,
-  "respin": "ei",
+  "name": "Proteiinipirtelö valmiista jäätelöstä",
   "time": "5 min · ei pakastusta",
-  "macros": {
-   "protein": 35,
-   "kcal": 260
-  },
-  "ing": [
-   {
-    "n": "Valmista proteiinijäätelöä (mikä tahansa tästä kirjasta)",
-    "a": "n. 300 g (3 isoa palloa)",
-    "p": true
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "150 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Pakastemarjoja (valinnainen)",
-    "a": "kourallinen",
-    "s": "Pirkka pakastemansikka 400 g"
-   }
-  ],
+  "tips": "Näin käytät eilisen jäätelön loput. Ei toimi tyhjällä astialla – jäätelöä pitää olla vähintään astian puoleen väliin.",
+  "order": 17,
   "steps": [
    "Laita jäätelö astiaan, kaada maito ja marjat päälle.",
    "Aja MILKSHAKE heti – ei pakastusta.",
    "Kaada lasiin."
   ],
-  "tips": "Näin käytät eilisen jäätelön loput. Ei toimi tyhjällä astialla – jäätelöä pitää olla vähintään astian puoleen väliin.",
-  "order": 17
+  "freeze": false,
+  "macros": {
+   "kcal": 260,
+   "protein": 35
+  },
+  "respin": "ei",
+  "program": "MILKSHAKE"
  },
  {
   "id": "marjamehu-slushi",
-  "name": "Marjamehu-slushi",
   "cat": "slushi",
-  "program": "SLUSHI",
+  "ing": [
+   {
+    "a": "550 ml",
+    "n": "Laimennettu marjamehu",
+    "s": "Pirkka mustaherukkamehu (tiiviste, laimenna ohjeen mukaan)"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "50 ml (ajettaessa)",
+    "n": "Laimennettua mehua lisäksi",
+    "s": "Sama mehu"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "ei",
+  "name": "Marjamehu-slushi",
   "time": "24 h pakkasessa · 1 min valmistelu",
-  "macros": {
-   "protein": 0,
-   "kcal": 230
-  },
-  "ing": [
-   {
-    "n": "Laimennettu marjamehu",
-    "a": "550 ml",
-    "s": "Pirkka mustaherukkamehu (tiiviste, laimenna ohjeen mukaan)"
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 rkl",
-    "s": "Pirkka sitruunamehu"
-   }
-  ],
+  "tips": "Slushi tarvitsee oikeaa sokeria toimiakseen: valitse tavallinen mehutiiviste, EI kevyt- tai sokeritonta versiota – ne jäätyvät jääpalaksi. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa. Tämä on herkku, ei proteiiniannos.",
+  "order": 18,
   "steps": [
-   "Kaada laimennettu mehu ja sitruuna astiaan.",
-   "Kansi, pakkaseen 24 h.",
-   "Aja SLUSHI."
+   "Kaada laimennettu mehu (550 ml) ja sitruunamehu astiaan DRINKABLE-viivaan asti.",
+   "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: kaada 50 ml mehua jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja SLUSHI. Jos liian karkea, aja SLUSHI uudelleen."
   ],
-  "tips": "Slushi tarvitsee oikeaa sokeria toimiakseen – sokeriton mehu jäätyy kovaksi jääpalaksi. Tämä on herkku, ei proteiiniannos.",
-  "order": 18
+  "freeze": true,
+  "macros": {
+   "kcal": 230,
+   "protein": 0
+  },
+  "respin": "ei",
+  "program": "SLUSHI"
  },
  {
   "id": "vadelma-banaani-bowl",
-  "name": "Vadelma-banaani smoothie bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 14,
-   "kcal": 370
-  },
   "ing": [
    {
-    "n": "Pakastevadelma",
     "a": "300 g",
+    "n": "Pakastevadelma",
     "s": "Pirkka pakastevadelma 250 g × 2"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "150 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Rasvaton maito",
-    "a": "100 ml",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Alluloosi",
     "a": "1 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Päälle: tuoreet vadelmat, kookoshiutaleet, manteliliuskat",
     "a": "",
+    "n": "Päälle: tuoreet vadelmat, kookoshiutaleet, manteliliuskat",
     "s": "Pirkka manteliliuskat"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Vadelma-banaani smoothie bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Vadelman kirpeys ja banaanin makeus tasapainottavat toisensa – tämä on Kirsin peruskulho.",
+  "added": 1789399223082,
+  "order": 19,
   "steps": [
    "Soseuta vadelmat, banaani, jogurtti ja maito sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle vadelmia, kookosta ja manteleita."
   ],
-  "tips": "Vadelman kirpeys ja banaanin makeus tasapainottavat toisensa – tämä on Kirsin peruskulho.",
-  "order": 19,
-  "added": 1789399223082
+  "freeze": true,
+  "macros": {
+   "kcal": 370,
+   "protein": 19
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "metsamarja-bowl",
-  "name": "Metsämarja-bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 13,
-   "kcal": 380
-  },
   "ing": [
    {
+    "a": "300 g",
     "n": "Pakastemetsämarjasekoitus",
-    "a": "350 g",
     "s": "Pirkka pakastemetsämarjasekoitus 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "150 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Omenatäysmehu",
-    "a": "100 ml",
     "s": "Pirkka omenatäysmehu 1 l"
    },
    {
+    "a": "2 rkl",
     "n": "Alluloosi",
-    "a": "1–2 rkl",
     "p": true
    },
    {
-    "n": "Päälle: granola, banaaniviipaleet",
     "a": "",
+    "n": "Päälle: granola, banaaniviipaleet",
     "s": "Pirkka granola"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Metsämarja-bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Metsämarjasekoitus (mustikka, vadelma, mustaherukka, puolukka) antaa syvän, hieman kirpeän maun. Maista makeus ennen pakastusta.",
+  "added": 1789399224082,
+  "order": 20,
   "steps": [
    "Soseuta kaikki sauvasekoittimella tasaiseksi.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon ja päälle granolaa."
   ],
-  "tips": "Metsämarjasekoitus (mustikka, vadelma, mustaherukka, puolukka) antaa syvän, hieman kirpeän maun. Maista makeus ennen pakastusta.",
-  "order": 20,
-  "added": 1789399224082
+  "freeze": true,
+  "macros": {
+   "kcal": 380,
+   "protein": 13
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "mansikka-mustikka-rahkabowl",
-  "name": "Mansikka-mustikka rahkabowl",
   "cat": "bowl",
-  "program": "SORBET",
+  "ing": [
+   {
+    "a": "200 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastemustikka",
+    "s": "Pirkka pakastemustikka 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "120 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "1½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "",
+    "n": "Päälle: tuoreita marjoja, kaurahiutaleita",
+    "s": "Tuoreita marjoja"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Mansikka-mustikka rahkabowl",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 26,
-   "kcal": 360
-  },
-  "ing": [
-   {
-    "n": "Pakastemansikka",
-    "a": "200 g",
-    "s": "Pirkka pakastemansikka 400 g"
-   },
-   {
-    "n": "Pakastemustikka",
-    "a": "150 g",
-    "s": "Pirkka pakastemustikka 400 g"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "150 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "120 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "1½ rkl",
-    "p": true
-   },
-   {
-    "n": "Vaniljauute",
-    "a": "½ tl",
-    "p": true
-   },
-   {
-    "n": "Päälle: tuoreita marjoja, kaurahiutaleita",
-    "a": "",
-    "s": "Tuoreita marjoja"
-   }
-  ],
+  "tips": "Rahka tuo tähän 23 g proteiinia ilman jauhetta – marjaisa kulho, joka kelpaa Leollekin.",
+  "added": 1789399225082,
+  "order": 21,
   "steps": [
-   "Soseuta marjat, rahka, maito, alluloosi ja vanilja sauvasekoittimella.",
+   "Soseuta marjat, rahka, maito, alluloosi ja vanilja sauvasekoittimella; ripottele ksantaani joukkoon sekoittimen käydessä.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
-   "Aja SORBET. Rahka tekee tästä tiiviimmän – RE-SPIN todennäköisesti.",
+   "Aja LITE ICE CREAM (rahkapohja on SORBET-ohjelmalle liian tiivis). Tarvittaessa RE-SPIN.",
    "Kulhoon ja päälle marjoja."
   ],
-  "tips": "Rahka tuo tähän 26 g proteiinia ilman jauhetta – marjaisa kulho, joka kelpaa Leollekin.",
-  "order": 21,
-  "added": 1789399225082
+  "freeze": true,
+  "macros": {
+   "kcal": 360,
+   "protein": 23
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "puolukka-banaani-bowl",
-  "name": "Puolukka-banaani bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "usein",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 10,
-   "kcal": 390
-  },
   "ing": [
    {
-    "n": "Pakastepuolukka",
     "a": "150 g",
+    "n": "Pakastepuolukka",
     "s": "Pirkka pakastepuolukka 250 g"
    },
    {
-    "n": "Pakastemustikka",
     "a": "150 g",
+    "n": "Pakastemustikka",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1½ kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "100 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Omenatäysmehu",
-    "a": "100 ml",
     "s": "Pirkka omenatäysmehu 1 l"
    },
    {
+    "a": "2–3 rkl",
     "n": "Alluloosi",
-    "a": "2 rkl",
     "p": true
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Puolukka-banaani bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Puolukka on kirpeä, siksi banaania on enemmän ja alluloosia 2–3 rkl – maista ennen pakastusta. Suomalaisin kulho koko kirjassa.",
+  "added": 1789399226082,
+  "order": 22,
   "steps": [
    "Soseuta kaikki sauvasekoittimella tasaiseksi.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle granolaa ja kourallinen puolukoita."
   ],
-  "tips": "Puolukka on kirpeä, siksi banaania on enemmän ja alluloosia 2 rkl. Suomalaisin kulho koko kirjassa.",
-  "order": 22,
-  "added": 1789399226082
+  "freeze": true,
+  "macros": {
+   "kcal": 390,
+   "protein": 10
+  },
+  "respin": "usein",
+  "program": "SORBET"
  },
  {
   "id": "mustikka-kaurabowl",
-  "name": "Mustikka-kaurabowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 10 min valmistelu",
-  "macros": {
-   "protein": 16,
-   "kcal": 430
-  },
   "ing": [
    {
-    "n": "Kaurahiutaleet",
     "a": "3 rkl",
+    "n": "Kaurahiutaleet",
     "s": "Elovena kaurahiutaleet"
    },
    {
-    "n": "Rasvaton maito",
     "a": "150 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
+    "a": "250 g",
     "n": "Pakastemustikka",
-    "a": "300 g",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "100 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
-    "n": "Kaneli",
     "a": "½ tl",
+    "n": "Kaneli",
     "s": "Santa Maria kaneli"
    },
    {
-    "n": "Alluloosi",
     "a": "1 rkl",
+    "n": "Alluloosi",
     "p": true
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mustikka-kaurabowl",
+  "time": "24 h pakkasessa · 10 min valmistelu",
+  "tips": "Kaura tekee kulhosta täyttävämmän ja kermaisemman – kuin jäinen yön yli -puuro. Hyvä aamiaiskulho.",
+  "added": 1789399227082,
+  "order": 23,
   "steps": [
    "Liota kaurahiutaleita maidossa 10 min.",
    "Soseuta kaikki sauvasekoittimella todella tasaiseksi (kaura vaatii aikaa).",
@@ -1307,500 +1347,505 @@
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle kaurahiutaleita ja mustikoita."
   ],
-  "tips": "Kaura tekee kulhosta täyttävämmän ja kermaisemman – kuin jäinen yön yli -puuro. Hyvä aamiaiskulho.",
-  "order": 23,
-  "added": 1789399227082
+  "freeze": true,
+  "macros": {
+   "kcal": 430,
+   "protein": 20
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "kesabowl",
-  "name": "Kesäbowl (mansikka–vadelma)",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 14,
-   "kcal": 360
-  },
   "ing": [
    {
+    "a": "200 g",
     "n": "Pakastemansikka",
-    "a": "250 g",
     "s": "Pirkka pakastemansikka 400 g"
    },
    {
-    "n": "Pakastevadelma",
     "a": "150 g",
+    "n": "Pakastevadelma",
     "s": "Pirkka pakastevadelma 250 g"
    },
    {
-    "n": "Banaani",
     "a": "½ kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
-    "n": "Kreikkalainen jogurtti",
     "a": "150 g",
+    "n": "Kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
+    "a": "50 ml",
     "n": "Appelsiinitäysmehu",
-    "a": "100 ml",
     "s": "Pirkka appelsiinitäysmehu 1 l"
    },
    {
-    "n": "Alluloosi",
     "a": "1 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Päälle: tuoreet mansikat, minttu",
     "a": "",
+    "n": "Päälle: tuoreet mansikat, minttu",
     "s": "Tuoreet mansikat"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Kesäbowl (mansikka–vadelma)",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Appelsiinimehu tuo kirkkautta. Kesällä tuoreilla marjoilla – pakasta ne silloin itse ensin.",
+  "added": 1789399228082,
+  "order": 24,
   "steps": [
    "Soseuta kaikki sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle mansikkaviipaleita ja mintunlehtiä."
   ],
-  "tips": "Appelsiinimehu tuo kirkkautta. Kesällä tuoreilla marjoilla – pakasta ne silloin itse ensin.",
-  "order": 24,
-  "added": 1789399228082
+  "freeze": true,
+  "macros": {
+   "kcal": 360,
+   "protein": 14
+  },
+  "respin": "joskus",
+  "program": "SORBET"
  },
  {
   "id": "mustikka-frozen-yoghurt",
-  "name": "Mustikka frozen yoghurt",
   "cat": "froyo",
-  "program": "FROZEN YOGHURT",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "200 g",
+    "n": "Pakastemustikka",
+    "s": "Pirkka pakastemustikka 400 g"
+   },
+   {
+    "a": "2½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "joskus",
+  "name": "Mustikka frozen yoghurt",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 34,
-   "kcal": 410
-  },
-  "ing": [
-   {
-    "n": "Kreikkalainen jogurtti 2 %",
-    "a": "400 g",
-    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
-   },
-   {
-    "n": "Pakastemustikka",
-    "a": "200 g",
-    "s": "Pirkka pakastemustikka 400 g"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2½ rkl",
-    "p": true
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 tl",
-    "s": "Pirkka sitruunamehu"
-   },
-   {
-    "n": "Vaniljauute",
-    "a": "½ tl",
-    "p": true
-   }
-  ],
+  "tips": "Jos haluat mustikkaraitoja: soseuta vain puolet mustikoista ja sekoita loput kokonaisina joukkoon.",
+  "added": 1789399229082,
+  "order": 25,
   "steps": [
    "Sekoita kaikki sauvasekoittimella tasaiseksi.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja FROZEN YOGHURT, tarvittaessa RE-SPIN."
   ],
-  "tips": "Jos haluat mustikkaraitoja: soseuta vain puolet mustikoista ja sekoita loput kokonaisina joukkoon.",
-  "order": 25,
-  "added": 1789399229082
+  "freeze": true,
+  "macros": {
+   "kcal": 410,
+   "protein": 34
+  },
+  "respin": "joskus",
+  "program": "FROZEN YOGHURT"
  },
  {
   "id": "kolmen-marjan-sorbetti",
-  "name": "Kolmen marjan sorbetti",
   "cat": "sorbetti",
-  "program": "SORBET",
+  "ing": [
+   {
+    "a": "150 g",
+    "n": "Pakastemustikka",
+    "s": "Pirkka pakastemustikka 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastevadelma",
+    "s": "Pirkka pakastevadelma 250 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "150 ml",
+    "n": "Omenatäysmehu",
+    "s": "Pirkka omenatäysmehu 1 l"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Kolmen marjan sorbetti",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 4,
-   "kcal": 240
-  },
-  "ing": [
-   {
-    "n": "Pakastemustikka",
-    "a": "150 g",
-    "s": "Pirkka pakastemustikka 400 g"
-   },
-   {
-    "n": "Pakastevadelma",
-    "a": "150 g",
-    "s": "Pirkka pakastevadelma 250 g"
-   },
-   {
-    "n": "Pakastemansikka",
-    "a": "150 g",
-    "s": "Pirkka pakastemansikka 400 g"
-   },
-   {
-    "n": "Vesi",
-    "a": "150 ml",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "3 rkl",
-    "p": true
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 tl",
-    "s": "Pirkka sitruunamehu"
-   }
-  ],
+  "tips": "Puhdasta marjaa – ei maitotuotteita. Omenamehu tuo sokerin, joka pitää sorbetin pehmeänä. Kermaisempi versio: vaihda mehu kreikkalaiseen jogurttiin.",
+  "added": 1789399230082,
+  "order": 26,
   "steps": [
    "Soseuta kaikki sauvasekoittimella.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET. Murumainen → 1 rkl vettä ja RE-SPIN."
   ],
-  "tips": "Puhdasta marjaa – ei maitotuotteita. Kermaisempi versio: vaihda vesi kreikkalaiseen jogurttiin.",
-  "order": 26,
-  "added": 1789399230082
+  "freeze": true,
+  "macros": {
+   "kcal": 240,
+   "protein": 4
+  },
+  "respin": "usein",
+  "program": "SORBET"
  },
  {
   "id": "suklaa-pahkinavoi-proteiini",
-  "name": "Suklaa-pähkinävoiproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
-  "who": [
-   "leo"
-  ],
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 64,
-   "kcal": 450
-  },
   "ing": [
    {
-    "n": "Rasvaton maito",
     "a": "450 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Maitorahka",
     "a": "100 g",
+    "n": "Maitorahka",
     "s": "Valio maitorahka 250 g"
    },
    {
-    "n": "Puhdistamo suklaaproteiini",
     "a": "45 g",
+    "n": "Puhdistamo suklaaproteiini",
     "p": true
    },
    {
-    "n": "Pähkinävoihiutaleet",
     "a": "3 rkl",
+    "n": "Maapähkinäjauhe (pähkinävoijauhe)",
     "p": true
    },
    {
+    "a": "3 rkl",
     "n": "Alluloosi",
-    "a": "3 rkl",
     "p": true
    },
    {
+    "a": "¼ tl",
     "n": "Ksantaani",
-    "a": "¼ tl",
     "p": true
    },
    {
-    "n": "Suola",
     "a": "¼ tl",
+    "n": "Suola",
     "p": true
    }
   ],
+  "who": [
+   "leo"
+  ],
+  "name": "Suklaa-pähkinävoiproteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Suklaa + pähkinävoi = Reese's-jäätelö. Mix-in: 1 rkl hienonnettuja maapähkinöitä ja suklaarouhetta.",
+  "added": 1789399231082,
+  "order": 27,
   "steps": [
    "Sekoita kaikki paitsi ksantaani sauvasekoittimella tasaiseksi.",
    "Ripottele ksantaani sekoittaen, aja 30 s.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Suklaa + pähkinävoi = Reese's-jäätelö. Mix-in: 1 rkl pähkinävoihiutaleita ja suklaarouhetta.",
-  "order": 27,
-  "added": 1789399231082
+  "freeze": true,
+  "macros": {
+   "kcal": 470,
+   "protein": 70
+  },
+  "respin": "joskus",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "stracciatella-proteiini",
-  "name": "Stracciatella-proteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "450 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "20 g hienonnettuna",
+    "n": "Tumma suklaa 70 %",
+    "s": "Fazer tumma suklaa 70 %"
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Stracciatella-proteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 62,
-   "kcal": 480
-  },
-  "ing": [
-   {
-    "n": "Rasvaton maito",
-    "a": "450 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "45 g",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "3 rkl",
-    "p": true
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   },
-   {
-    "n": "Vaniljauute",
-    "a": "1 tl",
-    "p": true
-   },
-   {
-    "n": "Tumma suklaa 70 %",
-    "a": "20 g hienonnettuna",
-    "s": "Fazer tumma suklaa 70 %"
-   }
-  ],
+  "tips": "Mix-in-ohjelma sekoittaa rouheen jäätelöön rikkomatta rakennetta. Älä laita suklaata ennen pakastusta – se uppoaa pohjalle.",
+  "added": 1789399232082,
+  "order": 28,
   "steps": [
    "Tee vaniljapohja: sekoita maito, rahka, jauhe, alluloosi ja vanilja; ripottele ksantaani sekoittaen.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN.",
    "Tee lusikalla reikä keskelle pohjaan asti, laita suklaarouhe reikään ja aja MIX-IN."
   ],
-  "tips": "Mix-in-ohjelma sekoittaa rouheen jäätelöön rikkomatta rakennetta. Älä laita suklaata ennen pakastusta – se uppoaa pohjalle.",
-  "order": 28,
-  "added": 1789399232082
+  "freeze": true,
+  "macros": {
+   "kcal": 515,
+   "protein": 62
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "mustikka-juustokakku-proteiini",
-  "name": "Mustikka-juustokakkuproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
-  "who": [
-   "leo",
-   "aiti"
-  ],
-  "freeze": true,
-  "respin": "usein",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 66,
-   "kcal": 430
-  },
   "ing": [
    {
-    "n": "Maitorahka",
     "a": "200 g",
+    "n": "Maitorahka",
     "s": "Valio maitorahka 250 g"
    },
    {
+    "a": "300 ml",
     "n": "Rasvaton maito",
-    "a": "350 ml",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Puhdistamo vaniljaproteiini",
     "a": "40 g",
+    "n": "Puhdistamo vaniljaproteiini",
     "p": true
    },
    {
-    "n": "Alluloosi",
     "a": "3 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Sitruunamehu",
     "a": "1 rkl",
+    "n": "Sitruunamehu",
     "s": "Pirkka sitruunamehu"
    },
    {
+    "a": "100 g (sulatettuna, mix-in)",
     "n": "Pakastemustikka",
-    "a": "100 g",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Ksantaani",
     "a": "¼ tl",
+    "n": "Ksantaani",
     "p": true
    },
    {
-    "n": "Vaniljauute",
     "a": "½ tl",
+    "n": "Vaniljauute",
     "p": true
    }
   ],
-  "steps": [
-   "Sekoita rahka, maito, jauhe, alluloosi, sitruuna ja vanilja tasaiseksi. Ripottele ksantaani sekoittaen.",
-   "Kaada astiaan. Lusikoi mustikat pinnalle ja paina kevyesti sisään – ei sekoiteta.",
-   "Kansi, pakkaseen 24 h.",
-   "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
-  ],
-  "tips": "Sitruuna + rahka = juustokakun maku. Mustikat jäävät raidoiksi kun niitä ei soseuteta.",
-  "order": 29,
-  "added": 1789399233082
- },
- {
-  "id": "kanelipulla-proteiini",
-  "name": "Kanelipullaproteiinijäätelö",
-  "cat": "proteiini",
-  "program": "LITE ICE CREAM",
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "usein",
+  "name": "Mustikka-juustokakkuproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Sitruuna + rahka = juustokakun maku. Sulatetut mustikat MIX-IN-vaiheessa antavat raidat ilman kovia marjapaloja.",
+  "added": 1789399233082,
+  "order": 29,
+  "steps": [
+   "Sekoita rahka, maito, jauhe, alluloosi, sitruuna ja vanilja tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+   "Aja LITE ICE CREAM, tarvittaessa RE-SPIN.",
+   "Tee lusikalla reikä pohjaan asti, laita sulatetut mustikat reikään ja aja MIX-IN – näin saat raidat ilman kovia marjapaloja."
+  ],
+  "freeze": true,
   "macros": {
-   "protein": 62,
-   "kcal": 395
+   "kcal": 430,
+   "protein": 66
   },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "kanelipulla-proteiini",
+  "cat": "proteiini",
   "ing": [
    {
-    "n": "Rasvaton maito",
     "a": "450 ml",
+    "n": "Rasvaton maito",
     "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
    },
    {
-    "n": "Maitorahka",
     "a": "100 g",
+    "n": "Maitorahka",
     "s": "Valio maitorahka 250 g"
    },
    {
-    "n": "Puhdistamo vaniljaproteiini",
     "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
     "p": true
    },
    {
-    "n": "Alluloosi",
     "a": "3 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Kaneli",
     "a": "1 tl",
+    "n": "Kaneli",
     "s": "Santa Maria kaneli"
    },
    {
-    "n": "Kardemumma",
     "a": "¼ tl",
+    "n": "Kardemumma",
     "s": "Santa Maria kardemumma"
    },
    {
-    "n": "Ksantaani",
     "a": "¼ tl",
+    "n": "Ksantaani",
     "p": true
    },
    {
-    "n": "Vaniljauute",
     "a": "½ tl",
+    "n": "Vaniljauute",
     "p": true
    },
    {
-    "n": "Suola",
     "a": "ripaus",
+    "n": "Suola",
     "p": true
    }
   ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Kanelipullaproteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Kardemumma on se, mikä tekee tästä pullan eikä pelkkää kanelia. Mix-in: murusteltua korppua tai kaurakeksiä.",
+  "added": 1789399234082,
+  "order": 30,
   "steps": [
    "Sekoita kaikki paitsi ksantaani sauvasekoittimella.",
    "Ripottele ksantaani sekoittaen, aja 30 s.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Kardemumma on se, mikä tekee tästä pullan eikä pelkkää kanelia. Mix-in: murusteltua korppua tai kaurakeksiä.",
-  "order": 30,
-  "added": 1789399234082
+  "freeze": true,
+  "macros": {
+   "kcal": 395,
+   "protein": 62
+  },
+  "respin": "usein",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "mango-vanilja-proteiini",
-  "name": "Mango-vaniljaproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "150 g",
+    "n": "Pakastemango",
+    "s": "Pirkka pakastemango 400 g"
+   },
+   {
+    "a": "325 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Limemehu",
+    "s": "Lime (tuore)"
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "freeze": true,
-  "respin": "joskus",
+  "name": "Mango-vaniljaproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 60,
-   "kcal": 430
-  },
-  "ing": [
-   {
-    "n": "Pakastemango",
-    "a": "150 g",
-    "s": "Pirkka pakastemango 400 g"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "350 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo vaniljaproteiini",
-    "a": "45 g",
-    "p": true
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2 rkl",
-    "p": true
-   },
-   {
-    "n": "Limemehu",
-    "a": "1 rkl",
-    "s": "Lime (tuore)"
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   }
-  ],
+  "tips": "Mango pehmentää rakennetta luonnostaan. Toimii myös persikalla.",
+  "added": 1789399235082,
+  "order": 31,
   "steps": [
    "Soseuta mango, maito ja rahka sauvasekoittimella.",
    "Lisää jauhe, alluloosi ja lime. Sekoita.",
@@ -1808,179 +1853,184 @@
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
   ],
-  "tips": "Mango pehmentää rakennetta luonnostaan. Toimii myös persikalla.",
-  "order": 31,
-  "added": 1789399235082
+  "freeze": true,
+  "macros": {
+   "kcal": 430,
+   "protein": 60
+  },
+  "respin": "joskus",
+  "program": "LITE ICE CREAM"
  },
  {
   "id": "mansikka-slushi",
-  "name": "Mansikka-slushi",
   "cat": "slushi",
-  "program": "SLUSHI",
+  "ing": [
+   {
+    "a": "200 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "350 ml",
+    "n": "Omenatäysmehu",
+    "s": "Pirkka omenatäysmehu 1 l"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "50 ml (ajettaessa)",
+    "n": "Omenatäysmehua lisäksi",
+    "s": "Pirkka omenatäysmehu 1 l"
+   }
+  ],
   "who": [
    "aiti",
    "leo"
   ],
-  "freeze": true,
-  "respin": "ei",
+  "name": "Mansikka-slushi",
   "time": "24 h pakkasessa · 3 min valmistelu",
-  "macros": {
-   "protein": 2,
-   "kcal": 200
-  },
-  "ing": [
-   {
-    "n": "Pakastemansikka",
-    "a": "200 g",
-    "s": "Pirkka pakastemansikka 400 g"
-   },
-   {
-    "n": "Omenatäysmehu",
-    "a": "350 ml",
-    "s": "Pirkka omenatäysmehu 1 l"
-   },
-   {
-    "n": "Sitruunamehu",
-    "a": "1 rkl",
-    "s": "Pirkka sitruunamehu"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "1 rkl",
-    "p": true
-   }
-  ],
-  "steps": [
-   "Soseuta mansikat ja mehu sauvasekoittimella, lisää sitruuna ja alluloosi.",
-   "Astiaan, kansi, pakkaseen 24 h.",
-   "Aja SLUSHI."
-  ],
-  "tips": "Omenamehun sokeri pitää slushin pehmeänä. Kesäjuoma – tarjoile heti.",
+  "tips": "Omenamehun sokeri pitää slushin pehmeänä. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa. Kesäjuoma – tarjoile heti.",
+  "added": 1789399236082,
   "order": 32,
-  "added": 1789399236082
+  "steps": [
+   "Soseuta mansikat ja omenamehu (350 ml) sauvasekoittimella, lisää sitruuna ja alluloosi.",
+   "Kaada astiaan DRINKABLE-viivaan asti. Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: kaada 50 ml omenamehua jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja SLUSHI. Jos liian karkea, aja SLUSHI uudelleen."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 200,
+   "protein": 2
+  },
+  "respin": "ei",
+  "program": "SLUSHI"
  },
  {
   "id": "mustikka-kookos-bowl",
-  "name": "Mustikka-kookos bowl",
   "cat": "bowl",
-  "program": "SORBET",
-  "who": [
-   "aiti"
-  ],
-  "status": "ehdotus",
-  "freeze": true,
-  "respin": "joskus",
-  "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 8,
-   "kcal": 420
-  },
   "ing": [
    {
+    "a": "300 g",
     "n": "Pakastemustikka",
-    "a": "350 g",
     "s": "Pirkka pakastemustikka 400 g"
    },
    {
-    "n": "Banaani",
     "a": "1 kpl",
+    "n": "Banaani",
     "s": "Banaani"
    },
    {
+    "a": "100 ml",
     "n": "Kookosmaito kevyt",
-    "a": "150 ml",
     "s": "Pirkka kookosmaito light 400 ml"
    },
    {
-    "n": "Kookosjogurtti tai kreikkalainen jogurtti",
     "a": "100 g",
+    "n": "Kookosjogurtti tai kreikkalainen jogurtti",
     "s": "Valio kreikkalainen jogurtti 2 % 400 g"
    },
    {
-    "n": "Limemehu",
     "a": "1 tl",
+    "n": "Limemehu",
     "s": "Lime (tuore)"
    },
    {
-    "n": "Alluloosi",
     "a": "1 rkl",
+    "n": "Alluloosi",
     "p": true
    },
    {
-    "n": "Päälle: paahdetut kookoslastut, mustikat",
     "a": "",
+    "n": "Päälle: paahdetut kookoslastut, mustikat",
     "s": "Pirkka kookoslastut"
    }
   ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mustikka-kookos bowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Kookosmaito tekee tästä pehmeämmän kuin tavallinen marjakulho. Paahda kookoslastut kuivalla pannulla – iso ero.",
+  "added": 1789399238082,
+  "order": 33,
   "steps": [
    "Soseuta kaikki sauvasekoittimella tasaiseksi.",
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja SORBET, tarvittaessa RE-SPIN.",
    "Kulhoon, päälle paahdettuja kookoslastuja ja mustikoita."
   ],
-  "tips": "Kookosmaito tekee tästä pehmeämmän kuin tavallinen marjakulho. Paahda kookoslastut kuivalla pannulla – iso ero.",
-  "order": 33,
-  "added": 1789399238082
+  "freeze": true,
+  "macros": {
+   "kcal": 420,
+   "protein": 10
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "SORBET"
  },
  {
   "id": "suklaa-banaani-proteiini",
-  "name": "Suklaa-banaaniproteiinijäätelö",
   "cat": "proteiini",
-  "program": "LITE ICE CREAM",
+  "ing": [
+   {
+    "a": "1 kpl",
+    "n": "Kypsä banaani",
+    "s": "Banaani (pilkullinen)"
+   },
+   {
+    "a": "350 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo suklaaproteiini",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Tumma kaakaojauhe",
+    "s": "Pirkka tumma kaakaojauhe"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
   "who": [
    "leo",
    "aiti"
   ],
-  "status": "ehdotus",
-  "freeze": true,
-  "respin": "harvoin",
+  "name": "Suklaa-banaaniproteiinijäätelö",
   "time": "24 h pakkasessa · 5 min valmistelu",
-  "macros": {
-   "protein": 60,
-   "kcal": 460
-  },
-  "ing": [
-   {
-    "n": "Kypsä banaani",
-    "a": "1 kpl",
-    "s": "Banaani (pilkullinen)"
-   },
-   {
-    "n": "Rasvaton maito",
-    "a": "400 ml",
-    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
-   },
-   {
-    "n": "Maitorahka",
-    "a": "100 g",
-    "s": "Valio maitorahka 250 g"
-   },
-   {
-    "n": "Puhdistamo suklaaproteiini",
-    "a": "45 g",
-    "p": true
-   },
-   {
-    "n": "Tumma kaakaojauhe",
-    "a": "1 rkl",
-    "s": "Pirkka tumma kaakaojauhe"
-   },
-   {
-    "n": "Alluloosi",
-    "a": "2 rkl",
-    "p": true
-   },
-   {
-    "n": "Ksantaani",
-    "a": "¼ tl",
-    "p": true
-   },
-   {
-    "n": "Suola",
-    "a": "ripaus",
-    "p": true
-   }
-  ],
+  "tips": "Banaani + suklaa on pehmein proteiinipohja: Re-spiniä tarvitaan harvoin. Mix-in: 2 rkl hienonnettuja maapähkinöitä.",
+  "added": 1789399239082,
+  "order": 34,
   "steps": [
    "Soseuta banaani, maito ja rahka.",
    "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi.",
@@ -1988,8 +2038,1191 @@
    "Astiaan, tasoita, kansi, pakkaseen 24 h.",
    "Aja LITE ICE CREAM."
   ],
-  "tips": "Banaani + suklaa on pehmein proteiinipohja: Re-spiniä tarvitaan harvoin. Mix-in: 2 rkl pähkinävoihiutaleita.",
-  "order": 34,
-  "added": 1789399239082
+  "freeze": true,
+  "macros": {
+   "kcal": 460,
+   "protein": 60
+  },
+  "respin": "harvoin",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "kookos-suklaa-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "325 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "150 ml",
+    "n": "Kookosmaito (kevyt)",
+    "s": "Santa Maria Kookosmaito Light 400 ml"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo suklaaproteiini",
+    "p": true
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1/4 tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "1 hyppysellinen",
+    "n": "Suola",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Kookoshiutale (mix-in)",
+    "s": "Pirkka kookoshiutale 150 g"
+   }
+  ],
+  "who": [
+   "leo"
+  ],
+  "name": "Kookos-suklaaproteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Kookosmaito tuo Bounty-patukkamaisen maun proteiiniannokseen – kokeile lisätä tumman suklaan rouhetta MIX-IN-vaiheessa entistä suklaisempaan versioon.",
+  "added": 1789400813618,
+  "order": 35,
+  "steps": [
+   "Mittaa maito, kookosmaito, suklaaproteiini, maitorahka, alluloosi, ksantaani ja suola sekoitusastiaan.",
+   "Sekoita sauvasekoittimella täysin tasaiseksi, jotta ksantaani ei jää kokkareiksi.",
+   "Kaada seos Creami-astiaan enintään MAX-viivaan asti ja pakasta pystyasennossa tasaisella alustalla vähintään 24 h.",
+   "Aja LITE ICE CREAM. Jos massa on jauhomaista, lisää ohut kerros vettä ja aja RE-SPIN.",
+   "Tee lusikalla reikä keskelle pohjaan asti, laita kookoshiutaleet reikään ja aja MIX-IN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 530,
+   "protein": 58
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "sprinkkelikakku-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "450 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1/4 tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "1/4 tl",
+    "n": "Manteliaromi",
+    "s": "Meira manteliaromi 50 ml"
+   },
+   {
+    "a": "1 hyppysellinen",
+    "n": "Suola",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Värikkäät sokerirakeet (mix-in)",
+    "s": "Dr. Oetker Koristerae 65 g"
+   }
+  ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Sprinkkelikakku-proteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Manteliaromi on salaisuus tavallisen vaniljan muuttamiseksi aidoksi kakkumauksi – jouluversiossa toimii hyvin lisäksi ripaus kanelia.",
+  "added": 1789400813618,
+  "order": 36,
+  "steps": [
+   "Mittaa maito, maitorahka, vaniljaproteiini, alluloosi, ksantaani, vaniljauute, manteliaromi ja suola sekoitusastiaan.",
+   "Sekoita sauvasekoittimella tasaiseksi – manteliaromi tuo aidon syntymäpäiväkakkumaun.",
+   "Kaada seos Creami-astiaan enintään MAX-viivaan, tasoita ja pakasta pystyssä 24 h.",
+   "Aja LITE ICE CREAM, tarvittaessa RE-SPIN kermaisemman rakenteen saamiseksi.",
+   "Sekoita joukkoon sokerirakeet MIX-IN-ohjelmalla juuri ennen tarjoilua, jotta ne pysyvät rapeina."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 460,
+   "protein": 60
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "lakka-bowl",
+  "cat": "bowl",
+  "ing": [
+   {
+    "a": "250 g",
+    "n": "Pakastelakka",
+    "s": "Kiantama pakastelakka 250 g"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "100 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "120 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Lakkabowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Lakka on kallis (250 g ≈ 8 €) mutta ainutlaatuinen. Hapan marja, siksi 3 rkl alluloosia – maista ennen pakastusta. Mustikka toimii halvempana korvikkeena.",
+  "added": 1789400813618,
+  "order": 37,
+  "steps": [
+   "Soseuta lakat, rahka, jogurtti, maito, alluloosi, vanilja ja suola sauvasekoittimella; ripottele ksantaani joukkoon sekoittimen käydessä. Siivilöi halutessasi siemenet.",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja LITE ICE CREAM (rahkapohja), tarvittaessa RE-SPIN.",
+   "Kulhoon, päälle lakkoja tai granolaa."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 330,
+   "protein": 22
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "karpalo-appelsiini-sorbetti",
+  "cat": "sorbetti",
+  "ing": [
+   {
+    "a": "250 g",
+    "n": "Pakastekarpalo",
+    "s": "Pirkka pakastekarpalo 250 g"
+   },
+   {
+    "a": "300 ml",
+    "n": "Appelsiinitäysmehu",
+    "s": "Pirkka appelsiinitäysmehu 1 l"
+   },
+   {
+    "a": "½ kpl",
+    "n": "Banaani",
+    "s": "Banaani"
+   },
+   {
+    "a": "4 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Appelsiinin kuoriraaste",
+    "s": "Tuore appelsiini"
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Karpalo-appelsiinisorbetti",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Karpalo on hyvin kirpeä – banaani ja appelsiinimehu pyöristävät sen. Maista makeus ennen pakastusta.",
+  "added": 1789400813618,
+  "order": 38,
+  "steps": [
+   "Soseuta karpalot, mehu, banaani, alluloosi, kuoriraaste ja suola sauvasekoittimella tasaiseksi.",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja SORBET, tarvittaessa RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 290,
+   "protein": 3
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "SORBET"
+ },
+ {
+  "id": "mansikka-frozen-yoghurt",
+  "cat": "froyo",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "200 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "2½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Mansikka frozen yoghurt",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Klassikko: mansikka ja jogurtti. Jätä osa mansikoista paloiksi, niin saat marjapaloja jäätelöön.",
+  "added": 1789403000001,
+  "order": 40,
+  "steps": [
+   "Sekoita kaikki sauvasekoittimella tasaiseksi.",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+   "Aja FROZEN YOGHURT. Jos murumaista, 1 rkl maitoa ja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 390,
+   "protein": 33
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "FROZEN YOGHURT"
+ },
+ {
+  "id": "puolukka-hunaja-frozen-yoghurt",
+  "cat": "froyo",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastepuolukka",
+    "s": "Pirkka pakastepuolukka 250 g"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Juokseva hunaja",
+    "s": "Pirkka juokseva hunaja"
+   },
+   {
+    "a": "1½ rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "50 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Puolukka-hunaja frozen yoghurt",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Syksyn resepti: puolukan kirpeys ja hunajan pehmeys sopivat yhteen kuin puolukkakiisseli. Hunaja pehmentää myös rakennetta.",
+  "added": 1789403000002,
+  "order": 41,
+  "steps": [
+   "Soseuta puolukat, jogurtti, hunaja, alluloosi, maito ja vanilja sauvasekoittimella.",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+   "Aja FROZEN YOGHURT, tarvittaessa RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 430,
+   "protein": 32
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "FROZEN YOGHURT"
+ },
+ {
+  "id": "mustaherukka-frozen-yoghurt",
+  "cat": "froyo",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kreikkalainen jogurtti 2 %",
+    "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastemustaherukka",
+    "s": "Pirkka pakastemustaherukka 250 g"
+   },
+   {
+    "a": "4 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "80 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti",
+   "leo"
+  ],
+  "name": "Mustaherukka frozen yoghurt",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Mustaherukka on hapan, siksi alluloosia on enemmän. Väri on upea syvä violetti.",
+  "added": 1789403000003,
+  "order": 42,
+  "steps": [
+   "Soseuta kaikki sauvasekoittimella tasaiseksi (mustaherukan kuoret hienoksi).",
+   "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+   "Aja FROZEN YOGHURT, tarvittaessa RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 400,
+   "protein": 34
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "FROZEN YOGHURT"
+ },
+ {
+  "id": "luumu-vanilja-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "350 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "150 g",
+    "n": "Kypsä luumu",
+    "s": "Pirkka luumu"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1/4 tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Vaniljauute",
+    "p": true
+   }
+  ],
+  "who": [
+   "leo"
+  ],
+  "name": "Luumu-vaniljaproteiinijäätelö",
+  "time": "24 h pakkasessa · 10 min valmistelu",
+  "tips": "Kypsät, makeat luumut tekevät jäätelöstä pehmeämpää ilman lisäsokeria – kiinteämmät luumut kannattaa paahtaa hetki pannulla ennen soseuttamista.",
+  "added": 1789445520979,
+  "order": 43,
+  "steps": [
+   "Poista luumuista kivet ja soseuta luumut sauvasekoittimella tasaiseksi soseeksi.",
+   "Sekoita kulhossa maitorahka, maito, proteiinijauhe, alluloosi ja vaniljauute tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+   "Sekoita luumusose joukkoon ja kaada seos Creami-astiaan MAX-viivaan asti.",
+   "Pakasta astia pystyasennossa tasaisella alustalla vähintään 24 h.",
+   "Aja LITE ICE CREAM. Jos rakenne jää jauhomaiseksi, aja vielä RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 480,
+   "protein": 62
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "persikka-proteiinibowl",
+  "cat": "bowl",
+  "ing": [
+   {
+    "a": "300 g",
+    "n": "Persikanpuolikkaat mehussa, valutettuna",
+    "s": "Pirkka persikanpuolikkaat mehussa 410 g"
+   },
+   {
+    "a": "250 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "40 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "",
+    "n": "Päälle: granola, tuoreet marjat",
+    "s": "Pirkka granola"
+   }
+  ],
+  "who": [
+   "leo"
+  ],
+  "name": "Persikka-proteiinibowl",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Proteiinipitoinen aamiaiskulho. Tuoreet nektariinit toimivat kesällä persikkasäilykkeen sijaan.",
+  "added": 1789445520979,
+  "order": 44,
+  "steps": [
+   "Soseuta persikat, maito, rahka, jauhe ja alluloosi kulhossa sauvasekoittimella; ripottele ksantaani joukkoon sekoittimen käydessä.",
+   "Kaada astiaan, tasoita, kansi, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja LITE ICE CREAM (heraproteiinipohja on SORBET-ohjelmalle liian tiivis), tarvittaessa RE-SPIN.",
+   "Kulhoon, päälle granolaa ja marjoja."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 400,
+   "protein": 46
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "puolukka-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "400 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "100 g",
+    "n": "Puolukka",
+    "s": "Pirkka pakastepuolukka 250 g"
+   },
+   {
+    "a": "2 rkl",
+    "n": "Hunaja",
+    "s": "Pirkka kotimainen juokseva hunaja 350 g"
+   },
+   {
+    "a": "1/4 tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "1–2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Puolukkaproteiinijäätelö",
+  "time": "24 h pakkasessa · 10 min valmistelu",
+  "tips": "Puolukan kirpeys tasapainottaa hunajan makeutta – syyskuun tuore puolukka toimii tässä erinomaisesti.",
+  "added": 1789445520979,
+  "order": 45,
+  "steps": [
+   "Soseuta puolukat sauvasekoittimella.",
+   "Sekoita kulhossa maitorahka, maito, proteiinijauhe, hunaja ja alluloosi tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+   "Sekoita puolukkasose joukkoon ja kaada seos Creami-astiaan MAX-viivaan asti.",
+   "Pakasta astia pystyasennossa tasaisella alustalla vähintään 24 h.",
+   "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 410,
+   "protein": 62
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "vadelma-slushi",
+  "cat": "slushi",
+  "ing": [
+   {
+    "a": "300 g",
+    "n": "Pakastevadelma",
+    "s": "Pirkka pakastevadelma 250 g (2 pussia)"
+   },
+   {
+    "a": "200 ml",
+    "n": "Omenatäysmehu",
+    "s": "Pirkka omenatäysmehu 1 l"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "50 ml (ajettaessa)",
+    "n": "Omenatäysmehua lisäksi",
+    "s": "Pirkka omenatäysmehu 1 l"
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Vadelmaslushi",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Omenamehun sokeri pitää slushin pehmeänä – pelkällä vedellä ja alluloosilla tulee jääpala. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+  "added": 1789445520979,
+  "order": 46,
+  "steps": [
+   "Soseuta pakastevadelmat, omenamehu (200 ml), alluloosi ja sitruunamehu sauvasekoittimella tasaiseksi.",
+   "Siivilöi seos halutessasi siemenien poistamiseksi.",
+   "Kaada astiaan DRINKABLE-viivaan asti ja pakasta 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: kaada 50 ml omenamehua jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja SLUSHI. Jos haluat juotavamman rakenteen, aja SLUSHI uudelleen."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 180,
+   "protein": 3
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "SLUSHI"
+ },
+ {
+  "id": "omena-kaneli-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "1 pieni (n. 120 g)",
+    "n": "Omena, kuorittuna",
+    "s": "Kotimainen omena"
+   },
+   {
+    "a": "400 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "45 g (1½ mittaa)",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1½ tl",
+    "n": "Kaneli",
+    "s": "Pirkka kaneli"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Omena-kaneliproteiinijäätelö",
+  "time": "24 h pakkasessa · 10 min valmistelu",
+  "tips": "Maistuu omenapiirakalta. Omena antaa sokeria ja pehmeyttä, joten tämä on yksi helpoimmista proteiinijäätelöistä saada kermaiseksi. Syksyllä kannattaa käyttää kotimaista hapokasta omenaa.",
+  "added": 1789467346952,
+  "order": 47,
+  "steps": [
+   "Kuori ja paloittele omena. Soseuta omena, maito ja rahka sauvasekoittimella täysin tasaiseksi.",
+   "Lisää proteiinijauhe, alluloosi, kaneli, vaniljauute ja suola. Sekoita.",
+   "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+   "Kaada astiaan MAX-viivaan asti, tasoita pinta, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja LITE ICE CREAM. Jos murumaista, lisää 1 rkl maitoa ja aja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 430,
+   "protein": 62
+  },
+  "respin": "usein",
+  "status": "ehdotus",
+  "program": "LITE ICE CREAM"
+ },
+ {
+  "id": "tyrni-appelsiinisorbetti",
+  "cat": "sorbetti",
+  "ing": [
+   {
+    "a": "150 g",
+    "n": "Pakastetyrni",
+    "s": "Pakastetyrni 200–250 g (pakastealtaan marjahylly)"
+   },
+   {
+    "a": "350 ml",
+    "n": "Appelsiinitäysmehu",
+    "s": "Pirkka appelsiinitäysmehu 1 l"
+   },
+   {
+    "a": "1 kpl",
+    "n": "Kypsä banaani",
+    "s": "Banaani"
+   },
+   {
+    "a": "4 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Tyrni-appelsiinisorbetti",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Kotimainen superfood-sorbetti: tyrnissä on valtavasti C-vitamiinia. Banaani tuo pehmeyttä ja appelsiinimehun sokeri pitää rakenteen kauhottavana.",
+  "added": 1789467346952,
+  "order": 48,
+  "steps": [
+   "Soseuta tyrnit, appelsiinimehu, banaani, alluloosi ja suola sauvasekoittimella tasaiseksi. Siivilöi halutessasi.",
+   "Maista: tyrni on hyvin hapokasta – lisää alluloosia, jos tuntuu liian kirpeältä.",
+   "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja SORBET. Murumainen → 1 rkl appelsiinimehua ja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 340,
+   "protein": 4
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "SORBET"
+ },
+ {
+  "id": "lakritsi-proteiini",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "380 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "150 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "50 ml",
+    "n": "Kuohukerma",
+    "s": "Valio kuohukerma 2 dl"
+   },
+   {
+    "a": "40 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "2 tl",
+    "n": "Raakalakritsijauhe",
+    "s": "Raakalakritsijauhe (leivontahylly / luontaistuotteet)"
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Lakritsiproteiinijäätelö",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Suomalainen klassikko proteiinilla. Salmiakkiversio: lisää ½ tl salmiakkijauhetta. Jos haluat mustan värin, tilkka mustaa elintarvikeväriä – lakritsijauhe itsessään tekee vain harmahtavan.",
+  "added": 1789467346952,
+  "order": 49,
+  "steps": [
+   "Sekoita maito, rahka ja kerma sauvasekoittimella tasaiseksi.",
+   "Lisää proteiinijauhe, alluloosi, lakritsijauhe ja suola. Sekoita ja maista – lakritsin voimakkuus vaihtelee jauheittain.",
+   "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+   "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja ICE CREAM (kerma ja rahka kestävät täyden ohjelman). Murumainen → 1 rkl maitoa ja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 440,
+   "protein": 60
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "ICE CREAM"
+ },
+ {
+  "id": "suklaagelato",
+  "cat": "proteiini",
+  "ing": [
+   {
+    "a": "380 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "50 ml",
+    "n": "Kuohukerma",
+    "s": "Valio kuohukerma 2 dl"
+   },
+   {
+    "a": "100 g",
+    "n": "Maitorahka",
+    "s": "Valio maitorahka 250 g"
+   },
+   {
+    "a": "40 g",
+    "n": "Puhdistamo suklaaproteiini",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Tumma kaakaojauhe",
+    "s": "Pirkka tumma kaakaojauhe"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   },
+   {
+    "a": "ripaus",
+    "n": "Suola",
+    "p": true
+   }
+  ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Suklaagelato",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "GELATO-ohjelma pyörittää hitaammin ja tekee tiiviin, italialaisen rakenteen – kerma ja rahka tekevät siitä kermaisen ilman munankeltuaisia. Mokka-gelato: 1 tl pikakahvia (Kirsille).",
+  "added": 1789467346952,
+  "order": 50,
+  "steps": [
+   "Sekoita maito, kerma ja rahka sauvasekoittimella tasaiseksi.",
+   "Lisää proteiinijauhe, kaakao, alluloosi, vaniljauute ja suola. Sekoita, kunnes kaakaossa ei ole paakkuja.",
+   "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+   "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja GELATO. Tulos on tiiviimpi ja pehmeämpi kuin ICE CREAM -ohjelmalla. Tarvittaessa RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 490,
+   "protein": 55
+  },
+  "respin": "harvoin",
+  "status": "ehdotus",
+  "program": "GELATO"
+ },
+ {
+  "id": "paaryna-inkivaarisorbetti",
+  "cat": "sorbetti",
+  "ing": [
+   {
+    "a": "1 tlk (n. 410 g)",
+    "n": "Päärynäsäilyke omassa mehussaan",
+    "s": "Pirkka päärynänpuolikkaat mehussa 410 g"
+   },
+   {
+    "a": "1 tl",
+    "n": "Tuore inkivääri, raastettuna",
+    "s": "Tuore inkivääri"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "n. 100 ml",
+    "n": "Omenatäysmehu (täyttöön)",
+    "s": "Pirkka omenatäysmehu 1 l"
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Päärynä-inkiväärisorbetti säilykkeestä",
+  "time": "24 h pakkasessa · 2 min valmistelu",
+  "tips": "Persikkasorbetin sisarresepti: säilykkeen liemi tuo sokerin, joten sorbetti pysyy kauhottavana. Inkivääri antaa pientä poltetta – jätä pois, jos haluat lempeämmän.",
+  "added": 1789467346952,
+  "order": 51,
+  "steps": [
+   "Kaada päärynät liemineen astiaan. Lisää inkivääri, sitruunamehu ja alluloosi.",
+   "Soseuta suoraan astiassa sauvasekoittimella tasaiseksi. Lisää omenamehua, kunnes pinta on MAX-viivassa.",
+   "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja SORBET. Murumainen → 1 rkl mehua ja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 300,
+   "protein": 2
+  },
+  "respin": "joskus",
+  "status": "ehdotus",
+  "program": "SORBET"
+ },
+ {
+  "id": "omena-kaneli-frozen-drink",
+  "cat": "slushi",
+  "ing": [
+   {
+    "a": "550 ml",
+    "n": "Omenatäysmehu",
+    "s": "Pirkka omenatäysmehu 1 l"
+   },
+   {
+    "a": "1 tl",
+    "n": "Kaneli",
+    "s": "Pirkka kaneli"
+   },
+   {
+    "a": "1 rkl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "50 ml (ajettaessa)",
+    "n": "Omenatäysmehua lisäksi",
+    "s": "Pirkka omenatäysmehu 1 l"
+   }
+  ],
+  "who": [
+   "aiti",
+   "leo"
+  ],
+  "name": "Omena-kaneli frozen drink",
+  "time": "24 h pakkasessa · 1 min valmistelu",
+  "tips": "Kuin jäinen glögi ilman alkoholia – syksyn juoma. Täysmehun oma sokeri riittää, alluloosia ei tarvita. Juotavat pakastetaan aina DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+  "added": 1789467346952,
+  "order": 52,
+  "steps": [
+   "Sekoita omenamehu (550 ml), kaneli ja sitruunamehu. Kaada astiaan DRINKABLE-viivaan asti.",
+   "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: kaada 50 ml omenamehua jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja FROZEN DRINK. Tarjoile heti."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 260,
+   "protein": 0
+  },
+  "respin": "ei",
+  "status": "ehdotus",
+  "program": "FROZEN DRINK"
+ },
+ {
+  "id": "mansikka-proteiinifrappe",
+  "cat": "frappe",
+  "ing": [
+   {
+    "a": "350 ml",
+    "n": "Rasvaton maito",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   },
+   {
+    "a": "150 g",
+    "n": "Pakastemansikka",
+    "s": "Pirkka pakastemansikka 400 g"
+   },
+   {
+    "a": "35 g",
+    "n": "Puhdistamo vaniljaproteiini",
+    "p": true
+   },
+   {
+    "a": "2 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "60 ml (ajettaessa)",
+    "n": "Rasvaton maito lisäksi",
+    "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+   }
+  ],
+  "who": [
+   "leo",
+   "aiti"
+  ],
+  "name": "Mansikka-proteiinifrappé",
+  "time": "24 h pakkasessa · 3 min valmistelu",
+  "tips": "Kahviton frappé, joka käy Leollekin: mansikkainen proteiinijuoma treenin jälkeen. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+  "added": 1789467346952,
+  "order": 53,
+  "steps": [
+   "Soseuta maito (350 ml), mansikat, proteiinijauhe, alluloosi ja sitruunamehu sauvasekoittimella tasaiseksi.",
+   "Kaada astiaan DRINKABLE-viivaan asti. Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Ennen ajoa: lisää 60 ml maitoa jäätyneen pohjan päälle MAX-viivaan asti.",
+   "Aja FRAPPÉ. Liian paksu → 50 ml maitoa lisää ja aja FRAPPÉ uudelleen."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 320,
+   "protein": 45
+  },
+  "respin": "harvoin",
+  "status": "ehdotus",
+  "program": "FRAPPÉ"
+ },
+ {
+  "id": "kaurajogurtti-mustikka-froyo",
+  "cat": "froyo",
+  "ing": [
+   {
+    "a": "400 g",
+    "n": "Kaurajogurtti, maustamaton",
+    "s": "Oatly kaurajogurtti luonnollinen 400 g (tai Planti)"
+   },
+   {
+    "a": "200 g",
+    "n": "Pakastemustikka",
+    "s": "Pirkka pakastemustikka 400 g"
+   },
+   {
+    "a": "3 rkl",
+    "n": "Alluloosi",
+    "p": true
+   },
+   {
+    "a": "1 rkl",
+    "n": "Rypsiöljy",
+    "s": "Pirkka rypsiöljy"
+   },
+   {
+    "a": "1 tl",
+    "n": "Sitruunamehu",
+    "s": "Pirkka sitruunamehu"
+   },
+   {
+    "a": "½ tl",
+    "n": "Vaniljauute",
+    "p": true
+   },
+   {
+    "a": "¼ tl",
+    "n": "Ksantaani",
+    "p": true
+   }
+  ],
+  "who": [
+   "aiti"
+  ],
+  "name": "Kaurajogurtti-mustikka frozen yoghurt",
+  "time": "24 h pakkasessa · 5 min valmistelu",
+  "tips": "Maidoton vaihtoehto. Kaurajogurtissa on vähemmän rasvaa ja proteiinia kuin kreikkalaisessa, joten tilkka öljyä ja ksantaani ovat tässä välttämättömiä pehmeyden takia.",
+  "added": 1789467346952,
+  "order": 54,
+  "steps": [
+   "Sekoita kaurajogurtti, mustikat, alluloosi, öljy, sitruunamehu ja vaniljauute sauvasekoittimella tasaiseksi.",
+   "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+   "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+   "Aja FROZEN YOGHURT. Kaurapohja on usein murumainen ensimmäisen ajon jälkeen → 1 rkl kaurajuomaa ja RE-SPIN."
+  ],
+  "freeze": true,
+  "macros": {
+   "kcal": 340,
+   "protein": 8
+  },
+  "respin": "usein",
+  "status": "ehdotus",
+  "program": "FROZEN YOGHURT"
  }
 ]

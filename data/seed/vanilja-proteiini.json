@@ -1,1 +1,63 @@
-{"id": "vanilja-proteiini", "name": "Vaniljaproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 62, "kcal": 390}, "ing": [{"n": "Rasvaton maito", "a": "450 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Puhdistamo vaniljaproteiini", "a": "45 g (1½ mittaa)", "p": true}, {"n": "Alluloosi", "a": "3 rkl", "p": true}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Vaniljauute", "a": "½ tl", "p": true}, {"n": "Suola", "a": "ripaus", "p": true}], "steps": ["Sekoita rahka ja maito sauvasekoittimella tasaiseksi.", "Lisää proteiinijauhe, alluloosi, vaniljauute ja suola. Sekoita.", "Ripottele ksantaani joukkoon koko ajan sekoittaen ja aja vielä 30 s.", "Kaada Deluxe-astiaan (korkeintaan MAX-viivaan), tasoita pinta, kansi päälle. Pakkaseen 24 h tasaiselle alustalle.", "Aja LITE ICE CREAM. Jos murumaista, lisää 1 rkl maitoa ja aja RE-SPIN."], "tips": "Tämä on pohja, josta kaikki muut proteiinijäätelöt lähtevät. Kun tämä toimii, muut toimivat.", "order": 0}
+{
+ "id": "vanilja-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "450 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g (1½ mittaa)",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Vaniljaproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Tämä on pohja, josta kaikki muut proteiinijäätelöt lähtevät. Kun tämä toimii, muut toimivat.",
+ "order": 0,
+ "steps": [
+  "Sekoita rahka ja maito sauvasekoittimella tasaiseksi.",
+  "Lisää proteiinijauhe, alluloosi, vaniljauute ja suola. Sekoita.",
+  "Ripottele ksantaani joukkoon koko ajan sekoittaen ja aja vielä 30 s.",
+  "Kaada Deluxe-astiaan (korkeintaan MAX-viivaan), tasoita pinta, kansi päälle. Pakkaseen 24 h tasaiselle alustalle.",
+  "Aja LITE ICE CREAM. Jos murumaista, lisää 1 rkl maitoa ja aja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 390,
+  "protein": 62
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

@@ -1,1 +1,57 @@
-{"id": "suklaa-frappe", "name": "Suklaafrappé", "cat": "frappe", "program": "FRAPPÉ", "who": ["aiti", "leo"], "freeze": true, "respin": "harvoin", "time": "24 h pakkasessa · 3 min valmistelu", "macros": {"protein": 45, "kcal": 300}, "ing": [{"n": "Rasvaton maito", "a": "500 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Puhdistamo suklaaproteiini", "a": "35 g", "p": true}, {"n": "Tumma kaakaojauhe", "a": "1 rkl", "s": "Pirkka tumma kaakaojauhe"}, {"n": "Alluloosi", "a": "2 rkl", "p": true}, {"n": "Suola", "a": "ripaus", "p": true}], "steps": ["Sekoita kaikki sauvasekoittimella tasaiseksi.", "Astiaan, kansi, pakkaseen 24 h.", "Aja FRAPPÉ. Liian paksu → 50 ml maitoa ja uudelleen."], "tips": "Kuin kylmä kaakao, mutta proteiinilla. Mokka: lisää 1 tl pikakahvia.", "order": 16}
+{
+ "id": "suklaa-frappe",
+ "cat": "frappe",
+ "ing": [
+  {
+   "a": "440 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "35 g",
+   "n": "Puhdistamo suklaaproteiini",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Tumma kaakaojauhe",
+   "s": "Pirkka tumma kaakaojauhe"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  },
+  {
+   "a": "60 ml (ajettaessa)",
+   "n": "Rasvaton maito lisäksi",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Suklaafrappé",
+ "time": "24 h pakkasessa · 3 min valmistelu",
+ "tips": "Kuin kylmä kaakao, mutta proteiinilla. Juotavat pakastetaan alempaan DRINKABLE-viivaan ja neste lisätään vasta ajettaessa – muuten frappé jää liian paksuksi. Mokka: lisää 1 tl pikakahvia.",
+ "order": 16,
+ "steps": [
+  "Sekoita maito (440 ml), proteiini, kaakao, alluloosi ja suola sauvasekoittimella tasaiseksi.",
+  "Kaada astiaan DRINKABLE-viivaan asti (ei MAX-viivaan – juotaviin jää tilaa nesteelle). Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Ennen ajoa: lisää 60 ml maitoa jäätyneen pohjan päälle MAX-viivaan asti.",
+  "Aja FRAPPÉ. Liian paksu → 50 ml maitoa lisää ja aja FRAPPÉ uudelleen."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 300,
+  "protein": 45
+ },
+ "respin": "harvoin",
+ "program": "FRAPPÉ"
+}

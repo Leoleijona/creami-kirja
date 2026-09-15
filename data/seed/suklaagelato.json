@@ -1,0 +1,75 @@
+{
+ "id": "suklaagelato",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "380 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "50 ml",
+   "n": "Kuohukerma",
+   "s": "Valio kuohukerma 2 dl"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "40 g",
+   "n": "Puhdistamo suklaaproteiini",
+   "p": true
+  },
+  {
+   "a": "2 rkl",
+   "n": "Tumma kaakaojauhe",
+   "s": "Pirkka tumma kaakaojauhe"
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Suklaagelato",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "GELATO-ohjelma pyörittää hitaammin ja tekee tiiviin, italialaisen rakenteen – kerma ja rahka tekevät siitä kermaisen ilman munankeltuaisia. Mokka-gelato: 1 tl pikakahvia (Kirsille).",
+ "added": 1789467346952,
+ "order": 50,
+ "steps": [
+  "Sekoita maito, kerma ja rahka sauvasekoittimella tasaiseksi.",
+  "Lisää proteiinijauhe, kaakao, alluloosi, vaniljauute ja suola. Sekoita, kunnes kaakaossa ei ole paakkuja.",
+  "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+  "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja GELATO. Tulos on tiiviimpi ja pehmeämpi kuin ICE CREAM -ohjelmalla. Tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 490,
+  "protein": 55
+ },
+ "respin": "harvoin",
+ "status": "ehdotus",
+ "program": "GELATO"
+}

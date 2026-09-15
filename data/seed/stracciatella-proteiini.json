@@ -1,1 +1,63 @@
-{"id": "stracciatella-proteiini", "name": "Stracciatella-proteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 62, "kcal": 480}, "ing": [{"n": "Rasvaton maito", "a": "450 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Puhdistamo vaniljaproteiini", "a": "45 g", "p": true}, {"n": "Alluloosi", "a": "3 rkl", "p": true}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Vaniljauute", "a": "1 tl", "p": true}, {"n": "Tumma suklaa 70 %", "a": "20 g hienonnettuna", "s": "Fazer tumma suklaa 70 %"}], "steps": ["Tee vaniljapohja: sekoita maito, rahka, jauhe, alluloosi ja vanilja; ripottele ksantaani sekoittaen.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM, tarvittaessa RE-SPIN.", "Tee lusikalla reikä keskelle pohjaan asti, laita suklaarouhe reikään ja aja MIX-IN."], "tips": "Mix-in-ohjelma sekoittaa rouheen jäätelöön rikkomatta rakennetta. Älä laita suklaata ennen pakastusta – se uppoaa pohjalle.", "order": 28, "added": 1789399232082}
+{
+ "id": "stracciatella-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "450 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "1 tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "20 g hienonnettuna",
+   "n": "Tumma suklaa 70 %",
+   "s": "Fazer tumma suklaa 70 %"
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Stracciatella-proteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Mix-in-ohjelma sekoittaa rouheen jäätelöön rikkomatta rakennetta. Älä laita suklaata ennen pakastusta – se uppoaa pohjalle.",
+ "added": 1789399232082,
+ "order": 28,
+ "steps": [
+  "Tee vaniljapohja: sekoita maito, rahka, jauhe, alluloosi ja vanilja; ripottele ksantaani sekoittaen.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN.",
+  "Tee lusikalla reikä keskelle pohjaan asti, laita suklaarouhe reikään ja aja MIX-IN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 515,
+  "protein": 62
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

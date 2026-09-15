@@ -1,0 +1,49 @@
+{
+ "id": "omena-kaneli-frozen-drink",
+ "cat": "slushi",
+ "ing": [
+  {
+   "a": "550 ml",
+   "n": "Omenatäysmehu",
+   "s": "Pirkka omenatäysmehu 1 l"
+  },
+  {
+   "a": "1 tl",
+   "n": "Kaneli",
+   "s": "Pirkka kaneli"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "50 ml (ajettaessa)",
+   "n": "Omenatäysmehua lisäksi",
+   "s": "Pirkka omenatäysmehu 1 l"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Omena-kaneli frozen drink",
+ "time": "24 h pakkasessa · 1 min valmistelu",
+ "tips": "Kuin jäinen glögi ilman alkoholia – syksyn juoma. Täysmehun oma sokeri riittää, alluloosia ei tarvita. Juotavat pakastetaan aina DRINKABLE-viivaan ja neste lisätään ajettaessa.",
+ "added": 1789467346952,
+ "order": 52,
+ "steps": [
+  "Sekoita omenamehu (550 ml), kaneli ja sitruunamehu. Kaada astiaan DRINKABLE-viivaan asti.",
+  "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Ennen ajoa: kaada 50 ml omenamehua jäätyneen pohjan päälle MAX-viivaan asti.",
+  "Aja FROZEN DRINK. Tarjoile heti."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 260,
+  "protein": 0
+ },
+ "respin": "ei",
+ "status": "ehdotus",
+ "program": "FROZEN DRINK"
+}

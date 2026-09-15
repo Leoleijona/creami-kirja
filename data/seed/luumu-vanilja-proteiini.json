@@ -1,0 +1,64 @@
+{
+ "id": "luumu-vanilja-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "350 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "150 g",
+   "n": "Kypsä luumu",
+   "s": "Pirkka luumu"
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1/4 tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "1 tl",
+   "n": "Vaniljauute",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo"
+ ],
+ "name": "Luumu-vaniljaproteiinijäätelö",
+ "time": "24 h pakkasessa · 10 min valmistelu",
+ "tips": "Kypsät, makeat luumut tekevät jäätelöstä pehmeämpää ilman lisäsokeria – kiinteämmät luumut kannattaa paahtaa hetki pannulla ennen soseuttamista.",
+ "added": 1789445520979,
+ "order": 43,
+ "steps": [
+  "Poista luumuista kivet ja soseuta luumut sauvasekoittimella tasaiseksi soseeksi.",
+  "Sekoita kulhossa maitorahka, maito, proteiinijauhe, alluloosi ja vaniljauute tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+  "Sekoita luumusose joukkoon ja kaada seos Creami-astiaan MAX-viivaan asti.",
+  "Pakasta astia pystyasennossa tasaisella alustalla vähintään 24 h.",
+  "Aja LITE ICE CREAM. Jos rakenne jää jauhomaiseksi, aja vielä RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 480,
+  "protein": 62
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}

@@ -1,1 +1,46 @@
-{"id": "mango-sorbetti", "name": "Mangosorbetti", "cat": "sorbetti", "program": "SORBET", "who": ["aiti", "leo"], "freeze": true, "respin": "joskus", "time": "24 h pakkasessa · 3 min valmistelu", "macros": {"protein": 3, "kcal": 280}, "ing": [{"n": "Pakastemango", "a": "450 g", "s": "Pirkka pakastemango 400 g × 2"}, {"n": "Vesi", "a": "150 ml", "p": true}, {"n": "Alluloosi", "a": "2 rkl", "p": true}, {"n": "Limemehu", "a": "1 rkl", "s": "Lime (tuore)"}], "steps": ["Soseuta kaikki sauvasekoittimella tasaiseksi.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja SORBET. Jos murumaista, 1 rkl vettä ja RE-SPIN."], "tips": "Yksinkertaisin resepti koko kirjassa ja yksi parhaista.", "order": 11}
+{
+ "id": "mango-sorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "400 g",
+   "n": "Pakastemango",
+   "s": "Pirkka pakastemango 400 g"
+  },
+  {
+   "a": "150 ml",
+   "n": "Appelsiinitäysmehu",
+   "s": "Pirkka appelsiinitäysmehu 1 l"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Limemehu",
+   "s": "Lime (tuore)"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Mangosorbetti",
+ "time": "24 h pakkasessa · 3 min valmistelu",
+ "tips": "Yksinkertaisin resepti koko kirjassa. Appelsiinimehun sokeri pitää sorbetin pehmeänä – pelkällä vedellä tulee jäisempi.",
+ "order": 11,
+ "steps": [
+  "Soseuta kaikki sauvasekoittimella tasaiseksi.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja SORBET. Jos murumaista, 1 rkl vettä ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 280,
+  "protein": 3
+ },
+ "respin": "joskus",
+ "program": "SORBET"
+}

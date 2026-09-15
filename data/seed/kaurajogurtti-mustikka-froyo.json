@@ -1,0 +1,63 @@
+{
+ "id": "kaurajogurtti-mustikka-froyo",
+ "cat": "froyo",
+ "ing": [
+  {
+   "a": "400 g",
+   "n": "Kaurajogurtti, maustamaton",
+   "s": "Oatly kaurajogurtti luonnollinen 400 g (tai Planti)"
+  },
+  {
+   "a": "200 g",
+   "n": "Pakastemustikka",
+   "s": "Pirkka pakastemustikka 400 g"
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Rypsiöljy",
+   "s": "Pirkka rypsiöljy"
+  },
+  {
+   "a": "1 tl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Kaurajogurtti-mustikka frozen yoghurt",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Maidoton vaihtoehto. Kaurajogurtissa on vähemmän rasvaa ja proteiinia kuin kreikkalaisessa, joten tilkka öljyä ja ksantaani ovat tässä välttämättömiä pehmeyden takia.",
+ "added": 1789467346952,
+ "order": 54,
+ "steps": [
+  "Sekoita kaurajogurtti, mustikat, alluloosi, öljy, sitruunamehu ja vaniljauute sauvasekoittimella tasaiseksi.",
+  "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+  "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja FROZEN YOGHURT. Kaurapohja on usein murumainen ensimmäisen ajon jälkeen → 1 rkl kaurajuomaa ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 340,
+  "protein": 8
+ },
+ "respin": "usein",
+ "status": "ehdotus",
+ "program": "FROZEN YOGHURT"
+}

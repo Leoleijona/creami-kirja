@@ -1,0 +1,53 @@
+{
+ "id": "tyrni-appelsiinisorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "150 g",
+   "n": "Pakastetyrni",
+   "s": "Pakastetyrni 200–250 g (pakastealtaan marjahylly)"
+  },
+  {
+   "a": "350 ml",
+   "n": "Appelsiinitäysmehu",
+   "s": "Pirkka appelsiinitäysmehu 1 l"
+  },
+  {
+   "a": "1 kpl",
+   "n": "Kypsä banaani",
+   "s": "Banaani"
+  },
+  {
+   "a": "4 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Tyrni-appelsiinisorbetti",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Kotimainen superfood-sorbetti: tyrnissä on valtavasti C-vitamiinia. Banaani tuo pehmeyttä ja appelsiinimehun sokeri pitää rakenteen kauhottavana.",
+ "added": 1789467346952,
+ "order": 48,
+ "steps": [
+  "Soseuta tyrnit, appelsiinimehu, banaani, alluloosi ja suola sauvasekoittimella tasaiseksi. Siivilöi halutessasi.",
+  "Maista: tyrni on hyvin hapokasta – lisää alluloosia, jos tuntuu liian kirpeältä.",
+  "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja SORBET. Murumainen → 1 rkl appelsiinimehua ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 340,
+  "protein": 4
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "SORBET"
+}

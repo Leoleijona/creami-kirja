@@ -1,1 +1,63 @@
-{"id": "kahvi-proteiini", "name": "Kahviproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 62, "kcal": 395}, "ing": [{"n": "Rasvaton maito", "a": "450 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Pikakahvi", "a": "2 tl", "s": "Nescafé Gold pikakahvi"}, {"n": "Puhdistamo vaniljaproteiini", "a": "45 g", "p": true}, {"n": "Alluloosi", "a": "3 rkl", "p": true}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Suola", "a": "ripaus", "p": true}], "steps": ["Liuota pikakahvi 2 rkl:aan kuumaa vettä.", "Sekoita rahka, maito ja kahvi sauvasekoittimella.", "Lisää jauhe, alluloosi ja suola. Sekoita.", "Ripottele ksantaani sekoittaen, aja 30 s.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."], "tips": "Kirsin resepti – Leo ei ole kahvi-ihminen. Mix-in: murskattua tummaa suklaata.", "order": 5}
+{
+ "id": "kahvi-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "450 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "2 tl",
+   "n": "Pikakahvi",
+   "s": "Nescafé Gold pikakahvi"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Kahviproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Kirsin resepti – Leo ei ole kahvi-ihminen. Mix-in: murskattua tummaa suklaata.",
+ "order": 5,
+ "steps": [
+  "Liuota pikakahvi 2 rkl:aan kuumaa vettä ja anna jäähtyä.",
+  "Sekoita rahka, maito ja kahvi sauvasekoittimella.",
+  "Lisää jauhe, alluloosi ja suola. Sekoita.",
+  "Ripottele ksantaani sekoittaen, aja 30 s.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 395,
+  "protein": 62
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

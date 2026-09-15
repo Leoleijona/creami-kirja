@@ -1,1 +1,42 @@
-{"id": "marjamehu-slushi", "name": "Marjamehu-slushi", "cat": "slushi", "program": "SLUSHI", "who": ["aiti", "leo"], "freeze": true, "respin": "ei", "time": "24 h pakkasessa · 1 min valmistelu", "macros": {"protein": 0, "kcal": 230}, "ing": [{"n": "Laimennettu marjamehu", "a": "550 ml", "s": "Pirkka mustaherukkamehu (tiiviste, laimenna ohjeen mukaan)"}, {"n": "Sitruunamehu", "a": "1 rkl", "s": "Pirkka sitruunamehu"}], "steps": ["Kaada laimennettu mehu ja sitruuna astiaan.", "Kansi, pakkaseen 24 h.", "Aja SLUSHI."], "tips": "Slushi tarvitsee oikeaa sokeria toimiakseen – sokeriton mehu jäätyy kovaksi jääpalaksi. Tämä on herkku, ei proteiiniannos.", "order": 18}
+{
+ "id": "marjamehu-slushi",
+ "cat": "slushi",
+ "ing": [
+  {
+   "a": "550 ml",
+   "n": "Laimennettu marjamehu",
+   "s": "Pirkka mustaherukkamehu (tiiviste, laimenna ohjeen mukaan)"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "50 ml (ajettaessa)",
+   "n": "Laimennettua mehua lisäksi",
+   "s": "Sama mehu"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Marjamehu-slushi",
+ "time": "24 h pakkasessa · 1 min valmistelu",
+ "tips": "Slushi tarvitsee oikeaa sokeria toimiakseen: valitse tavallinen mehutiiviste, EI kevyt- tai sokeritonta versiota – ne jäätyvät jääpalaksi. Juotavat pakastetaan DRINKABLE-viivaan ja neste lisätään ajettaessa. Tämä on herkku, ei proteiiniannos.",
+ "order": 18,
+ "steps": [
+  "Kaada laimennettu mehu (550 ml) ja sitruunamehu astiaan DRINKABLE-viivaan asti.",
+  "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Ennen ajoa: kaada 50 ml mehua jäätyneen pohjan päälle MAX-viivaan asti.",
+  "Aja SLUSHI. Jos liian karkea, aja SLUSHI uudelleen."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 230,
+  "protein": 0
+ },
+ "respin": "ei",
+ "program": "SLUSHI"
+}

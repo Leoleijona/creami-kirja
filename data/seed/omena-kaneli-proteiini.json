@@ -1,0 +1,75 @@
+{
+ "id": "omena-kaneli-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "1 pieni (n. 120 g)",
+   "n": "Omena, kuorittuna",
+   "s": "Kotimainen omena"
+  },
+  {
+   "a": "400 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g (1½ mittaa)",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1½ tl",
+   "n": "Kaneli",
+   "s": "Pirkka kaneli"
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Omena-kaneliproteiinijäätelö",
+ "time": "24 h pakkasessa · 10 min valmistelu",
+ "tips": "Maistuu omenapiirakalta. Omena antaa sokeria ja pehmeyttä, joten tämä on yksi helpoimmista proteiinijäätelöistä saada kermaiseksi. Syksyllä kannattaa käyttää kotimaista hapokasta omenaa.",
+ "added": 1789467346952,
+ "order": 47,
+ "steps": [
+  "Kuori ja paloittele omena. Soseuta omena, maito ja rahka sauvasekoittimella täysin tasaiseksi.",
+  "Lisää proteiinijauhe, alluloosi, kaneli, vaniljauute ja suola. Sekoita.",
+  "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+  "Kaada astiaan MAX-viivaan asti, tasoita pinta, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja LITE ICE CREAM. Jos murumaista, lisää 1 rkl maitoa ja aja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 430,
+  "protein": 62
+ },
+ "respin": "usein",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}

@@ -1,1 +1,68 @@
-{"id": "mansikka-mustikka-rahkabowl", "name": "Mansikka-mustikka rahkabowl", "cat": "bowl", "program": "SORBET", "who": ["aiti", "leo"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 26, "kcal": 360}, "ing": [{"n": "Pakastemansikka", "a": "200 g", "s": "Pirkka pakastemansikka 400 g"}, {"n": "Pakastemustikka", "a": "150 g", "s": "Pirkka pakastemustikka 400 g"}, {"n": "Maitorahka", "a": "150 g", "s": "Valio maitorahka 250 g"}, {"n": "Rasvaton maito", "a": "120 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Alluloosi", "a": "1½ rkl", "p": true}, {"n": "Vaniljauute", "a": "½ tl", "p": true}, {"n": "Päälle: tuoreita marjoja, kaurahiutaleita", "a": "", "s": "Tuoreita marjoja"}], "steps": ["Soseuta marjat, rahka, maito, alluloosi ja vanilja sauvasekoittimella.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja SORBET. Rahka tekee tästä tiiviimmän – RE-SPIN todennäköisesti.", "Kulhoon ja päälle marjoja."], "tips": "Rahka tuo tähän 26 g proteiinia ilman jauhetta – marjaisa kulho, joka kelpaa Leollekin.", "order": 21, "added": 1789399225082}
+{
+ "id": "mansikka-mustikka-rahkabowl",
+ "cat": "bowl",
+ "ing": [
+  {
+   "a": "200 g",
+   "n": "Pakastemansikka",
+   "s": "Pirkka pakastemansikka 400 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakastemustikka",
+   "s": "Pirkka pakastemustikka 400 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "120 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "1½ rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "",
+   "n": "Päälle: tuoreita marjoja, kaurahiutaleita",
+   "s": "Tuoreita marjoja"
+  }
+ ],
+ "who": [
+  "aiti",
+  "leo"
+ ],
+ "name": "Mansikka-mustikka rahkabowl",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Rahka tuo tähän 23 g proteiinia ilman jauhetta – marjaisa kulho, joka kelpaa Leollekin.",
+ "added": 1789399225082,
+ "order": 21,
+ "steps": [
+  "Soseuta marjat, rahka, maito, alluloosi ja vanilja sauvasekoittimella; ripottele ksantaani joukkoon sekoittimen käydessä.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM (rahkapohja on SORBET-ohjelmalle liian tiivis). Tarvittaessa RE-SPIN.",
+  "Kulhoon ja päälle marjoja."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 360,
+  "protein": 23
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

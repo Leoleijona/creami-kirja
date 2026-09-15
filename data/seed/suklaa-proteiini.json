@@ -1,1 +1,63 @@
-{"id": "suklaa-proteiini", "name": "Suklaaproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "freeze": true, "respin": "usein", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 63, "kcal": 410}, "ing": [{"n": "Rasvaton maito", "a": "450 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Puhdistamo suklaaproteiini", "a": "45 g (1½ mittaa)", "p": true}, {"n": "Tumma kaakaojauhe", "a": "1½ rkl", "s": "Pirkka tumma kaakaojauhe"}, {"n": "Alluloosi", "a": "3½ rkl", "p": true}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Suola", "a": "ripaus", "p": true}], "steps": ["Sekoita rahka ja maito sauvasekoittimella.", "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi – kaakao paakkuuntuu helposti.", "Ripottele ksantaani sekoittaen, aja 30 s.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."], "tips": "Mix-in: 1 rkl hienonnettua tummaa suklaata tai 2 rkl pähkinävoihiutaleita reikään keskelle ja MIX-IN.", "order": 1}
+{
+ "id": "suklaa-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "450 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g (1½ mittaa)",
+   "n": "Puhdistamo suklaaproteiini",
+   "p": true
+  },
+  {
+   "a": "1½ rkl",
+   "n": "Tumma kaakaojauhe",
+   "s": "Pirkka tumma kaakaojauhe"
+  },
+  {
+   "a": "3½ rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Suklaaproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Mix-in: 1 rkl hienonnettua tummaa suklaata tai 2 rkl hienonnettuja maapähkinöitä reikään keskelle ja MIX-IN.",
+ "order": 1,
+ "steps": [
+  "Sekoita rahka ja maito sauvasekoittimella.",
+  "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi – kaakao paakkuuntuu helposti.",
+  "Ripottele ksantaani sekoittaen, aja 30 s.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 410,
+  "protein": 63
+ },
+ "respin": "usein",
+ "program": "LITE ICE CREAM"
+}

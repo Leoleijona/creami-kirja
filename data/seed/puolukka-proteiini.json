@@ -1,0 +1,64 @@
+{
+ "id": "puolukka-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "400 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "100 g",
+   "n": "Puolukka",
+   "s": "Pirkka pakastepuolukka 250 g"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Hunaja",
+   "s": "Pirkka kotimainen juokseva hunaja 350 g"
+  },
+  {
+   "a": "1/4 tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "1–2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Puolukkaproteiinijäätelö",
+ "time": "24 h pakkasessa · 10 min valmistelu",
+ "tips": "Puolukan kirpeys tasapainottaa hunajan makeutta – syyskuun tuore puolukka toimii tässä erinomaisesti.",
+ "added": 1789445520979,
+ "order": 45,
+ "steps": [
+  "Soseuta puolukat sauvasekoittimella.",
+  "Sekoita kulhossa maitorahka, maito, proteiinijauhe, hunaja ja alluloosi tasaiseksi; ripottele ksantaani joukkoon sekoittimen käydessä.",
+  "Sekoita puolukkasose joukkoon ja kaada seos Creami-astiaan MAX-viivaan asti.",
+  "Pakasta astia pystyasennossa tasaisella alustalla vähintään 24 h.",
+  "Aja LITE ICE CREAM, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 410,
+  "protein": 62
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}

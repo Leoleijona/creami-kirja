@@ -1,0 +1,63 @@
+{
+ "id": "persikka-proteiinibowl",
+ "cat": "bowl",
+ "ing": [
+  {
+   "a": "300 g",
+   "n": "Persikanpuolikkaat mehussa, valutettuna",
+   "s": "Pirkka persikanpuolikkaat mehussa 410 g"
+  },
+  {
+   "a": "250 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "40 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "",
+   "n": "Päälle: granola, tuoreet marjat",
+   "s": "Pirkka granola"
+  }
+ ],
+ "who": [
+  "leo"
+ ],
+ "name": "Persikka-proteiinibowl",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Proteiinipitoinen aamiaiskulho. Tuoreet nektariinit toimivat kesällä persikkasäilykkeen sijaan.",
+ "added": 1789445520979,
+ "order": 44,
+ "steps": [
+  "Soseuta persikat, maito, rahka, jauhe ja alluloosi kulhossa sauvasekoittimella; ripottele ksantaani joukkoon sekoittimen käydessä.",
+  "Kaada astiaan, tasoita, kansi, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja LITE ICE CREAM (heraproteiinipohja on SORBET-ohjelmalle liian tiivis), tarvittaessa RE-SPIN.",
+  "Kulhoon, päälle granolaa ja marjoja."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 400,
+  "protein": 46
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}

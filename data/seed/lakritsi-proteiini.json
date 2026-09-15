@@ -1,0 +1,70 @@
+{
+ "id": "lakritsi-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "380 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "150 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "50 ml",
+   "n": "Kuohukerma",
+   "s": "Valio kuohukerma 2 dl"
+  },
+  {
+   "a": "40 g",
+   "n": "Puhdistamo vaniljaproteiini",
+   "p": true
+  },
+  {
+   "a": "3 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "2 tl",
+   "n": "Raakalakritsijauhe",
+   "s": "Raakalakritsijauhe (leivontahylly / luontaistuotteet)"
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Lakritsiproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Suomalainen klassikko proteiinilla. Salmiakkiversio: lisää ½ tl salmiakkijauhetta. Jos haluat mustan värin, tilkka mustaa elintarvikeväriä – lakritsijauhe itsessään tekee vain harmahtavan.",
+ "added": 1789467346952,
+ "order": 49,
+ "steps": [
+  "Sekoita maito, rahka ja kerma sauvasekoittimella tasaiseksi.",
+  "Lisää proteiinijauhe, alluloosi, lakritsijauhe ja suola. Sekoita ja maista – lakritsin voimakkuus vaihtelee jauheittain.",
+  "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s.",
+  "Kaada astiaan MAX-viivaan asti, tasoita, kansi päälle. Pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja ICE CREAM (kerma ja rahka kestävät täyden ohjelman). Murumainen → 1 rkl maitoa ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 440,
+  "protein": 60
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "ICE CREAM"
+}

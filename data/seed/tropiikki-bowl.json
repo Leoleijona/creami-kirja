@@ -1,1 +1,56 @@
-{"id": "tropiikki-bowl", "name": "Tropiikki-bowl (mango–ananas)", "cat": "bowl", "program": "SORBET", "who": ["aiti"], "freeze": true, "respin": "joskus", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 6, "kcal": 420}, "ing": [{"n": "Pakastemango", "a": "250 g", "s": "Pirkka pakastemango 400 g"}, {"n": "Pakasteananas", "a": "150 g", "s": "Pirkka pakasteananas 400 g"}, {"n": "Banaani", "a": "½ kpl", "s": "Banaani"}, {"n": "Kookosmaito kevyt", "a": "150 ml", "s": "Pirkka kookosmaito light 400 ml"}, {"n": "Limemehu", "a": "1 rkl", "s": "Lime (tuore)"}, {"n": "Päälle: kookoshiutaleet, granola", "a": "", "s": "Pirkka kookoshiutaleet"}], "steps": ["Soseuta kaikki sauvasekoittimella.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja SORBET, tarvittaessa RE-SPIN.", "Kulhoon, päälle kookosta ja granolaa."], "tips": "Lime on pakollinen – ilman sitä maku on latteampi.", "order": 10}
+{
+ "id": "tropiikki-bowl",
+ "cat": "bowl",
+ "ing": [
+  {
+   "a": "250 g",
+   "n": "Pakastemango",
+   "s": "Pirkka pakastemango 400 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakasteananas",
+   "s": "Pirkka pakasteananas 400 g"
+  },
+  {
+   "a": "½ kpl",
+   "n": "Banaani",
+   "s": "Banaani"
+  },
+  {
+   "a": "150 ml",
+   "n": "Kookosmaito kevyt",
+   "s": "Pirkka kookosmaito light 400 ml"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Limemehu",
+   "s": "Lime (tuore)"
+  },
+  {
+   "a": "",
+   "n": "Päälle: kookoshiutaleet, granola",
+   "s": "Pirkka kookoshiutaleet"
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Tropiikki-bowl (mango–ananas)",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Lime on pakollinen – ilman sitä maku on latteampi.",
+ "order": 10,
+ "steps": [
+  "Soseuta kaikki sauvasekoittimella.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja SORBET, tarvittaessa RE-SPIN.",
+  "Kulhoon, päälle kookosta ja granolaa."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 420,
+  "protein": 6
+ },
+ "respin": "joskus",
+ "program": "SORBET"
+}

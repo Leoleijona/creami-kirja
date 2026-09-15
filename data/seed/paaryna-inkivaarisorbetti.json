@@ -1,0 +1,53 @@
+{
+ "id": "paaryna-inkivaarisorbetti",
+ "cat": "sorbetti",
+ "ing": [
+  {
+   "a": "1 tlk (n. 410 g)",
+   "n": "Päärynäsäilyke omassa mehussaan",
+   "s": "Pirkka päärynänpuolikkaat mehussa 410 g"
+  },
+  {
+   "a": "1 tl",
+   "n": "Tuore inkivääri, raastettuna",
+   "s": "Tuore inkivääri"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Sitruunamehu",
+   "s": "Pirkka sitruunamehu"
+  },
+  {
+   "a": "1 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "n. 100 ml",
+   "n": "Omenatäysmehu (täyttöön)",
+   "s": "Pirkka omenatäysmehu 1 l"
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Päärynä-inkiväärisorbetti säilykkeestä",
+ "time": "24 h pakkasessa · 2 min valmistelu",
+ "tips": "Persikkasorbetin sisarresepti: säilykkeen liemi tuo sokerin, joten sorbetti pysyy kauhottavana. Inkivääri antaa pientä poltetta – jätä pois, jos haluat lempeämmän.",
+ "added": 1789467346952,
+ "order": 51,
+ "steps": [
+  "Kaada päärynät liemineen astiaan. Lisää inkivääri, sitruunamehu ja alluloosi.",
+  "Soseuta suoraan astiassa sauvasekoittimella tasaiseksi. Lisää omenamehua, kunnes pinta on MAX-viivassa.",
+  "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla.",
+  "Aja SORBET. Murumainen → 1 rkl mehua ja RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 300,
+  "protein": 2
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "SORBET"
+}

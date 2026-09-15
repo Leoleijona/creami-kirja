@@ -1,0 +1,57 @@
+{
+ "id": "puolukka-hunaja-frozen-yoghurt",
+ "cat": "froyo",
+ "ing": [
+  {
+   "a": "400 g",
+   "n": "Kreikkalainen jogurtti 2 %",
+   "s": "Valio kreikkalainen jogurtti 2 % 400 g"
+  },
+  {
+   "a": "150 g",
+   "n": "Pakastepuolukka",
+   "s": "Pirkka pakastepuolukka 250 g"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Juokseva hunaja",
+   "s": "Pirkka juokseva hunaja"
+  },
+  {
+   "a": "1½ rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "50 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "½ tl",
+   "n": "Vaniljauute",
+   "p": true
+  }
+ ],
+ "who": [
+  "aiti"
+ ],
+ "name": "Puolukka-hunaja frozen yoghurt",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Syksyn resepti: puolukan kirpeys ja hunajan pehmeys sopivat yhteen kuin puolukkakiisseli. Hunaja pehmentää myös rakennetta.",
+ "added": 1789403000002,
+ "order": 41,
+ "steps": [
+  "Soseuta puolukat, jogurtti, hunaja, alluloosi, maito ja vanilja sauvasekoittimella.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja FROZEN YOGHURT, tarvittaessa RE-SPIN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 430,
+  "protein": 32
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "FROZEN YOGHURT"
+}

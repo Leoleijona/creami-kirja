@@ -1,1 +1,70 @@
-{"id": "suklaa-banaani-proteiini", "name": "Suklaa-banaaniproteiinijäätelö", "cat": "proteiini", "program": "LITE ICE CREAM", "who": ["leo", "aiti"], "status": "ehdotus", "freeze": true, "respin": "harvoin", "time": "24 h pakkasessa · 5 min valmistelu", "macros": {"protein": 60, "kcal": 460}, "ing": [{"n": "Kypsä banaani", "a": "1 kpl", "s": "Banaani (pilkullinen)"}, {"n": "Rasvaton maito", "a": "400 ml", "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"}, {"n": "Maitorahka", "a": "100 g", "s": "Valio maitorahka 250 g"}, {"n": "Puhdistamo suklaaproteiini", "a": "45 g", "p": true}, {"n": "Tumma kaakaojauhe", "a": "1 rkl", "s": "Pirkka tumma kaakaojauhe"}, {"n": "Alluloosi", "a": "2 rkl", "p": true}, {"n": "Ksantaani", "a": "¼ tl", "p": true}, {"n": "Suola", "a": "ripaus", "p": true}], "steps": ["Soseuta banaani, maito ja rahka.", "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi.", "Ripottele ksantaani sekoittaen, aja 30 s.", "Astiaan, tasoita, kansi, pakkaseen 24 h.", "Aja LITE ICE CREAM."], "tips": "Banaani + suklaa on pehmein proteiinipohja: Re-spiniä tarvitaan harvoin. Mix-in: 2 rkl pähkinävoihiutaleita.", "order": 34, "added": 1789399239082}
+{
+ "id": "suklaa-banaani-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "1 kpl",
+   "n": "Kypsä banaani",
+   "s": "Banaani (pilkullinen)"
+  },
+  {
+   "a": "350 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo suklaaproteiini",
+   "p": true
+  },
+  {
+   "a": "1 rkl",
+   "n": "Tumma kaakaojauhe",
+   "s": "Pirkka tumma kaakaojauhe"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "¼ tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "ripaus",
+   "n": "Suola",
+   "p": true
+  }
+ ],
+ "who": [
+  "leo",
+  "aiti"
+ ],
+ "name": "Suklaa-banaaniproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Banaani + suklaa on pehmein proteiinipohja: Re-spiniä tarvitaan harvoin. Mix-in: 2 rkl hienonnettuja maapähkinöitä.",
+ "added": 1789399239082,
+ "order": 34,
+ "steps": [
+  "Soseuta banaani, maito ja rahka.",
+  "Lisää jauhe, kaakao, alluloosi ja suola. Sekoita tasaiseksi.",
+  "Ripottele ksantaani sekoittaen, aja 30 s.",
+  "Astiaan, tasoita, kansi, pakkaseen 24 h.",
+  "Aja LITE ICE CREAM."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 460,
+  "protein": 60
+ },
+ "respin": "harvoin",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}

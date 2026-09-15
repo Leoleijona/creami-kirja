@@ -1,0 +1,69 @@
+{
+ "id": "kookos-suklaa-proteiini",
+ "cat": "proteiini",
+ "ing": [
+  {
+   "a": "325 ml",
+   "n": "Rasvaton maito",
+   "s": "Valio Eila laktoositon rasvaton maitojuoma 1 l"
+  },
+  {
+   "a": "150 ml",
+   "n": "Kookosmaito (kevyt)",
+   "s": "Santa Maria Kookosmaito Light 400 ml"
+  },
+  {
+   "a": "45 g",
+   "n": "Puhdistamo suklaaproteiini",
+   "p": true
+  },
+  {
+   "a": "100 g",
+   "n": "Maitorahka",
+   "s": "Valio maitorahka 250 g"
+  },
+  {
+   "a": "2 rkl",
+   "n": "Alluloosi",
+   "p": true
+  },
+  {
+   "a": "1/4 tl",
+   "n": "Ksantaani",
+   "p": true
+  },
+  {
+   "a": "1 hyppysellinen",
+   "n": "Suola",
+   "p": true
+  },
+  {
+   "a": "2 rkl",
+   "n": "Kookoshiutale (mix-in)",
+   "s": "Pirkka kookoshiutale 150 g"
+  }
+ ],
+ "who": [
+  "leo"
+ ],
+ "name": "Kookos-suklaaproteiinijäätelö",
+ "time": "24 h pakkasessa · 5 min valmistelu",
+ "tips": "Kookosmaito tuo Bounty-patukkamaisen maun proteiiniannokseen – kokeile lisätä tumman suklaan rouhetta MIX-IN-vaiheessa entistä suklaisempaan versioon.",
+ "added": 1789400813618,
+ "order": 35,
+ "steps": [
+  "Mittaa maito, kookosmaito, suklaaproteiini, maitorahka, alluloosi, ksantaani ja suola sekoitusastiaan.",
+  "Sekoita sauvasekoittimella täysin tasaiseksi, jotta ksantaani ei jää kokkareiksi.",
+  "Kaada seos Creami-astiaan enintään MAX-viivaan asti ja pakasta pystyasennossa tasaisella alustalla vähintään 24 h.",
+  "Aja LITE ICE CREAM. Jos massa on jauhomaista, lisää ohut kerros vettä ja aja RE-SPIN.",
+  "Tee lusikalla reikä keskelle pohjaan asti, laita kookoshiutaleet reikään ja aja MIX-IN."
+ ],
+ "freeze": true,
+ "macros": {
+  "kcal": 530,
+  "protein": 58
+ },
+ "respin": "joskus",
+ "status": "ehdotus",
+ "program": "LITE ICE CREAM"
+}
