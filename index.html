@@ -278,7 +278,7 @@
   const S = {
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
-    prefs: { leo: { hidden: [], favorites: [], kept: [] }, aiti: { hidden: [], favorites: [], kept: [] }, shared: { hidden: [], favorites: [], kept: [] } },
+    prefs: { leo: { hidden: [], favorites: [], kept: [], deleted: [] }, aiti: { hidden: [], favorites: [], kept: [], deleted: [] }, shared: { hidden: [], favorites: [], kept: [], deleted: [] } },
     db: null, dbState: "loading", open: null, review: null, seed: 0,
   };
   // Suggestions are stable for a calendar day (per person); "Arvo uudet" re-rolls them for the rest of that day.
@@ -301,7 +301,9 @@
   const byId = (id) => S.recipes.find((r) => r.id === id);
   // Visibility per profile: proposals ("ehdotus") show only after "Pidetään"; hidden ones never.
   const P = () => S.prefs[S.profile] || { hidden: [], favorites: [], kept: [] };
-  const isHidden = (r) => P().hidden.includes(r.id);
+  const DELETED = () => S.prefs.shared?.deleted || [];   // removed from the book for both
+  const isDeleted = (r) => DELETED().includes(r.id);
+  const isHidden = (r) => P().hidden.includes(r.id) || isDeleted(r);
   const KEPT = () => S.prefs.shared?.kept || [];
   const isProposal = (r) => r.status === "ehdotus" && !KEPT().includes(r.id);
   const FAVS = () => S.prefs.shared?.favorites || [];   // favourites are shared by the family
@@ -441,8 +443,10 @@
     if (q) list = list.filter((r) => (r.name + " " + (r.ing || []).map((i) => i.n).join(" ")).toLowerCase().includes(q));
     list.sort((a, b) => (pref.indexOf(a.cat) === -1) - (pref.indexOf(b.cat) === -1) || (a.order ?? 0) - (b.order ?? 0));
     const chips = [["all", "Kaikki"], ...Object.entries(CATS)].map(([k, v]) => `<button class="chip" data-cat="${k}" aria-pressed="${S.cat === k}">${v}</button>`).join("");
-    const hidden = S.recipes.filter(isHidden);
-    const hiddenHtml = hidden.length ? `<details class="hidden-list"><summary>Piilotetut (${hidden.length}) ›</summary><div class="card">${hidden.map((r) => `<div class="hidden-row"><span>${esc(r.name)}</span><button class="btn small" data-unhide="${esc(r.id)}">Palauta</button></div>`).join("")}</div></details>` : "";
+    const hidden = S.recipes.filter((r) => P().hidden.includes(r.id) && !isDeleted(r));
+    const deleted = S.recipes.filter(isDeleted);
+    const hiddenHtml = (hidden.length ? `<details class="hidden-list"><summary>Piilotetut (${hidden.length}) ›</summary><div class="card">${hidden.map((r) => `<div class="hidden-row"><span>${esc(r.name)}</span><button class="btn small" data-unhide="${esc(r.id)}">Palauta</button></div>`).join("")}</div></details>` : "")
+      + (deleted.length ? `<details class="hidden-list"><summary>Poistetut (${deleted.length}) ›</summary><div class="card">${deleted.map((r) => `<div class="hidden-row"><span>${esc(r.name)}</span><button class="btn small" data-undelete="${esc(r.id)}">Palauta</button></div>`).join("")}</div></details>` : "");
     return `
       <section>
         <div class="sec-head"><h2>Reseptit</h2><span class="eyebrow">${pool.length} kpl · 709 ml astia</span></div>
@@ -535,7 +539,7 @@
         <div class="sec-head"><h2>Arviot</h2><span class="eyebrow">${revs.length ? revs.length + " kpl" : "ei vielä"}</span></div>
         ${revs.length ? `<div class="card">${revs.map(reviewRow).join("")}</div>` : `<div class="empty">Kukaan ei ole vielä arvioinut tätä. Kun teet sen, paina <b>Tehty – arvioi</b>.</div>`}
       </section>
-      ${isProposal(r) ? "" : `<section style="margin-top:22px"><button class="btn no block" data-hide="${esc(r.id)}">✕ Ei kiinnosta – piilota tämä resepti</button></section>`}
+      ${isProposal(r) ? "" : `<section style="margin-top:22px;gap:8px"><button class="btn no block" data-hide="${esc(r.id)}">✕ Ei kiinnosta – piilota minulta</button><button class="btn ghost block" data-delete="${esc(r.id)}">Poista resepti kirjasta (molemmilta)</button></section>`}
     </div>
     <div class="actionbar"><div class="in ${isProposal(r) || r.freeze === false ? "one" : ""}">
       ${isProposal(r) ? `<div class="row-actions" style="display:grid;grid-template-columns:1fr 2fr;gap:8px"><button class="btn no" data-hide="${esc(r.id)}">✕ Ei kiinnosta</button><button class="btn primary" data-keep="${esc(r.id)}">Pidetään – lisää kirjaan</button></div>` : `
@@ -580,8 +584,8 @@
     toast(added ? `${added} riviä lisätty ostoslistalle` : "Kaikki on jo listalla");
   }
   async function savePrefs(patch, who = S.profile) {
-    const cur = S.prefs[who] || { hidden: [], favorites: [], kept: [] };
-    const next = { hidden: cur.hidden, favorites: cur.favorites, kept: cur.kept, ...patch };
+    const cur = S.prefs[who] || { hidden: [], favorites: [], kept: [], deleted: [] };
+    const next = { hidden: cur.hidden, favorites: cur.favorites, kept: cur.kept, deleted: cur.deleted || [], ...patch };
     S.prefs[who] = next; render();
     if (!S.db) return;
     const { error } = await S.db.from("prefs").upsert({ who, ...next });
@@ -602,6 +606,14 @@
     if (S.open === id) render();
     toast("Lisätty kirjaan – näkyy nyt teille molemmille", () => savePrefs({ kept: without(KEPT(), id) }, "shared"));
   }
+  function deleteRecipe(id) {
+    const r = byId(id); if (!r) return;
+    if (!confirm(`Poistetaanko "${r.name}" kirjasta? Se katoaa sekä sinulta että ${S.profile === "leo" ? "Kirsiltä" : "Leolta"}. Voit palauttaa sen Reseptit-välilehden lopusta.`)) return;
+    if (S.open === id) { S.open = null; S.review = null; }
+    savePrefs({ deleted: [...without(DELETED(), id), id], favorites: without(FAVS(), id) }, "shared");
+    toast("Resepti poistettu kirjasta", () => savePrefs({ deleted: without(DELETED(), id) }, "shared"));
+  }
+  function restoreRecipe(id) { savePrefs({ deleted: without(DELETED(), id) }, "shared"); toast("Palautettu kirjaan"); }
   function toggleFav(id) {
     const on = FAVS().includes(id);
     savePrefs({ favorites: on ? without(FAVS(), id) : [...FAVS(), id] }, "shared");
@@ -648,7 +660,7 @@
     if (table === "reviews") S.reviews = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
     if (table === "freezer") S.freezer = data.map((r) => ({ ...r, recipeId: r.recipe_id }));
     if (table === "shopping") S.shopping = data.find((r) => r.id === "main")?.items || [];
-    if (table === "prefs") for (const row of data) S.prefs[row.who] = { hidden: row.hidden || [], favorites: row.favorites || [], kept: row.kept || [] };
+    if (table === "prefs") for (const row of data) S.prefs[row.who] = { hidden: row.hidden || [], favorites: row.favorites || [], kept: row.kept || [], deleted: row.deleted || [] };
     render();
     return true;
   }
@@ -672,10 +684,12 @@
     if (tu) { const fn = toastUndo; toastUndo = null; $("#toast").classList.remove("show"); if (fn) fn(); return; }
     const tt = e.target.closest("[data-theme-toggle]");
     if (tt) { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; try { localStorage.setItem("creami.theme", theme); } catch (x) {} applyTheme(); return; }
-    const t = e.target.closest("[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
+    const t = e.target.closest("[data-delete],[data-undelete],[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
     if (!t) return;
     const d = t.dataset;
-    if (d.unfreeze) { removeFreezer(d.unfreeze); }
+    if (d.delete) { deleteRecipe(d.delete); }
+    else if (d.undelete) { restoreRecipe(d.undelete); }
+    else if (d.unfreeze) { removeFreezer(d.unfreeze); }
     else if (d.unreview) { removeReview(d.unreview); }
     else if (d.hide) { hideRecipe(d.hide); }
     else if (d.unhide) { savePrefs({ hidden: without(P().hidden, d.unhide) }); toast("Palautettu"); }
