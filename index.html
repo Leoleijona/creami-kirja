@@ -707,9 +707,12 @@
     const navH = barsHidden ? 0 : ($("nav.tabs")?.offsetHeight || 0);
     const top = (vtop + headerH) + "px", height = Math.max(220, vh - headerH - navH) + "px";
     const changed = el.style.top !== top || el.style.height !== height;
-    el.style.top = top; el.style.height = height;
     const log = $("#chatLog");
-    if (log && (changed || kbOpen)) log.scrollTop = log.scrollHeight;
+    // Keep the reader's place: only follow the end if they were already at the end.
+    const atEnd = log ? log.scrollHeight - log.scrollTop - log.clientHeight < 80 : true;
+    const keep = log ? log.scrollTop : 0;
+    el.style.top = top; el.style.height = height;
+    if (log && changed) log.scrollTop = atEnd ? log.scrollHeight : keep;
   }
   // Debounced: iOS keeps reporting while the keyboard animates, and every step we apply reads as a jolt.
   let kbSettle;
@@ -733,6 +736,10 @@
     document.body.classList.add("chat-open");
     document.documentElement.classList.add("chat-lock");
     if (!S.open) { document.body.style.overflow = "hidden"; if (window.scrollY) window.scrollTo(0, 0); }
+    // Re-rendering rebuilds the log, which would jump back to the first message — remember where we were.
+    const prev = $("#chatLog");
+    const prevTop = prev ? prev.scrollTop : 0;
+    const prevAtEnd = prev ? prev.scrollHeight - prev.scrollTop - prev.clientHeight < 80 : true;
     const bubbles = S.chat.map((m, i) => {
       if (m.role === "user") return '<div class="msg me">' + esc(m.content) + "</div>";
       if (m.role === "error") return '<div class="msg err">' + esc(m.content) + "</div>";
@@ -752,7 +759,11 @@
       + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></form></div>';
     applyChatLayout();
     const log = $("#chatLog");
-    if (log && chatCount !== S.chat.length + (S.chefBusy ? 1 : 0)) { chatCount = S.chat.length + (S.chefBusy ? 1 : 0); log.scrollTop = log.scrollHeight; }
+    if (log) {
+      const n = S.chat.length + (S.chefBusy ? 1 : 0);
+      log.scrollTop = (chatCount !== n || prevAtEnd) ? log.scrollHeight : prevTop;
+      chatCount = n;
+    }
   }
   const chefHeaders = () => ({ "content-type": "application/json", apikey: SUPABASE_KEY, authorization: "Bearer " + SUPABASE_KEY });
   async function askChef(text) {
