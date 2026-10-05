@@ -166,7 +166,7 @@
   nav.tabs .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
   nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 11px; font-weight: 600; color: var(--muted); position: relative; }
   body.kb nav.tabs { display: none; }   /* on-screen keyboard open: give the chat the whole screen */
-  body.chat-open { overflow: hidden; height: 100dvh; }   /* the chat scrolls, the page behind it does not */
+  body.chat-open { position: fixed; inset: 0; width: 100%; overflow: hidden; }   /* the chat scrolls, the page behind it does not */
   nav.tabs button svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-pressed="true"] { color: var(--accent); }
   nav.tabs .badge { position: absolute; left: calc(50% + 8px); top: 4px; background: var(--accent); color: var(--accent-ink); font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; padding: 0 4px; }
@@ -263,8 +263,7 @@
   .chef-card .mini ol li strong { font-family: var(--mono); font-weight: 500; font-size: 13px; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
   .chef-card .tipline { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .chef-card p { color: var(--muted); font-size: 14px; }
-  .chat { position: fixed; left: 0; right: 0; top: var(--chat-top, 58px); bottom: calc(60px + env(safe-area-inset-bottom)); z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
-  body.kb .chat { bottom: var(--kb, 0px); top: 0; }
+  .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
   .chat-top { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
   .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
   .chat-top .clear { margin-left: auto; color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px; min-height: 40px; }
@@ -694,16 +693,30 @@
       + "</div>";
   }
   function openChef() { S.tab = "chef"; render(); window.scrollTo(0, 0); }
-  // Keep the composer visible when the on-screen keyboard opens (it covers fixed elements otherwise).
-  const vv = window.visualViewport;
-  if (vv) {
-    const sync = () => {
-      const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      document.body.classList.toggle("kb", kb > 120 && S.tab === "chef");
-      document.documentElement.style.setProperty("--kb", kb + "px");
-    };
-    vv.addEventListener("resize", sync); vv.addEventListener("scroll", sync);
+  // iOS/Android keyboards cover fixed elements and scroll the page under them. Instead of trusting CSS,
+  // size the chat to the *visible* viewport on every change: top = where the visible area starts,
+  // height = what is left after the header and the tab bar (both gone while the keyboard is open).
+  function syncChatLayout() {
+    const el = $("#chef .chat"); if (!el) return;
+    const vv = window.visualViewport;
+    const vh = vv ? vv.height : window.innerHeight, vtop = vv ? vv.offsetTop : 0;
+    const kbOpen = window.innerHeight - vh - vtop > 120;
+    document.body.classList.toggle("kb", kbOpen);
+    const headerH = kbOpen ? 0 : ($(".top")?.offsetHeight || 0);
+    const navH = kbOpen ? 0 : ($("nav.tabs")?.offsetHeight || 0);
+    el.style.top = (vtop + headerH) + "px";
+    el.style.height = Math.max(220, vh - headerH - navH) + "px";
+    if (kbOpen) { const log = $("#chatLog"); if (log) log.scrollTop = log.scrollHeight; }
   }
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", syncChatLayout);
+    window.visualViewport.addEventListener("scroll", syncChatLayout);
+  }
+  window.addEventListener("resize", syncChatLayout);
+  window.addEventListener("orientationchange", () => setTimeout(syncChatLayout, 300));
+  // The field gets focus before the keyboard animation finishes; re-measure once it has.
+  document.addEventListener("focusin", (e) => { if (e.target.matches?.("[data-chat]")) { syncChatLayout(); setTimeout(syncChatLayout, 350); } });
+  document.addEventListener("focusout", (e) => { if (e.target.matches?.("[data-chat]")) setTimeout(syncChatLayout, 250); });
   function renderChef() {
     const c = $("#chef");
     if (S.tab !== "chef") { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; document.body.classList.remove("kb", "chat-open"); if (!S.open) document.body.style.overflow = ""; } return; }
@@ -725,7 +738,7 @@
       + '<form class="chat-form" data-chatform><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
       + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form></div>';
     // The app header stays visible above the chat, so start below it.
-    document.documentElement.style.setProperty("--chat-top", ($(".top")?.offsetHeight || 58) + "px");
+    syncChatLayout();
     const log = $("#chatLog");
     if (log && chatCount !== S.chat.length + (S.chefBusy ? 1 : 0)) { chatCount = S.chat.length + (S.chefBusy ? 1 : 0); log.scrollTop = log.scrollHeight; }
   }
