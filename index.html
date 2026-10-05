@@ -252,6 +252,18 @@
 
   /* Creami-ammattilainen (chat) – laid out like a dedicated chat app: full screen, plain assistant text, rounded composer */
   .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
+  .chef-card .t { font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .chef-card .mini { display: grid; gap: 2px; font-size: 14px; line-height: 1.4; }
+  .chef-card .mini b { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-top: 10px; }
+  /* Amount first: it stays whole and lines up, however long the ingredient name is. */
+  .chef-card .mini ul li { padding: 5px 0; border-bottom: 1px solid var(--line); }
+  .chef-card .mini ul li:last-child { border-bottom: 0; }
+  .chef-card .mini ul li b { display: inline; font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink); margin: 0 7px 0 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chef-card .mini ul li i { display: block; font-style: normal; font-size: 12px; color: var(--muted); }
+  .chef-card .mini ol { list-style: decimal; padding-left: 20px; display: grid; gap: 7px; margin-top: 4px; }
+  .chef-card .mini ol li { display: list-item; padding-left: 2px; }
+  .chef-card .mini ol li strong { font-family: var(--mono); font-weight: 500; font-size: 13px; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+  .chef-card .tipline { margin-top: 10px; font-size: 13px; color: var(--muted); }
   body.chat-open .top { display: none; }
   .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
   .chat-top { display: flex; align-items: center; gap: 10px; padding: calc(8px + env(safe-area-inset-top)) 14px 8px 16px; background: var(--bg); }
@@ -680,7 +692,7 @@
       m.kcal != null ? "<span>" + esc(m.kcal) + " kcal</span>" : "",
       r.time ? "<span>" + esc(r.time) + "</span>" : ""].join("");
     const ing = Array.isArray(r.ing) ? r.ing.filter((x) => x && x.n).map((x) =>
-      "<li><span>" + esc(x.n) + (x.s && x.s !== x.n ? '<i>' + esc(x.s) + "</i>" : x.p ? "<i>kotona aina</i>" : "") + "</span><b>" + esc(x.a || "") + "</b></li>").join("") : "";
+      "<li>" + (x.a ? "<b>" + esc(x.a) + "</b>" : "") + esc(x.n) + (x.s && x.s !== x.n ? "<i>" + esc(x.s) + "</i>" : x.p ? "<i>kotona aina</i>" : "") + "</li>").join("") : "";
     const steps = Array.isArray(r.steps) ? r.steps.map((x) => "<li>" + stepHtml(String(x)) + "</li>").join("") : "";
     return '<div class="chef-card" style="margin-top:8px"><span class="t">' + esc(r.name) + "</span>"
       + '<div class="meta">' + bits + "</div>"
