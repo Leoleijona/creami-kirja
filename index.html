@@ -165,7 +165,8 @@
   nav.tabs { position: fixed; bottom: 0; left: 0; right: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 6px 0 max(8px, env(safe-area-inset-bottom)); }
   nav.tabs .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
   nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 11px; font-weight: 600; color: var(--muted); position: relative; }
-  body.kb nav.tabs, body.typing nav.tabs { display: none; }   /* typing: the chat gets the whole screen */
+  nav.tabs { transition: transform .2s ease-out; }
+  body.kb nav.tabs, body.typing nav.tabs { transform: translateY(110%); pointer-events: none; }   /* typing: the chat gets the whole screen */
   html.chat-lock, body.chat-open { position: fixed; inset: 0; width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }   /* the chat scrolls, nothing else does */
   nav.tabs button svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-pressed="true"] { color: var(--accent); }
@@ -252,7 +253,7 @@
   /* Creami-ammattilainen (chat) – laid out like a dedicated chat app: full screen, plain assistant text, rounded composer */
   .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
   body.chat-open .top { display: none; }
-  .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
+  .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; transition: top .18s ease-out, height .18s ease-out; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
   .chat-top { display: flex; align-items: center; gap: 10px; padding: calc(8px + env(safe-area-inset-top)) 14px 8px 16px; background: var(--bg); }
   .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
   .chat-top .who-mini { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--surface-2); padding: 6px 12px; border-radius: 999px; min-height: 34px; }
@@ -267,8 +268,8 @@
   .typing i:nth-child(2) { animation-delay: .2s; }
   .typing i:nth-child(3) { animation-delay: .4s; }
   @keyframes blink { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
-  .chat-form { padding: 6px 12px 10px; background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; }
-  body:not(.kb) .chat-form { padding-bottom: calc(10px + env(safe-area-inset-bottom) / 2); }
+  .chat-form { padding: 6px 12px 10px; background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; transition: padding-bottom .2s ease-out; }
+  body:not(.kb):not(.typing) .chat-form { padding-bottom: calc(10px + env(safe-area-inset-bottom) / 2); }
   .composer { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 5px 5px 5px 16px; box-shadow: var(--shadow); }
   .composer textarea { width: 100%; min-height: 38px; height: 38px; max-height: 150px; overflow-y: auto; padding: 9px 0; border: 0; background: transparent; resize: none; font-size: 16px; line-height: 1.35; }
   .composer textarea:focus-visible { outline: none; }
@@ -700,8 +701,9 @@
     const kbOpen = window.innerHeight - vh - vtop > 120;
     document.body.classList.toggle("kb", kbOpen);
     if (!kbOpen && document.body.classList.contains("typing") && !$("[data-chat]")?.matches(":focus")) document.body.classList.remove("typing");
-    const headerH = kbOpen ? 0 : ($(".top")?.offsetHeight || 0);
-    const navH = kbOpen ? 0 : ($("nav.tabs")?.offsetHeight || 0);
+    const barsHidden = kbOpen || document.body.classList.contains("typing");
+    const headerH = barsHidden ? 0 : ($(".top")?.offsetHeight || 0);
+    const navH = barsHidden ? 0 : ($("nav.tabs")?.offsetHeight || 0);
     el.style.top = (vtop + headerH) + "px";
     el.style.height = Math.max(220, vh - headerH - navH) + "px";
     const log = $("#chatLog");
@@ -745,7 +747,8 @@
       + '<form class="chat-form" data-chatform><div class="composer"><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
       + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></form></div>';
     // The app header stays visible above the chat, so start below it.
-    syncChatLayout();
+    const chatEl = $("#chef .chat");
+    if (chatEl) { chatEl.style.transition = "none"; syncChatLayout(); requestAnimationFrame(() => { chatEl.style.transition = ""; }); } else syncChatLayout();
     const log = $("#chatLog");
     if (log && chatCount !== S.chat.length + (S.chefBusy ? 1 : 0)) { chatCount = S.chat.length + (S.chefBusy ? 1 : 0); log.scrollTop = log.scrollHeight; }
   }
