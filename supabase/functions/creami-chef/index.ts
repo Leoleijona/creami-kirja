@@ -14,6 +14,7 @@ const MAX_MSG = 2000, MAX_TURNS = 24;
 const OPENAI_KEY = Deno.env.get("OPENAI_API_KEY");
 const ANTHROPIC_KEY = Deno.env.get("ANTHROPIC_API_KEY");
 const PINNED = Deno.env.get("CHEF_MODEL");
+const EFFORT = Deno.env.get("CHEF_EFFORT") ?? "low";   // gpt-5 spends max_completion_tokens on reasoning first; keep it light
 const OPENAI_MODELS = PINNED ? [PINNED] : ["gpt-5", "gpt-4.1", "gpt-4o"];
 const ANTHROPIC_MODELS = PINNED ? [PINNED] : ["claude-sonnet-5", "claude-haiku-4-5-20251001"];
 
@@ -33,22 +34,40 @@ Kotona aina (merkitse "p": true): Puhdistamo vanilja- ja suklaaheraproteiini, al
 Kysy puuttuvat ainekset valmis määrä ehdottaen. Jos aineksista ei tulisi hyvää, sano se rehellisesti äläkä anna reseptiä.
 Kun resepti on valmis, lisää vastauksen loppuun koodilohko \`\`\`creami jossa on vain JSON: {"id","name","cat","program","who","freeze","respin","time","macros":{"protein","kcal"},"ing":[{"n","a","s","p"}],"steps":[],"tips"}.`;
 
+const textOf = (data: any) => OPENAI_KEY
+  ? String(data.choices?.[0]?.message?.content ?? "").trim()
+  : (data.content ?? []).filter((c: any) => c.type === "text").map((c: any) => c.text).join("\n").trim();
+
 async function callModel(system: string, messages: { role: string; content: string }[]) {
   const models = OPENAI_KEY ? OPENAI_MODELS : ANTHROPIC_MODELS;
   let last: { status: number; detail: string } = { status: 0, detail: "" };
   for (const model of models) {
+    const reasoning = /^(gpt-5|o[1-9])/.test(model);
     const res = OPENAI_KEY
       ? await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
           headers: { "content-type": "application/json", authorization: `Bearer ${OPENAI_KEY}` },
-          body: JSON.stringify({ model, max_completion_tokens: 1800, messages: [{ role: "system", content: system }, ...messages] }),
+          body: JSON.stringify({
+            model,
+            max_completion_tokens: reasoning ? 5000 : 1800,
+            ...(reasoning ? { reasoning_effort: EFFORT } : {}),
+            messages: [{ role: "system", content: system }, ...messages],
+          }),
         })
       : await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: { "content-type": "application/json", "x-api-key": ANTHROPIC_KEY!, "anthropic-version": "2023-06-01" },
           body: JSON.stringify({ model, max_tokens: 1800, system, messages }),
         });
-    if (res.ok) return { ok: true as const, data: await res.json(), model };
+    if (res.ok) {
+      const data = await res.json();
+      const text = textOf(data);
+      if (text) return { ok: true as const, data, text, model };
+      // A reasoning model can spend its whole budget on thinking and answer nothing; try the next model.
+      console.error("empty", model, JSON.stringify(data.usage ?? {}));
+      last = { status: 0, detail: "empty" };
+      continue;
+    }
     const detail = await res.text();
     last = { status: res.status, detail };
     console.error("upstream", model, res.status, detail.slice(0, 300));
@@ -110,10 +129,7 @@ Deno.serve(async (req) => {
   if (!out.ok) {
     return json({ error: "upstream", message: out.status === 401 ? "API-avain ei kelpaa." : out.status === 429 ? "Tekoälypalvelu on ruuhkainen tai saldo on lopussa." : "Ammattilaiseen ei juuri nyt saada yhteyttä." }, 502, origin);
   }
-  const data = out.data;
-  const text = OPENAI_KEY
-    ? String(data.choices?.[0]?.message?.content ?? "").trim()
-    : (data.content ?? []).filter((c: any) => c.type === "text").map((c: any) => c.text).join("\n").trim();
+  const data = out.data, text = out.text;
   await db.from("chef_log").insert({
     who, kind: out.model,
     in_tokens: data.usage?.input_tokens ?? data.usage?.prompt_tokens ?? 0,
