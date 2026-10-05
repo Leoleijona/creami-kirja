@@ -165,8 +165,8 @@
   nav.tabs { position: fixed; bottom: 0; left: 0; right: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 6px 0 max(8px, env(safe-area-inset-bottom)); }
   nav.tabs .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
   nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 11px; font-weight: 600; color: var(--muted); position: relative; }
-  body.kb nav.tabs { display: none; }   /* on-screen keyboard open: give the chat the whole screen */
-  body.chat-open { position: fixed; inset: 0; width: 100%; overflow: hidden; }   /* the chat scrolls, the page behind it does not */
+  body.kb nav.tabs, body.typing nav.tabs { display: none; }   /* typing: the chat gets the whole screen */
+  html.chat-lock, body.chat-open { position: fixed; inset: 0; width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }   /* the chat scrolls, nothing else does */
   nav.tabs button svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-pressed="true"] { color: var(--accent); }
   nav.tabs .badge { position: absolute; left: calc(50% + 8px); top: 4px; background: var(--accent); color: var(--accent-ink); font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; padding: 0 4px; }
@@ -253,7 +253,7 @@
   .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
   body.chat-open .top { display: none; }
   .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
-  .chat-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-top)) 16px; background: var(--bg); }
+  .chat-top { display: flex; align-items: center; gap: 10px; padding: calc(8px + env(safe-area-inset-top)) 14px 8px 16px; background: var(--bg); }
   .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
   .chat-top .who-mini { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--surface-2); padding: 6px 12px; border-radius: 999px; min-height: 34px; }
   .chat-top .clear { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); color: var(--ink); display: grid; place-items: center; font-size: 22px; line-height: 1; padding-bottom: 2px; }
@@ -267,7 +267,8 @@
   .typing i:nth-child(2) { animation-delay: .2s; }
   .typing i:nth-child(3) { animation-delay: .4s; }
   @keyframes blink { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
-  .chat-form { padding: 6px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; }
+  .chat-form { padding: 6px 12px 10px; background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; }
+  body:not(.kb) .chat-form { padding-bottom: calc(10px + env(safe-area-inset-bottom) / 2); }
   .composer { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 5px 5px 5px 16px; box-shadow: var(--shadow); }
   .composer textarea { width: 100%; min-height: 38px; height: 38px; max-height: 150px; overflow-y: auto; padding: 9px 0; border: 0; background: transparent; resize: none; font-size: 16px; line-height: 1.35; }
   .composer textarea:focus-visible { outline: none; }
@@ -698,11 +699,13 @@
     const vh = vv ? vv.height : window.innerHeight, vtop = vv ? vv.offsetTop : 0;
     const kbOpen = window.innerHeight - vh - vtop > 120;
     document.body.classList.toggle("kb", kbOpen);
+    if (!kbOpen && document.body.classList.contains("typing") && !$("[data-chat]")?.matches(":focus")) document.body.classList.remove("typing");
     const headerH = kbOpen ? 0 : ($(".top")?.offsetHeight || 0);
     const navH = kbOpen ? 0 : ($("nav.tabs")?.offsetHeight || 0);
     el.style.top = (vtop + headerH) + "px";
     el.style.height = Math.max(220, vh - headerH - navH) + "px";
-    if (kbOpen) { const log = $("#chatLog"); if (log) log.scrollTop = log.scrollHeight; }
+    const log = $("#chatLog");
+    if (log && (kbOpen || log.scrollHeight - log.scrollTop - log.clientHeight < 80)) log.scrollTop = log.scrollHeight;
   }
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", syncChatLayout);
@@ -711,12 +714,18 @@
   window.addEventListener("resize", syncChatLayout);
   window.addEventListener("orientationchange", () => setTimeout(syncChatLayout, 300));
   // The field gets focus before the keyboard animation finishes; re-measure once it has.
-  document.addEventListener("focusin", (e) => { if (e.target.matches?.("[data-chat]")) { syncChatLayout(); setTimeout(syncChatLayout, 350); } });
-  document.addEventListener("focusout", (e) => { if (e.target.matches?.("[data-chat]")) setTimeout(syncChatLayout, 250); });
+  const syncBurst = () => [0, 60, 140, 260, 400, 650, 900].forEach((ms) => setTimeout(syncChatLayout, ms));
+  // Tapping the field is the signal: don't wait for focus/viewport events, they are unreliable on iOS.
+  document.addEventListener("pointerdown", (e) => { if (e.target.closest?.("[data-chat]")) { document.body.classList.add("typing"); syncBurst(); } });
+  document.addEventListener("focusin", (e) => { if (e.target.matches?.("[data-chat]")) { document.body.classList.add("typing"); syncBurst(); } });
+  document.addEventListener("focusout", (e) => { if (e.target.matches?.("[data-chat]")) { document.body.classList.remove("typing"); syncBurst(); } });
+  // Safari still nudges the page itself; put it straight back.
+  window.addEventListener("scroll", () => { if (S.tab === "chef" && window.scrollY) window.scrollTo(0, 0); }, { passive: true });
   function renderChef() {
     const c = $("#chef");
-    if (S.tab !== "chef") { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; document.body.classList.remove("kb", "chat-open"); if (!S.open) document.body.style.overflow = ""; } return; }
+    if (S.tab !== "chef") { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; document.body.classList.remove("kb", "chat-open", "typing"); document.documentElement.classList.remove("chat-lock"); if (!S.open) document.body.style.overflow = ""; } return; }
     document.body.classList.add("chat-open");
+    document.documentElement.classList.add("chat-lock");
     if (!S.open) { document.body.style.overflow = "hidden"; if (window.scrollY) window.scrollTo(0, 0); }
     const bubbles = S.chat.map((m, i) => {
       if (m.role === "user") return '<div class="msg me">' + esc(m.content) + "</div>";
