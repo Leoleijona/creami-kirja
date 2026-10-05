@@ -166,6 +166,7 @@
   nav.tabs .in { max-width: 540px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
   nav.tabs button { display: grid; justify-items: center; gap: 2px; padding: 8px 0; font-size: 11px; font-weight: 600; color: var(--muted); position: relative; }
   body.kb nav.tabs { display: none; }   /* on-screen keyboard open: give the chat the whole screen */
+  body.chat-open { overflow: hidden; height: 100dvh; }   /* the chat scrolls, the page behind it does not */
   nav.tabs button svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   nav.tabs button[aria-pressed="true"] { color: var(--accent); }
   nav.tabs .badge { position: absolute; left: calc(50% + 8px); top: 4px; background: var(--accent); color: var(--accent-ink); font-size: 10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; padding: 0 4px; }
@@ -675,7 +676,9 @@
   }
   function renderChef() {
     const c = $("#chef");
-    if (S.tab !== "chef") { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; document.body.classList.remove("kb"); } return; }
+    if (S.tab !== "chef") { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; document.body.classList.remove("kb", "chat-open"); if (!S.open) document.body.style.overflow = ""; } return; }
+    document.body.classList.add("chat-open");
+    if (!S.open) { document.body.style.overflow = "hidden"; if (window.scrollY) window.scrollTo(0, 0); }
     const bubbles = S.chat.map((m, i) => {
       if (m.role === "user") return '<div class="msg me">' + esc(m.content) + "</div>";
       if (m.role === "error") return '<div class="msg err">' + esc(m.content) + "</div>";
