@@ -247,6 +247,25 @@
   .who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .who-pick .btn { min-height: 64px; font-size: 20px; }
 
+  /* Creami-ammattilainen (chat) */
+  .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
+  .chef-card .t { font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .chef-card p { color: var(--muted); font-size: 14px; }
+  .chat { position: fixed; inset: 0; z-index: 12; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
+  .chat-top { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .chat-top .back { color: var(--accent); font-weight: 600; padding: 8px 10px 8px 0; min-height: 44px; }
+  .chat-log { overflow-y: auto; padding: 14px 18px; display: grid; gap: 12px; align-content: start; max-width: 540px; width: 100%; margin: 0 auto; }
+  .msg { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 15px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .msg.me { justify-self: end; background: var(--accent); color: var(--accent-ink); border-bottom-right-radius: 5px; }
+  .msg.bot { justify-self: start; background: var(--surface); box-shadow: var(--shadow); border-bottom-left-radius: 5px; }
+  .msg.err { justify-self: start; background: var(--warn-soft); color: var(--ink); }
+  .chat-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 10px 18px max(10px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--surface); max-width: 540px; width: 100%; margin: 0 auto; }
+  .chat-form textarea { width: 100%; min-height: 46px; overflow-y: auto; max-height: 120px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); resize: none; }
+  .starters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .starters button { padding: 8px 12px; border-radius: 999px; background: var(--surface-2); font-size: 13px; font-weight: 600; color: var(--ink); text-align: left; }
+  .dots::after { content: "…"; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -287,6 +306,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="overlay"></div>
 <div id="who"></div>
+<div id="chef"></div>
 
 <script>
 (() => {
@@ -305,7 +325,7 @@
     profile: "leo", tab: "today", cat: "all", q: "",
     recipes: [], reviews: [], freezer: [], shopping: [],
     prefs: { leo: EMPTY_PREFS(), aiti: EMPTY_PREFS(), shared: EMPTY_PREFS() },
-    db: null, dbState: "loading", open: null, review: null, seed: 0, rerolled: false, busy: false, firstRun: false, stepsDone: new Set(),
+    db: null, dbState: "loading", open: null, review: null, seed: 0, rerolled: false, busy: false, chef: false, chat: [], chefBusy: false, firstRun: false, stepsDone: new Set(),
   };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
   // Suggestions are stable for a calendar day (per person); "Arvo uudet" re-rolls them for the rest of that day.
@@ -362,7 +382,7 @@
 
   // ---------- Layers (recipe sheet, review modal) tied to browser history so the phone's back button closes them ----------
   const layers = [];
-  const applyPop = (name) => { if (name === "review") S.review = null; else if (name === "sheet") { S.open = null; S.review = null; S.stepsDone = new Set(); } };
+  const applyPop = (name) => { if (name === "review") S.review = null; else if (name === "chef") S.chef = false; else if (name === "sheet") { S.open = null; S.review = null; S.stepsDone = new Set(); } };
   const pushLayer = (name) => { layers.push(name); try { history.pushState({ creami: layers.length }, ""); } catch (e) {} };
   window.addEventListener("popstate", (e) => { const depth = (e.state && Number(e.state.creami)) || 0; while (layers.length > depth) applyPop(layers.pop()); render(); });
   try { if (history.state && history.state.creami) history.replaceState(null, ""); } catch (e) {}
@@ -380,7 +400,7 @@
   }
   function openReview(review) { if (S.review) return; S.review = review; pushLayer("review"); render(); }
   function closeReview() { if (layers[layers.length - 1] === "review") closeTop(); else { S.review = null; render(); } }
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && (S.review || S.open)) closeTop(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && (S.review || S.open || S.chef)) closeTop(); });
 
   // Keep the screen on while a recipe is open (hands are busy in the kitchen).
   let wake = null, wakeBusy = false;
@@ -504,6 +524,10 @@
       <section class="greeting"><h1>${hello}, ${NAMES[S.profile]}.</h1><p>${S.profile === "aiti" ? "Smoothie bowleja, sorbetteja ja frappéa – ja arvioi lopuksi, niin kirja oppii mistä tykkäät." : "Proteiinijäätelöä, jolla on oikeasti rakenne. Arvioi jokainen kokeilu."}</p></section>
       ${offlineBanner()}
       ${note ? "" : topCard}
+      <section><button class="chef-card" data-chef style="text-align:left">
+        <span class="t">👨‍🍳 Kysy Creami-ammattilaiselta</span>
+        <p>Kerro mitä jääkaapissa on – vaikka "vaniljarahkaa ja mustikoita" – niin saat reseptin, jonka voi tallentaa kirjaan.</p>
+      </button></section>
       <section>
         <div class="sec-head"><h2>Pakkasessa nyt</h2></div>
         ${note || frzHtml}
@@ -586,8 +610,8 @@
   function render() {
     // Live updates re-render everything; keep the reader's place and any half-typed text.
     const y = window.scrollY, sheetY = $("#overlay .sheet")?.scrollTop || 0;
-    const ae = document.activeElement, focusSel = ae && ae.matches?.("[data-search],[data-comment],[data-addtext]") ? (ae.hasAttribute("data-search") ? "[data-search]" : ae.hasAttribute("data-comment") ? "[data-comment]" : "[data-addtext]") : null;
-    const caret = focusSel ? ae.selectionStart : 0, draft = focusSel === "[data-addtext]" ? ae.value : null;
+    const ae = document.activeElement, focusSel = ae && ae.matches?.("[data-search],[data-comment],[data-addtext],[data-chat]") ? (ae.hasAttribute("data-search") ? "[data-search]" : ae.hasAttribute("data-comment") ? "[data-comment]" : ae.hasAttribute("data-chat") ? "[data-chat]" : "[data-addtext]") : null;
+    const caret = focusSel ? ae.selectionStart : 0, draft = focusSel === "[data-addtext]" || focusSel === "[data-chat]" ? ae.value : null;
     try {
       $("#main").innerHTML = S.tab === "today" ? renderToday() : S.tab === "recipes" ? renderRecipes() : S.tab === "favs" ? renderFavs() : renderShop();
     } catch (e) { console.error(e); $("#main").innerHTML = `<div class="empty">Näkymää ei voitu piirtää. Avaa sivu uudelleen.</div>`; }
@@ -597,6 +621,7 @@
     setBadge("todayTab", S.dbState === "loading" ? 0 : proposals().length);
     try { renderOverlay(); } catch (e) { console.error(e); S.open = null; S.review = null; $("#overlay").innerHTML = ""; document.body.style.overflow = ""; }
     renderWho();
+    try { renderChef(); } catch (e) { console.error(e); }
     wakeSync();
     window.scrollTo(0, y);
     const sh = $("#overlay .sheet"); if (sh) sh.scrollTop = sheetY;
@@ -611,6 +636,73 @@
       <div><span class="eyebrow">Tervetuloa</span><h2 id="whoTitle">Kuka käyttää tätä puhelinta?</h2><p style="color:var(--muted);margin-top:6px">Valinta muistetaan. Voit vaihtaa milloin vain yläpalkista.</p></div>
       <div class="who-pick"><button class="btn primary" data-pick-who="leo">Leo</button><button class="btn primary" data-pick-who="aiti">Kirsi</button></div>
     </div></div>`;
+  }
+
+  // ---------- Creami-ammattilainen (chat with a recipe expert; the API key lives in the Supabase edge function) ----------
+  const CHEF_URL = "https://nkhfqgyxronrfsdbeddn.supabase.co/functions/v1/creami-chef";
+  const STARTERS = ["Jääkaapissa on vaniljarahkaa ja mustikoita", "Tee minulle jotain suklaista", "Mitä teen, kun jäätelöstä tulee murumaista?"];
+  let chatCount = -1;
+  // The chef returns a recipe inside a fenced "creami" block; show the talk, offer the recipe as a card.
+  const CREAMI_RE = /```creami\s*([\s\S]*?)```/;
+  function splitReply(text) {
+    const m = CREAMI_RE.exec(text || "");
+    if (!m) return { talk: text || "", recipe: null };
+    let recipe = null;
+    try { const r = JSON.parse(m[1].trim()); if (r && r.name && Array.isArray(r.ing) && Array.isArray(r.steps)) recipe = r; } catch (e) {}
+    return { talk: (text.slice(0, m.index) + text.slice(m.index + m[0].length)).trim(), recipe };
+  }
+  function openChef() { if (S.chef) return; S.chef = true; pushLayer("chef"); render(); const t = $("#chef [data-chat]"); if (t) t.focus({ preventScroll: true }); }
+  function renderChef() {
+    const c = $("#chef");
+    if (!S.chef) { if (c.innerHTML) { c.innerHTML = ""; chatCount = -1; if (!S.open) document.body.style.overflow = ""; } return; }
+    document.body.style.overflow = "hidden";
+    const bubbles = S.chat.map((m, i) => {
+      if (m.role === "user") return '<div class="msg me">' + esc(m.content) + "</div>";
+      if (m.role === "error") return '<div class="msg err">' + esc(m.content) + "</div>";
+      const parts = splitReply(m.content);
+      const saved = m.savedId ? '<span class="pill ok">Lisätty kirjaan ehdotuksena</span>' : "";
+      const card = parts.recipe ? '<div class="chef-card" style="margin-top:8px"><span class="t">' + esc(parts.recipe.name) + "</span>"
+        + '<div class="meta"><span class="prog">' + esc(parts.recipe.program || "") + "</span>"
+        + (parts.recipe.macros && parts.recipe.macros.protein != null ? "<span>" + esc(parts.recipe.macros.protein) + " g prot.</span>" : "") + "</div>"
+        + (saved || '<button class="btn small primary" data-save-chef="' + i + '" ' + (S.chefBusy ? "disabled" : "") + ">Lisää kirjaan ehdotuksena</button>") + "</div>" : "";
+      return '<div class="msg bot">' + esc(parts.talk) + card + "</div>";
+    }).join("");
+    const empty = '<div class="msg bot">Moi ' + esc(NAMES[S.profile]) + '! Kerro mitä kotoa löytyy, niin keksin siitä Creami-reseptin. Voit myös kysyä neuvoa rakenteeseen tai makeuteen.</div>'
+      + '<div class="starters">' + STARTERS.map((t) => '<button data-starter="' + esc(t) + '">' + esc(t) + "</button>").join("") + "</div>";
+    c.innerHTML = '<div class="chat" role="dialog" aria-modal="true" aria-label="Creami-ammattilainen">'
+      + '<div class="chat-top"><button class="back" data-close>‹ Takaisin</button><span class="ttl">👨‍🍳 Creami-ammattilainen</span></div>'
+      + '<div class="chat-log" id="chatLog">' + (S.chat.length ? bubbles : empty) + (S.chefBusy ? '<div class="msg bot dots">Miettii</div>' : "") + "</div>"
+      + '<form class="chat-form" data-chatform><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
+      + '<button class="btn primary" type="submit" ' + (S.chefBusy ? "disabled" : "") + ">Lähetä</button></form></div>";
+    const log = $("#chatLog");
+    if (log && chatCount !== S.chat.length + (S.chefBusy ? 1 : 0)) { chatCount = S.chat.length + (S.chefBusy ? 1 : 0); log.scrollTop = log.scrollHeight; }
+  }
+  const chefHeaders = () => ({ "content-type": "application/json", apikey: SUPABASE_KEY, authorization: "Bearer " + SUPABASE_KEY });
+  async function askChef(text) {
+    if (S.chefBusy) return;
+    S.chat = [...S.chat.filter((m) => m.role !== "error"), { role: "user", content: text }];
+    S.chefBusy = true; render();
+    try {
+      const res = await fetch(CHEF_URL, {
+        method: "POST", headers: chefHeaders(),
+        body: JSON.stringify({ who: S.profile, messages: S.chat.filter((m) => m.role === "user" || m.role === "assistant").map((m) => ({ role: m.role, content: m.content })) }),
+      });
+      const data = await res.json().catch(() => ({}));
+      S.chat.push(res.ok && data.text ? { role: "assistant", content: data.text } : { role: "error", content: data.message || "Ammattilaiseen ei saatu yhteyttä. Yritä hetken päästä uudelleen." });
+    } catch (e) { S.chat.push({ role: "error", content: "Ei verkkoyhteyttä – ammattilainen tarvitsee netin." }); }
+    S.chefBusy = false; render();
+  }
+  async function saveChefRecipe(i) {
+    const m = S.chat[i]; if (!m || S.chefBusy) return;
+    const parts = splitReply(m.content); if (!parts.recipe) return;
+    S.chefBusy = true; render();
+    try {
+      const res = await fetch(CHEF_URL, { method: "POST", headers: chefHeaders(), body: JSON.stringify({ action: "save", who: S.profile, recipe: parts.recipe }) });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) { m.savedId = data.id; await load("recipes"); toast("Lisätty kirjaan – löydät sen Tänään-välilehden ehdotuksista"); }
+      else toast(data.message || "Tallennus epäonnistui");
+    } catch (e) { toast("Tallennus epäonnistui"); }
+    S.chefBusy = false; render();
   }
 
   // Bold the Creami program names inside step text. (No \b or lookbehind: \b fails next to É/Ä/Ö and lookbehind is missing on older iPhones.)
@@ -878,10 +970,13 @@
     if (tu) { const fn = toastUndo; toastUndo = null; $("#toast").classList.remove("show"); if (fn) fn(); return; }
     const tt = e.target.closest("[data-theme-toggle]");
     if (tt) { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; store.set("creami.theme", theme); applyTheme(); return; }
-    const t = e.target.closest("[data-pick-who],[data-step],[data-share],[data-share-shop],[data-delete],[data-undelete],[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
+    const t = e.target.closest("[data-chef],[data-starter],[data-save-chef],[data-pick-who],[data-step],[data-share],[data-share-shop],[data-delete],[data-undelete],[data-unfreeze],[data-unreview],[data-profile],[data-tab],[data-open],[data-close],[data-reroll],[data-cat],[data-freeze],[data-rate],[data-shop],[data-done],[data-star],[data-texture],[data-sweet],[data-review-cancel],[data-review-save],[data-remove],[data-clear-done],[data-hide],[data-unhide],[data-keep],[data-fav]");
     if (!t) return;
     const d = t.dataset;
-    if (d.pickWho) { if (!PROFILES.includes(d.pickWho)) return; S.profile = d.pickWho; store.set("creami.profile", S.profile); S.firstRun = false; loadSeed(); render(); }
+if ("chef" in d) { openChef(); }
+    else if (d.starter) { askChef(d.starter); }
+    else if (d.saveChef) { saveChefRecipe(+d.saveChef); }
+    else if (d.pickWho) { if (!PROFILES.includes(d.pickWho)) return; S.profile = d.pickWho; store.set("creami.profile", S.profile); S.firstRun = false; loadSeed(); render(); }
     else if (d.step != null) { const i = +d.step; if (S.stepsDone.has(i)) S.stepsDone.delete(i); else S.stepsDone.add(i); t.classList.toggle("done", S.stepsDone.has(i)); }
     else if (d.share) { const r = byId(d.share); if (r) shareRecipe(r); }
     else if ("shareShop" in d) { const open = S.shopping.filter((i) => !i.done); shareText("Ostoslista", ["Ostoslista (Creami):", ...open.map((i) => `☐ ${i.text}${i.sub ? " (" + i.sub + ")" : ""}`)].join("\n")); }
@@ -919,7 +1014,13 @@
     if (e.target.matches("[data-search]")) { S.q = e.target.value; render(); }
     if (e.target.matches("[data-comment]") && S.review) S.review.comment = e.target.value;
   });
+  document.addEventListener("keydown", (e) => {
+    // Enter sends, Shift+Enter makes a new line
+    if (e.target.matches("[data-chat]") && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); e.target.closest("form").requestSubmit(); }
+  });
   document.addEventListener("submit", (e) => {
+    const cf = e.target.closest("[data-chatform]");
+    if (cf) { e.preventDefault(); const inp = $("[data-chat]", cf), text = inp.value.trim().slice(0, 1000); if (!text) return; inp.value = ""; askChef(text); return; }
     const f = e.target.closest("[data-addform]"); if (!f) return;
     e.preventDefault();
     const inp = $("[data-addtext]", f), text = inp.value.trim().slice(0, 120); if (!text) return;
