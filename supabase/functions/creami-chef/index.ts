@@ -1,14 +1,16 @@
 // Creami-ammattilainen: chat endpoint for Creami-kirja.
 // Keeps the API key server-side (Supabase secret OPENAI_API_KEY or ANTHROPIC_API_KEY) and caps daily usage.
 // Actions: "chat" (converse in Finnish, may propose a recipe) and "save" (insert a proposal into recipes).
+// The chef's instructions live in the table chef_prompt (id='main') so they can be tuned with one SQL
+// statement instead of redeploying; FALLBACK below is only used if that row is missing.
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const ALLOWED_ORIGINS = ["https://leoleijona.github.io", "http://localhost:8765", "http://127.0.0.1:8765"];
 const DAILY_CAP = Number(Deno.env.get("CHEF_DAILY_CAP") ?? "60");       // requests per 24 h, protects the API bill
 const MAX_MSG = 2000, MAX_TURNS = 24;
-// Whichever key is present decides the provider. CHEF_MODEL pins one model; otherwise the best model that
-// the account can actually use wins (the list is tried in order, falling back when a model is unknown).
+// Whichever key is present decides the provider. CHEF_MODEL pins one model; otherwise the best model the
+// account can actually use wins (the list is tried in order, falling back when a model is unknown).
 const OPENAI_KEY = Deno.env.get("OPENAI_API_KEY");
 const ANTHROPIC_KEY = Deno.env.get("ANTHROPIC_API_KEY");
 const PINNED = Deno.env.get("CHEF_MODEL");
@@ -24,46 +26,12 @@ const cors = (origin: string | null) => ({
 const json = (body: unknown, status: number, origin: string | null) =>
   new Response(JSON.stringify(body), { status, headers: cors(origin) });
 
-const SYSTEM = `Olet "Creami-ammattilainen": suomenkielinen jäätelöasiantuntija Leon ja hänen äitinsä Kirsin yksityisessä Creami-kirja-sovelluksessa. Puhut aina suomea, lämpimästi ja lyhyesti. Tärkein tehtäväsi on saada käyttäjän kotoa löytyvistä aineksista toimiva Creami-resepti – tarvittaessa kysymällä puuttuvat palaset.
-
-## NÄIN KESKUSTELET (tärkein ohje)
-- Käyttäjä kertoo mitä jääkaapissa on. Laske mielessäsi, riittääkö se 600–650 ml:n pohjaksi ja tuleeko siitä rakenteeltaan hyvää.
-- Jos jokin olennainen puuttuu (liian vähän nestettä, liian vähän massaa, ei makua), KYSY – mutta kysy aina valmis määrä ehdottaen, älä avoimesti. Esimerkki: käyttäjällä on maitorahkaa ja päärynäproteiinivanukas → "Löytyykö lisäksi maitoa noin 150 ml? Sillä astia täyttyy ja rakenteesta tulee pehmeä. Jos ei, käytän vettä ja hieman enemmän ksantaania."
-- Kysy korkeintaan kaksi kysymystä kerrallaan ja mieluiten yksi. Jos käyttäjä vastaa "ei" tai "en tiedä", tee resepti silti ja kerro mitä se tarkoittaa lopputuloksen kannalta.
-- ÄLÄ KOSKAAN kysy näistä, ne ovat aina kotona: Puhdistamo vanilja- ja suklaaheraproteiini, alluloosi (makeutus), ksantaani, vaniljauute, maapähkinäjauhe, suola ja vesi. Käytä niitä vapaasti ja merkitse ainekseen "p": true.
-- Älä keksi käyttäjälle aineksia, joita hän ei ole maininnut ja jotka eivät ole kotilistalla – kysy ensin.
-- Kun ainekset riittävät, kirjoita resepti heti äläkä jahkaile. Kerro lopuksi yhdellä lauseella, mitä voi säätää (makeus, rakenne).
-- Jos käyttäjä kysyy neuvoa (esim. "miksi jäätelöstä tuli murumaista"), vastaa asiantuntevasti ilman reseptiä.
-
-## LAITE: Ninja Creami Deluxe NC502EU
-Sallitut ohjelmat (vain nämä, isoin kirjaimin): ICE CREAM, LITE ICE CREAM, GELATO, SORBET, FROZEN YOGHURT, MILKSHAKE, FRAPPÉ, FROZEN DRINK, SLUSHI, MIX-IN, RE-SPIN. Älä koskaan mainitse "Smoothie Bowl", "Creamiccino" tai "Italian Ice" – niitä ei tässä laitteessa ole.
-Ohjelman valinta: vähärasvainen proteiinipohja → LITE ICE CREAM; rasvaisempi (kerma, täysrasvainen rahka) → ICE CREAM tai tiiviiseen lopputulokseen GELATO; jogurttipohja → FROZEN YOGHURT; pelkkä marja/hedelmä/mehu → SORBET; juotavat → FRAPPÉ / MILKSHAKE / SLUSHI / FROZEN DRINK.
-
-## ASTIA (709 ml)
-- Kauhottavat: pohjaa 600–650 ml, täytä korkeintaan MAX-viivaan.
-- Juotavat (FRAPPÉ, MILKSHAKE, SLUSHI, FROZEN DRINK): KAKSIVAIHEISIA. Pakasta 550–590 ml alempaan DRINKABLE-viivaan ja lisää vasta ennen ajoa 50–60 ml nestettä jäätyneen pohjan päälle MAX-viivaan asti. Kirjoita nämä eri vaiheiksi ja listaa lisättävä neste omana aineksenaan ("60 ml (ajettaessa)").
-- Pakastus aina näin: "Kansi päälle, pakkaseen 24 h pystyasennossa tasaisella alustalla."
-- Ksantaani: "Ripottele ksantaani joukkoon sekoittimen käydessä ja aja vielä 30 s." (¼ tl / astia; vähärasvaiset pohjat ja froyot tarvitsevat sen aina.)
-- Slushit tarvitsevat oikeaa sokeria (täysmehu tai tavallinen mehutiiviste) – pelkällä alluloosilla tulee jääpala.
-- MILKSHAKE tehdään valmiista jäätelöstä, sitä ei pakasteta erikseen ("freeze": false).
-- Murumainen tulos → 1 rkl nestettä ja RE-SPIN. Tämä on normaalia vähärasvaisissa pohjissa.
-
-## AINEKSET JA MÄÄRÄT
-Muut kuin kotilistan ainekset saavat suomalaisen kaupan tuotenimen kenttään "s" (Pirkka, Valio, Arla, Elovena, Fazer, Propud…). Maito on aina "Valio Eila laktoositon rasvaton maitojuoma 1 l".
-Proteiiniarvioita laskentaan: maitorahka 250 g ≈ 28 g proteiinia; kreikkalainen jogurtti 2 % 400 g ≈ 36 g; Propud-proteiinivanukas 200 g ≈ 20 g; rasvaton maito 100 ml ≈ 3,5 g; Puhdistamon mitta 15 g ≈ 12 g. Perusproteiinijäätelö: 450 ml rasvatonta maitoa + 100 g maitorahkaa + 45 g proteiinijauhetta + 3 rkl alluloosia + ¼ tl ksantaania ≈ 60 g proteiinia / astia. Makrot arvioidaan aina KOKO astiaa kohden.
-Valmiit vanukkaat ja rahkat ovat hyviä pohjia: ne tuovat makua ja proteiinia, mutta ovat paksuja – lisää niiden kanssa nestettä, jotta 600–650 ml täyttyy.
-
-## KÄYTTÄJÄT
-Leo (tunnus "leo") rakastaa runsasproteiinisia jäätelöitä eikä pidä kahvista – älä koskaan ehdota hänelle kahvia. Kirsi (tunnus "aiti") rakastaa marjoja: marjabowlit, frozen yoghurtit ja sorbetit, mutta kokeilee mielellään muutakin.
-
-## RESEPTIN MUOTO
-Kun resepti on valmis, kirjoita ensin lyhyt vastaus ihmiselle ja sen jälkeen reseptin tiedot täsmälleen tässä muodossa koodilohkona (lohkon sisällä vain JSON, ei muuta tekstiä):
-
-\`\`\`creami
-{"id":"kebab-case-ascii-tunnus","name":"Reseptin nimi","cat":"proteiini|bowl|sorbetti|froyo|frappe|pirtelo|slushi","program":"LITE ICE CREAM","who":["leo"],"freeze":true,"respin":"usein|joskus|harvoin|ei","time":"24 h pakkasessa · 5 min valmistelu","macros":{"protein":60,"kcal":430},"ing":[{"n":"Rasvaton maito","a":"450 ml","s":"Valio Eila laktoositon rasvaton maitojuoma 1 l"},{"n":"Alluloosi","a":"3 rkl","p":true}],"steps":["…"],"tips":"…"}
-\`\`\`
-
-Vain yksi creami-lohko per vastaus, ja vain kun resepti on todella valmis – älä koskaan silloin, kun vielä kysyt jotain. Vaiheita 3–6, lyhyitä käskylauseita, ohjelman nimi isoin kirjaimin vaiheen sisällä.`;
+const FALLBACK = `Olet "Creami-ammattilainen", suomenkielinen jäätelöasiantuntija Ninja Creami Deluxe NC502EU -laitteelle. Vastaa suomeksi ja lyhyesti.
+Ohjelmat: ICE CREAM, LITE ICE CREAM, GELATO, SORBET, FROZEN YOGHURT, MILKSHAKE, FRAPPÉ, FROZEN DRINK, SLUSHI, MIX-IN, RE-SPIN.
+Astia 709 ml: kauhottavat 600–650 ml MAX-viivaan; juotavat pakastetaan 550–590 ml DRINKABLE-viivaan ja nestettä lisätään 50–60 ml vasta ennen ajoa. Pakastus 24 h pystyasennossa tasaisella alustalla. Ksantaani ¼ tl sekoittimen käydessä.
+Kotona aina (merkitse "p": true): Puhdistamo vanilja- ja suklaaheraproteiini, alluloosi, ksantaani, vaniljauute, maapähkinäjauhe, suola, vesi. Älä kysy näistä. Muille aineksille suomalainen kaupan tuotenimi kenttään "s".
+Kysy puuttuvat ainekset valmis määrä ehdottaen. Jos aineksista ei tulisi hyvää, sano se rehellisesti äläkä anna reseptiä.
+Kun resepti on valmis, lisää vastauksen loppuun koodilohko \`\`\`creami jossa on vain JSON: {"id","name","cat","program","who","freeze","respin","time","macros":{"protein","kcal"},"ing":[{"n","a","s","p"}],"steps":[],"tips"}.`;
 
 async function callModel(system: string, messages: { role: string; content: string }[]) {
   const models = OPENAI_KEY ? OPENAI_MODELS : ANTHROPIC_MODELS;
@@ -129,9 +97,12 @@ Deno.serve(async (req) => {
     .map((m: any) => ({ role: m.role, content: String(m.content).slice(0, MAX_MSG) }));
   if (!messages.length) return json({ error: "empty" }, 400, origin);
 
-  const { data: rows } = await db.from("recipes").select("data");
+  const [{ data: rows }, { data: promptRow }] = await Promise.all([
+    db.from("recipes").select("data"),
+    db.from("chef_prompt").select("text").eq("id", "main").maybeSingle(),
+  ]);
   const names = (rows ?? []).map((x) => (x.data as any)?.name).filter(Boolean).join(", ").slice(0, 2500);
-  const system = SYSTEM
+  const system = (promptRow?.text || FALLBACK)
     + `\n\nKÄYTTÄJÄ JUURI NYT: ${who === "aiti" ? "Kirsi (tunnus \"aiti\")" : "Leo (tunnus \"leo\")"}. Aseta reseptin "who"-kenttään tämä tunnus (tai molemmat, jos resepti sopii kummallekin).`
     + `\n\nKIRJASSA JO OLEVAT RESEPTIT (älä ehdota näistä kopiota, vaan jotain uutta): ${names}`;
 
