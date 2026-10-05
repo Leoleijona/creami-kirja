@@ -249,37 +249,33 @@
   .who-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .who-pick .btn { min-height: 64px; font-size: 20px; }
 
-  /* Creami-ammattilainen (chat) */
+  /* Creami-ammattilainen (chat) – laid out like a dedicated chat app: full screen, plain assistant text, rounded composer */
   .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
-  .chef-card .t { font-family: var(--display); font-weight: 700; font-size: 17px; }
-  .chef-card .mini { display: grid; gap: 4px; font-size: 14px; }
-  .chef-card .mini b { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-top: 6px; }
-  .chef-card .mini ul li { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--line); }
-  .chef-card .mini ul li:last-child { border-bottom: 0; }
-  .chef-card .mini ul li i { display: block; font-style: normal; font-size: 12px; color: var(--muted); }
-  .chef-card .mini ul li b { font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink); white-space: nowrap; margin: 0; }
-  .chef-card .mini ol { list-style: decimal; padding-left: 20px; display: grid; gap: 6px; margin-top: 2px; }
-  .chef-card .mini ol li { display: list-item; }
-  .chef-card .mini ol li strong { font-family: var(--mono); font-weight: 500; font-size: 13px; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
-  .chef-card .tipline { margin-top: 8px; font-size: 13px; color: var(--muted); }
-  .chef-card p { color: var(--muted); font-size: 14px; }
+  body.chat-open .top { display: none; }
   .chat { position: fixed; left: 0; right: 0; top: 0; height: 100dvh; z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
-  .chat-top { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .chat-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-top)) 16px; background: var(--bg); }
   .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
-  .chat-top .clear { margin-left: auto; color: var(--muted); font-size: 13px; font-weight: 600; padding: 8px; min-height: 40px; }
-  .chat-log { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 14px 18px 18px; display: grid; gap: 12px; align-content: start; max-width: 540px; width: 100%; margin: 0 auto; }
-  .msg { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 15px; white-space: pre-wrap; overflow-wrap: anywhere; }
-  .msg.me { justify-self: end; background: var(--accent); color: var(--accent-ink); border-bottom-right-radius: 5px; }
-  .msg.bot { justify-self: start; background: var(--surface); box-shadow: var(--shadow); border-bottom-left-radius: 5px; }
-  .msg.err { justify-self: start; background: var(--warn-soft); color: var(--ink); }
-  .chat-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; padding: 8px 14px; border-top: 1px solid var(--line); background: var(--surface); max-width: 540px; width: 100%; margin: 0 auto; }
-  .chat-form textarea { width: 100%; min-height: 46px; height: 46px; overflow-y: auto; max-height: 130px; padding: 12px 14px; border-radius: 22px; border: 1px solid var(--line); background: var(--bg); resize: none; font-size: 16px; line-height: 1.3; }
-  .chat-form .send { width: 46px; height: 46px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; flex: 0 0 auto; }
-  .chat-form .send svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .chat-form .send:disabled { opacity: .4; }
+  .chat-top .who-mini { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--surface-2); padding: 6px 12px; border-radius: 999px; min-height: 34px; }
+  .chat-top .clear { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); color: var(--ink); display: grid; place-items: center; font-size: 22px; line-height: 1; padding-bottom: 2px; }
+  .chat-log { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 6px 16px 20px; display: grid; gap: 18px; align-content: start; max-width: 540px; width: 100%; margin: 0 auto; }
+  .msg { font-size: 16px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .msg.me { justify-self: end; max-width: 85%; background: var(--surface-2); color: var(--ink); padding: 10px 15px; border-radius: 20px; border-bottom-right-radius: 6px; }
+  .msg.bot { justify-self: stretch; max-width: 100%; }
+  .msg.err { justify-self: stretch; background: var(--warn-soft); color: var(--ink); padding: 10px 14px; border-radius: 14px; }
+  .typing { display: inline-flex; gap: 5px; align-items: center; padding: 4px 0; }
+  .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+  .typing i:nth-child(2) { animation-delay: .2s; }
+  .typing i:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+  .chat-form { padding: 6px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; }
+  .composer { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 5px 5px 5px 16px; box-shadow: var(--shadow); }
+  .composer textarea { width: 100%; min-height: 38px; height: 38px; max-height: 150px; overflow-y: auto; padding: 9px 0; border: 0; background: transparent; resize: none; font-size: 16px; line-height: 1.35; }
+  .composer textarea:focus-visible { outline: none; }
+  .composer .send { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; flex: 0 0 auto; }
+  .composer .send svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .composer .send:disabled { background: var(--surface-2); color: var(--muted); }
   .starters { display: flex; gap: 8px; flex-wrap: wrap; }
-  .starters button { padding: 8px 12px; border-radius: 999px; background: var(--surface-2); font-size: 13px; font-weight: 600; color: var(--ink); text-align: left; }
-  .dots::after { content: "…"; }
+  .starters button { padding: 9px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 14px; font-weight: 500; color: var(--ink); text-align: left; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -733,10 +729,12 @@
     const empty = '<div class="msg bot">Moi ' + esc(NAMES[S.profile]) + '! Kerro mitä kotoa löytyy, niin keksin siitä Creami-reseptin. Voit myös kysyä neuvoa rakenteeseen tai makeuteen.</div>'
       + '<div class="starters">' + STARTERS.map((t) => '<button data-starter="' + esc(t) + '">' + esc(t) + "</button>").join("") + "</div>";
     c.innerHTML = '<div class="chat" role="dialog" aria-modal="true" aria-label="Creami-ammattilainen">'
-      + '<div class="chat-top"><span class="ttl">👨‍🍳 Creami-ammattilainen</span>' + (S.chat.length ? '<button class="clear" data-chat-clear>Aloita alusta</button>' : "") + "</div>"
-      + '<div class="chat-log" id="chatLog">' + (S.chat.length ? bubbles : empty) + (S.chefBusy ? '<div class="msg bot dots">Miettii</div>' : "") + "</div>"
-      + '<form class="chat-form" data-chatform><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
-      + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></form></div>';
+      + '<div class="chat-top"><span class="ttl">👨‍🍳 Creami-ammattilainen</span>'
+      + '<button class="who-mini" data-profile="' + OTHER[S.profile] + '" title="Vaihda käyttäjäksi ' + esc(NAMES[OTHER[S.profile]]) + '">' + esc(NAMES[S.profile]) + ' ⇄</button>'
+      + (S.chat.length ? '<button class="clear" data-chat-clear aria-label="Uusi keskustelu" title="Uusi keskustelu">+</button>' : "") + "</div>"
+      + '<div class="chat-log" id="chatLog">' + (S.chat.length ? bubbles : empty) + (S.chefBusy ? '<div class="msg bot"><span class="typing"><i></i><i></i><i></i></span></div>' : "") + "</div>"
+      + '<form class="chat-form" data-chatform><div class="composer"><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
+      + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></form></div>';
     // The app header stays visible above the chat, so start below it.
     syncChatLayout();
     const log = $("#chatLog");
@@ -1079,7 +1077,7 @@ if ("chatClear" in d) { S.chat = []; saveChat(); render(); }
   document.addEventListener("input", (e) => {
     if (e.target.matches("[data-search]")) { S.q = e.target.value; render(); }
     if (e.target.matches("[data-comment]") && S.review) S.review.comment = e.target.value;
-    if (e.target.matches("[data-chat]")) { e.target.style.height = "46px"; e.target.style.height = Math.min(130, e.target.scrollHeight) + "px"; }
+    if (e.target.matches("[data-chat]")) { e.target.style.height = "38px"; e.target.style.height = Math.min(150, e.target.scrollHeight) + "px"; syncChatLayout(); }
   });
   document.addEventListener("keydown", (e) => {
     // Enter sends, Shift+Enter makes a new line
