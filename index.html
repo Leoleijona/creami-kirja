@@ -258,7 +258,7 @@
   .chat-top .ttl { font-family: var(--display); font-weight: 700; font-size: 17px; }
   .chat-top .who-mini { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--surface-2); padding: 6px 12px; border-radius: 999px; min-height: 34px; }
   .chat-top .clear { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); color: var(--ink); display: grid; place-items: center; font-size: 22px; line-height: 1; padding-bottom: 2px; }
-  .chat-log { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 6px 16px calc(20px + var(--kb, 0px)); transition: padding-bottom .25s cubic-bezier(.17,.59,.4,1); display: grid; gap: 18px; align-content: start; max-width: 540px; width: 100%; margin: 0 auto; }
+  .chat-log { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 6px 16px 20px; display: grid; gap: 18px; align-content: start; max-width: 540px; width: 100%; margin: 0 auto; }
   .msg { font-size: 16px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
   .msg.me { justify-self: end; max-width: 85%; background: var(--surface-2); color: var(--ink); padding: 10px 15px; border-radius: 20px; border-bottom-right-radius: 6px; }
   .msg.bot { justify-self: stretch; max-width: 100%; }
@@ -268,7 +268,7 @@
   .typing i:nth-child(2) { animation-delay: .2s; }
   .typing i:nth-child(3) { animation-delay: .4s; }
   @keyframes blink { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
-  .chat-form { padding: 6px 12px 10px; background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; transform: translateY(calc(-1 * var(--kb, 0px))); transition: transform .25s cubic-bezier(.17,.59,.4,1), padding-bottom .25s cubic-bezier(.17,.59,.4,1); will-change: transform; }
+  .chat-form { padding: 6px 12px 10px; background: var(--bg); max-width: 540px; width: 100%; margin: 0 auto; }
   body:not(.kb):not(.typing) .chat-form { padding-bottom: calc(10px + env(safe-area-inset-bottom) / 2); }
   .composer { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 5px 5px 5px 16px; box-shadow: var(--shadow); }
   .composer textarea { width: 100%; min-height: 38px; height: 38px; max-height: 150px; overflow-y: auto; padding: 9px 0; border: 0; background: transparent; resize: none; font-size: 16px; line-height: 1.35; }
@@ -691,10 +691,10 @@
       + "</div>";
   }
   function openChef() { S.tab = "chef"; render(); window.scrollTo(0, 0); }
-  // iOS reports the keyboard size in a few steps, never per frame, so resizing the chat on every report
-  // shakes. Instead the chat keeps its size and only slides: the composer is translated up by the keyboard
-  // height (a composited transform) and the log gets matching bottom padding, both with one CSS easing.
-  function syncChatLayout() {
+  // iOS never tells a web page how the keyboard animates, only what the viewport is once it has settled.
+  // So we move nothing while it rises — our own motion is exactly what reads as a jolt — and apply one
+  // adjustment after the viewport has been quiet for a moment, by which time the keyboard covers that area.
+  function applyChatLayout() {
     const el = $("#chef .chat"); if (!el) return;
     const vv = window.visualViewport;
     const vh = vv ? vv.height : window.innerHeight, vtop = vv ? vv.offsetTop : 0;
@@ -705,26 +705,22 @@
     const barsHidden = kbOpen || document.body.classList.contains("typing");
     const headerH = barsHidden ? 0 : ($(".top")?.offsetHeight || 0);
     const navH = barsHidden ? 0 : ($("nav.tabs")?.offsetHeight || 0);
-    const top = (vtop + headerH) + "px", height = "calc(100dvh - " + (headerH + navH) + "px)";
-    if (el.style.top !== top) el.style.top = top;
-    if (el.style.height !== height) el.style.height = height;
-    const kbPx = kb + "px";
-    if (el.style.getPropertyValue("--kb") !== kbPx) {
-      el.style.setProperty("--kb", kbPx);
-      const log = $("#chatLog");
-      if (log) requestAnimationFrame(() => { log.scrollTop = log.scrollHeight; });
-    }
+    const top = (vtop + headerH) + "px", height = Math.max(220, vh - headerH - navH) + "px";
+    const changed = el.style.top !== top || el.style.height !== height;
+    el.style.top = top; el.style.height = height;
+    const log = $("#chatLog");
+    if (log && (changed || kbOpen)) log.scrollTop = log.scrollHeight;
   }
+  // Debounced: iOS keeps reporting while the keyboard animates, and every step we apply reads as a jolt.
+  let kbSettle;
+  const syncChatLayout = (delay = 150) => { clearTimeout(kbSettle); kbSettle = setTimeout(applyChatLayout, delay); };
   if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", syncChatLayout);
-    window.visualViewport.addEventListener("scroll", syncChatLayout);
+    window.visualViewport.addEventListener("resize", () => syncChatLayout());
+    window.visualViewport.addEventListener("scroll", () => syncChatLayout());
   }
-  window.addEventListener("resize", syncChatLayout);
-  window.addEventListener("orientationchange", () => setTimeout(syncChatLayout, 300));
-  // The field gets focus before the keyboard animation finishes; re-measure once it has.
-  // A couple of checks are enough: the CSS easing does the moving, not us.
-  const trackViewport = () => [0, 120, 320, 600].forEach((ms) => setTimeout(syncChatLayout, ms));
-  const syncBurst = trackViewport;
+  window.addEventListener("resize", () => syncChatLayout());
+  window.addEventListener("orientationchange", () => syncChatLayout(350));
+  const syncBurst = () => syncChatLayout(350);   // after the keyboard has finished, never during it
   // Tapping the field is the signal: don't wait for focus/viewport events, they are unreliable on iOS.
   document.addEventListener("pointerdown", (e) => { if (e.target.closest?.("[data-chat]")) { document.body.classList.add("typing"); syncBurst(); } });
   document.addEventListener("focusin", (e) => { if (e.target.matches?.("[data-chat]")) { document.body.classList.add("typing"); syncBurst(); } });
@@ -754,8 +750,7 @@
       + '<div class="chat-log" id="chatLog">' + (S.chat.length ? bubbles : empty) + (S.chefBusy ? '<div class="msg bot"><span class="typing"><i></i><i></i><i></i></span></div>' : "") + "</div>"
       + '<form class="chat-form" data-chatform><div class="composer"><textarea data-chat rows="1" maxlength="1000" placeholder="Mitä kotona on?" enterkeyhint="send"></textarea>'
       + '<button class="send" type="submit" aria-label="Lähetä" ' + (S.chefBusy ? "disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></form></div>';
-    // The app header stays visible above the chat, so start below it.
-    syncChatLayout();
+    applyChatLayout();
     const log = $("#chatLog");
     if (log && chatCount !== S.chat.length + (S.chefBusy ? 1 : 0)) { chatCount = S.chat.length + (S.chefBusy ? 1 : 0); log.scrollTop = log.scrollHeight; }
   }
