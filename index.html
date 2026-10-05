@@ -252,6 +252,16 @@
   /* Creami-ammattilainen (chat) */
   .chef-card { display: grid; gap: 8px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; border-left: 3px solid var(--cat-frappe); }
   .chef-card .t { font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .chef-card .mini { display: grid; gap: 4px; font-size: 14px; }
+  .chef-card .mini b { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-top: 6px; }
+  .chef-card .mini ul li { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+  .chef-card .mini ul li:last-child { border-bottom: 0; }
+  .chef-card .mini ul li i { display: block; font-style: normal; font-size: 12px; color: var(--muted); }
+  .chef-card .mini ul li b { font-size: 14px; text-transform: none; letter-spacing: 0; color: var(--ink); white-space: nowrap; margin: 0; }
+  .chef-card .mini ol { list-style: decimal; padding-left: 20px; display: grid; gap: 6px; margin-top: 2px; }
+  .chef-card .mini ol li { display: list-item; }
+  .chef-card .mini ol li strong { font-family: var(--mono); font-weight: 500; font-size: 13px; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+  .chef-card .tipline { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .chef-card p { color: var(--muted); font-size: 14px; }
   .chat { position: fixed; left: 0; right: 0; top: var(--chat-top, 58px); bottom: calc(60px + env(safe-area-inset-bottom)); z-index: 4; background: var(--bg); display: grid; grid-template-rows: auto 1fr auto; }
   body.kb .chat { bottom: var(--kb, 0px); top: 0; }
@@ -663,6 +673,26 @@
     try { const r = JSON.parse(m[1].trim()); if (r && r.name && Array.isArray(r.ing) && Array.isArray(r.steps)) recipe = r; } catch (e) {}
     return { talk: (text.slice(0, m.index) + text.slice(m.index + m[0].length)).trim(), recipe };
   }
+  // The whole recipe is shown in the chat, so nothing has to be saved to be read.
+  function chefCard(r, i, saved) {
+    const m = r.macros || {};
+    const bits = [r.program ? '<span class="prog">' + esc(r.program) + "</span>" : "",
+      m.protein != null ? "<span>" + esc(m.protein) + " g prot.</span>" : "",
+      m.kcal != null ? "<span>" + esc(m.kcal) + " kcal</span>" : "",
+      r.time ? "<span>" + esc(r.time) + "</span>" : ""].join("");
+    const ing = Array.isArray(r.ing) ? r.ing.filter((x) => x && x.n).map((x) =>
+      "<li><span>" + esc(x.n) + (x.s && x.s !== x.n ? '<i>' + esc(x.s) + "</i>" : x.p ? "<i>kotona aina</i>" : "") + "</span><b>" + esc(x.a || "") + "</b></li>").join("") : "";
+    const steps = Array.isArray(r.steps) ? r.steps.map((x) => "<li>" + stepHtml(String(x)) + "</li>").join("") : "";
+    return '<div class="chef-card" style="margin-top:8px"><span class="t">' + esc(r.name) + "</span>"
+      + '<div class="meta">' + bits + "</div>"
+      + '<div class="mini">'
+      + (ing ? "<b>Ainekset</b><ul>" + ing + "</ul>" : "")
+      + (steps ? "<b>Näin teet</b><ol>" + steps + "</ol>" : "")
+      + (r.tips ? '<p class="tipline">' + esc(r.tips) + "</p>" : "")
+      + "</div>"
+      + (saved || '<button class="btn small primary" data-save-chef="' + i + '" ' + (S.chefBusy ? "disabled" : "") + ">Lisää kirjaan ehdotuksena</button>")
+      + "</div>";
+  }
   function openChef() { S.tab = "chef"; render(); window.scrollTo(0, 0); }
   // Keep the composer visible when the on-screen keyboard opens (it covers fixed elements otherwise).
   const vv = window.visualViewport;
@@ -684,10 +714,7 @@
       if (m.role === "error") return '<div class="msg err">' + esc(m.content) + "</div>";
       const parts = splitReply(m.content);
       const saved = m.savedId ? '<span class="pill ok">Lisätty kirjaan ehdotuksena</span>' : "";
-      const card = parts.recipe ? '<div class="chef-card" style="margin-top:8px"><span class="t">' + esc(parts.recipe.name) + "</span>"
-        + '<div class="meta"><span class="prog">' + esc(parts.recipe.program || "") + "</span>"
-        + (parts.recipe.macros && parts.recipe.macros.protein != null ? "<span>" + esc(parts.recipe.macros.protein) + " g prot.</span>" : "") + "</div>"
-        + (saved || '<button class="btn small primary" data-save-chef="' + i + '" ' + (S.chefBusy ? "disabled" : "") + ">Lisää kirjaan ehdotuksena</button>") + "</div>" : "";
+      const card = parts.recipe ? chefCard(parts.recipe, i, saved) : "";
       return '<div class="msg bot">' + esc(parts.talk) + card + "</div>";
     }).join("");
     const empty = '<div class="msg bot">Moi ' + esc(NAMES[S.profile]) + '! Kerro mitä kotoa löytyy, niin keksin siitä Creami-reseptin. Voit myös kysyä neuvoa rakenteeseen tai makeuteen.</div>'
