@@ -17,6 +17,14 @@ const PINNED = Deno.env.get("CHEF_MODEL");
 const EFFORT = Deno.env.get("CHEF_EFFORT") ?? "low";   // gpt-5 spends max_completion_tokens on reasoning first; keep it light
 const OPENAI_MODELS = PINNED ? [PINNED] : ["gpt-5", "gpt-4.1", "gpt-4o"];
 const ANTHROPIC_MODELS = PINNED ? [PINNED] : ["claude-sonnet-5", "claude-haiku-4-5-20251001"];
+// Anthropic is preferred when its key exists; the other provider stays as a backup if the first one fails
+// (out of credit, rate limited). CHEF_PROVIDER="openai"|"anthropic" pins one.
+const PROVIDER = Deno.env.get("CHEF_PROVIDER");
+function providerOrder(): string[] {
+  const have = [ANTHROPIC_KEY ? "anthropic" : null, OPENAI_KEY ? "openai" : null].filter(Boolean) as string[];
+  if (PROVIDER && have.includes(PROVIDER)) return [PROVIDER, ...have.filter((p) => p !== PROVIDER)];
+  return have;   // anthropic first when both are configured
+}
 
 const cors = (origin: string | null) => ({
   "Access-Control-Allow-Origin": origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0],
@@ -34,16 +42,16 @@ Kotona aina (merkitse "p": true): Puhdistamo vanilja- ja suklaaheraproteiini, al
 Kysy puuttuvat ainekset valmis määrä ehdottaen. Jos aineksista ei tulisi hyvää, sano se rehellisesti äläkä anna reseptiä.
 Kun resepti on valmis, lisää vastauksen loppuun koodilohko \`\`\`creami jossa on vain JSON: {"id","name","cat","program","who","freeze","respin","time","macros":{"protein","kcal"},"ing":[{"n","a","s","p"}],"steps":[],"tips"}.`;
 
-const textOf = (data: any) => OPENAI_KEY
+const textOf = (data: any, provider: string) => provider === "openai"
   ? String(data.choices?.[0]?.message?.content ?? "").trim()
   : (data.content ?? []).filter((c: any) => c.type === "text").map((c: any) => c.text).join("\n").trim();
 
-async function callModel(system: string, messages: { role: string; content: string }[]) {
-  const models = OPENAI_KEY ? OPENAI_MODELS : ANTHROPIC_MODELS;
+async function callProvider(provider: string, system: string, messages: { role: string; content: string }[]) {
+  const models = provider === "openai" ? OPENAI_MODELS : ANTHROPIC_MODELS;
   let last: { status: number; detail: string } = { status: 0, detail: "" };
   for (const model of models) {
     const reasoning = /^(gpt-5|o[1-9])/.test(model);
-    const res = OPENAI_KEY
+    const res = provider === "openai"
       ? await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
           headers: { "content-type": "application/json", authorization: `Bearer ${OPENAI_KEY}` },
@@ -61,19 +69,31 @@ async function callModel(system: string, messages: { role: string; content: stri
         });
     if (res.ok) {
       const data = await res.json();
-      const text = textOf(data);
-      if (text) return { ok: true as const, data, text, model };
+      const text = textOf(data, provider);
+      if (text) return { ok: true as const, data, text, model, provider };
       // A reasoning model can spend its whole budget on thinking and answer nothing; try the next model.
-      console.error("empty", model, JSON.stringify(data.usage ?? {}));
+      console.error("empty", provider, model, JSON.stringify(data.usage ?? {}));
       last = { status: 0, detail: "empty" };
       continue;
     }
     const detail = await res.text();
     last = { status: res.status, detail };
-    console.error("upstream", model, res.status, detail.slice(0, 300));
+    console.error("upstream", provider, model, res.status, detail.slice(0, 300));
     // Unknown / unavailable model for this account: try the next one. Other errors are real.
     const unknownModel = (res.status === 400 || res.status === 404 || res.status === 403) && /model/i.test(detail);
     if (!unknownModel) break;
+  }
+  return { ok: false as const, ...last };
+}
+
+async function callModel(system: string, messages: { role: string; content: string }[]) {
+  let last: { status: number; detail: string } = { status: 0, detail: "" };
+  for (const provider of providerOrder()) {
+    const out = await callProvider(provider, system, messages);
+    if (out.ok) return out;
+    last = { status: out.status, detail: out.detail };
+    // Out of credit / rate limited / bad key: try the other provider if one is configured.
+    if (![401, 402, 403, 429, 500, 502, 503, 529].includes(out.status) && out.detail !== "empty") break;
   }
   return { ok: false as const, ...last };
 }
@@ -84,7 +104,7 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "method" }, 405, origin);
   if (origin && !ALLOWED_ORIGINS.includes(origin)) return json({ error: "origin" }, 403, origin);
 
-  if (!OPENAI_KEY && !ANTHROPIC_KEY) return json({ error: "no_key", message: "Ammattilainen ei ole vielä käytössä: API-avain puuttuu Supabasesta." }, 503, origin);
+  if (!providerOrder().length) return json({ error: "no_key", message: "Ammattilainen ei ole vielä käytössä: API-avain puuttuu Supabasesta." }, 503, origin);
 
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
@@ -127,7 +147,10 @@ Deno.serve(async (req) => {
 
   const out = await callModel(system, messages);
   if (!out.ok) {
-    return json({ error: "upstream", message: out.status === 401 ? "API-avain ei kelpaa." : out.status === 429 ? "Tekoälypalvelu on ruuhkainen tai saldo on lopussa." : "Ammattilaiseen ei juuri nyt saada yhteyttä." }, 502, origin);
+    const msg = out.status === 401 ? "API-avain ei kelpaa."
+      : out.status === 429 || out.status === 402 ? "Tekoälypalvelun saldo on lopussa tai käyttöraja täynnä."
+      : "Ammattilaiseen ei juuri nyt saada yhteyttä.";
+    return json({ error: "upstream", message: msg }, 502, origin);
   }
   const data = out.data, text = out.text;
   await db.from("chef_log").insert({
